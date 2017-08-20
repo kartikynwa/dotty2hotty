@@ -8,11 +8,11 @@ Nothing too complicated. Have the required stuff installed. This includes:
 * nvim with dein
 * miscellaneous bits: fonts and...uh...etc.
 
-'''bash
+```bash
 cd ~
 git clone https://gitlab.com/kartikynwa/dotty2hotty.git
 dotty2hottie/install.sh
-'''
+```
 
 ## Things that do not matter
 
