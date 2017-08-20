@@ -40,7 +40,7 @@ approach for two reason:
    works. I, being the greatness that I am, do not have the time to trifle with
    such trivialities.
 2. Can't put my finger on it but something about it makes it look like a
-   little bit like a जुगाड़ . It works, yeah. But something doesn't seem right
+   little bit like a जुगाड़. It works, yeah. But something doesn't seem right
    about turning my home directory into _possibly_ a git directory. U feel me?
 
 As such I came up with my own patent pending method. I add the path where the
