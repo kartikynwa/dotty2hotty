@@ -23,11 +23,11 @@ smart_gaps on
 gaps inner 15 
 
 # Monitor controls
-bindsym $mod+Shift+m exec ~/.screenlayout/laptop_screen.sh
-bindsym $mod+Shift+n exec ~/.screenlayout/dvi.sh
+bindsym $mod+Shift+m exec ~/dotty2hottie/screenlayout/laptop_screen.sh
+bindsym $mod+Shift+n exec ~/dotty2hottie/screenlayout/dvi.sh
 
 # exec_always stuff
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/dotty2hottie/scripterino/polybar_launch.sh
 exec_always feh --bg-scale /home/kartik/.wallpaper.png
 
 # exec startup
