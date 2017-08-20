@@ -59,8 +59,8 @@ to be honest I haven't even begun to care about it.
 
 Also, all the scripts that I saw were so dry. Eugh! Fucking programmers man.
 
-If you have found yourself here in this untraversed corner of git repos looking
-for answers, I hope you can find some here so you can be less like yourself
-and more like me.
+If you stumbled upon this untraversed corner of git repos looking for answers, I
+hope you have found something helpful that might let you be more like me and less
+like yourself.
 
 Adieu, friend.
