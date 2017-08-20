@@ -17,7 +17,7 @@ if [ ! "$input" == "y" ]; then
     exit
 fi
 
-files="compton i3 nvim rofi polybar termite zshrc xinitrc"
+files="compton i3 nvim rofi polybar termite zshrc xinitrc Xresources"
 
 echo "You seem okay. Let us backup your old files."
 
@@ -27,8 +27,8 @@ for file in $files; do
     linkpath=$HOME/`head -2 $file | tail -1 | cut -d "=" -f 2`
     configpath=$PWD/$file
     if [ -f $path ]; then
-         mv $linkpath backup/$file
-        echo "$linkfile has been backed up."
+        mv $linkpath backup/$file
+        echo "$file config has been backed up."
     else
         echo "$linkfile config file MIA."
     fi
