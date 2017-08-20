@@ -1,3 +1,4 @@
+#
 # PATH=.config/compton.conf
 backend = "glx";
 paint-on-overlay = true;

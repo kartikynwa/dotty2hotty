@@ -23,7 +23,8 @@ Welcome to the humble abode of my _dotfiles_. I once used to be the forlorn
 shipwreck that you are. Before undertaking this endeavour, I had little 
 idea of how bash scripts, symlinking and git work. Through the sheer force of
 my immense willpower and unwavering tenacity, I succeeded in Googling a lot
-of shit and getting this done that other peeps had been so kind to share.
+of shit and getting this done using information that other peeps had been so
+kind to share.
 
 One of the things that bothered me about the dotfile git repositories of 
 other "_developers_" was that there was no way of reliably knowing where
@@ -46,14 +47,12 @@ approach for two reason:
    little bit like a जुगाड़. It works, yeah. But something doesn't seem right
    about turning my home directory into _possibly_ a git directory. U feel me?
 
-As such I came up with my own patent pending method. I add the path where the
-symlink has to be created as a comment in the first line in the format
-`# PATH=<path>`. This is fairly straightfoward, lets me backup before creating
-the symlinks and the only edge cases are bash scripts which have a shebang in
-the opener. This can be easily taked care of by putting the path in the second
-line instead. Unfortunately, even my genius can only materialise so many
-innovations in one go. So far, it works for me and if I need to I will pull
-the trigger on that change. One flaw that stings me is that the repo folder
+As such I came up with my own patent pending IQ 150 method. I add the path where the
+symlink has to be created relating to the home directory as a comment in the second line.
+This is fairly straightfoward and lets me backup before creating the symlinks. The path exists
+in the second line to accomodate shell scipts, where the first line is the shebang.
+Does it need to be? I really do not know. All I know is that it works and is really
+fucking cool. One flaw that stings me is that the repo folder
 _NEEDS_ to be created in the home directory. I might be able to fix that but
 to be honest I haven't even begun to care about it.
 
