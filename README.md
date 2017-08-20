@@ -1,7 +1,5 @@
 # Salve, straggler.
 
----
-
 Welcome to the humble abode of my _dotfiles_. I once used to be the forlorn
 shipwreck like you. Before undertaking this endeavour, I had little idea
 of how bash scripts, symlinking and git works. Through the sheer force of
