@@ -17,7 +17,7 @@ dotty2hotty/install.sh
 ## Things that do not matter
 
 ![Scotty2Hotty](https://gitlab.com/kartikynwa/dotty2hotty/raw/master/scotty2hotty.jpg "Scotty2Hotty")  
-© All rights reserved by Scotty2Hotty. (_I think._)
+`© All rights reserved by Scotty2Hotty. (I think.)`
 
 Welcome to the humble abode of my _dotfiles_. I once used to be the forlorn
 shipwreck that you are. Before undertaking this endeavour, I had little 
