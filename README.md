@@ -36,7 +36,7 @@ One of the more ingenious solutions was making a bare git repository in the
 home directory. It is talked about in
 [**THIS**](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) 
 blog post. Any file in the home directory can then be added to it.
-This does away with the need to sym link. However, I chose to not follow this
+This does away with the need to symlink. However, I chose to not follow this
 approach for two reason:
 
 1. This method requires you to have more than just surface knowledge of how git
