@@ -70,12 +70,12 @@ tray-padding = 0
 type = custom/script
 interval = 1
 format-underline = #af0000
-exec = bash ~/dotty2hottie/scripterino/cmus-now-playing
+exec = bash ~/dotty2hotty/scripterino/cmus-now-playing
 
 [module/fuzzyclock]
 type = custom/script
 interval = 5
-exec = ~/dotty2hottie/scripterino/bash-fuzzy-clock
+exec = ~/dotty2hotty/scripterino/bash-fuzzy-clock
 format = " <label>"
 format-underline = #d700af
 
