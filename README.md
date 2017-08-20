@@ -1,8 +1,24 @@
 # Salve, straggler.
 
+## Instructions
+
+Nothing too complicated. Have the required stuff installed. This includes:
+* i3, polybar, rofi, compton
+* zsh with zprezto, termite
+* nvim with dein
+* miscellaneous bits: fonts and...uh...etc.
+
+'''bash
+cd ~
+git clone https://gitlab.com/kartikynwa/dotty2hotty.git
+dotty2hottie/install.sh
+'''
+
+## Things that do not matter
+
 Welcome to the humble abode of my _dotfiles_. I once used to be the forlorn
-shipwreck like you. Before undertaking this endeavour, I had little idea
-of how bash scripts, symlinking and git works. Through the sheer force of
+shipwreck like that you are. Before undertaking this endeavour, I had little 
+idea of how bash scripts, symlinking and git works. Through the sheer force of
 my immense willpower and unwavering tenacity, I succeeded in Googling a lot
 of shit and getting this done.
 

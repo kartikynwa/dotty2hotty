@@ -3,7 +3,6 @@
 # A script to install dotfiles. I will keep it simple.
 
 echo "This will install ksynwa's dotfiles for:"
-echo "  - xinitrc"
 echo "  - i3, polybar, rofi, compton"
 echo "  - zsh+zprezto, termite"
 echo "  - nvim+dein"
