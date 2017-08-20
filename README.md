@@ -34,7 +34,9 @@ the symlinks and the only edge cases are bash scripts which have a shebang in
 the opener. This can be easily taked care of by putting the path in the second
 line instead. Unfortunately, even my genius can only materialise so many
 innovations in one go. So far, it works for me and if I need to I will pull
-the trigger on that change.
+the trigger on that change. One flaw that stings me is that the repo folder
+_NEEDS_ to be created in the home directory. I might be able to fix that but
+to be honest I haven't even begun to care about it.
 
 Also, all the scripts that I saw were so dry. Eugh! Fucking programmers man.
 
