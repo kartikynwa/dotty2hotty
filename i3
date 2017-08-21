@@ -26,6 +26,7 @@ gaps inner 15
 # Monitor controls
 bindsym $mod+Shift+m exec ~/dotty2hotty/screenlayout/laptop_screen.sh
 bindsym $mod+Shift+n exec ~/dotty2hotty/screenlayout/dvi.sh
+bindsym $mod+Shift+b exec ~/dotty2hotty/screenlayout/both.sh
 
 # exec_always stuff
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
