@@ -125,10 +125,9 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Pulse Audio controls
-set $pulsesinkid 6 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pulsesinkid +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pulsesinkid -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $pulsesinkid toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # ALSA Volume 
 # bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
