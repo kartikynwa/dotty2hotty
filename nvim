@@ -87,6 +87,8 @@ set ruler                  " show info along the bottom
 set showcmd                
 set showmode
 set splitbelow             " split window goes below
+set textwidth=80
+set colorcolumn=+1
 
 "========================
 "  Completetion (kill me)
