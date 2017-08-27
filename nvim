@@ -79,7 +79,7 @@ filetype plugin indent on  " filetype detection plugin and indent
 syntax enable              " syntax highlighting
 set nohlsearch             " no persistent higlighting of search
 set incsearch              " highlight while searching tho
-set nowrap                 " don't wrap lines please
+" set nowrap               " don't wrap lines please - actually do it lol
 set number                 " show line numbers
 set laststatus=2           " last window always has a status line
 set backspace=2            " don't know what this does sorry
