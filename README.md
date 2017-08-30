@@ -10,7 +10,7 @@ Nothing too complicated. Have the required stuff installed. This includes:
 
 ```bash
 cd ~
-git clone https://gitlab.com/kartikynwa/dotty2hotty.git
+git clone https://kartikynwa@bitbucket.org/kartikynwa/dotty2hotty.git
 dotty2hotty/install.sh
 ```
 
