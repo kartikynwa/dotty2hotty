@@ -35,7 +35,7 @@ exec_always feh --bg-scale /home/kartik/.wallpaper.png
 # exec startup
 exec compton -b
 exec redshift-gtk
-exec xrdb ~/.Xresources
+# exec xrdb ~/.Xresources
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
