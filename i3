@@ -30,7 +30,8 @@ bindsym $mod+Shift+b exec ~/dotty2hotty/screenlayout/both.sh
 
 # exec_always stuff
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
-exec_always feh --bg-scale /home/kartik/.wallpaper.png
+# exec_always feh --bg-scale /home/kartik/.wallpaper.png
+exec_always --no-startup-id $HOME/dotty2hotty/scripterino/wall.sh
 
 # exec startup
 exec compton -b
