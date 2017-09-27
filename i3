@@ -35,7 +35,7 @@ exec_always --no-startup-id $HOME/dotty2hotty/scripterino/wall.sh
 
 # exec startup
 exec compton -b
-exec redshift-gtk
+exec --no-startup-id redshift-gtk
 # exec xrdb ~/.Xresources
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left

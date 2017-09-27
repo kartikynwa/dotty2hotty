@@ -6,11 +6,11 @@
 ! Copyright: Rasmus Steinke
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
-rofi.color-window: #232c31, #344249, #344249
-rofi.color-normal: #232c31, #a3a6a4, #232c31, #2d3646, #c5c8c6
-rofi.color-active: #232c31, #008ed4, #232c31, #003642, #008ed4
-rofi.color-urgent: #232c31, #da4281, #232c31, #003642, #da4281
+rofi.color-window: #051519, #0A2B33, #0A2B33
+rofi.color-normal: #051519, #a3a6a4, #051519, #0A2B33, #c5c8c6
+rofi.color-active: #051519, #008ed4, #051519, #0A2B33, #008ed4
+rofi.color-urgent: #051519, #da4281, #051519, #0A2B33, #da4281
 
 
-rofi.font: Noto Mono 20
+rofi.font: Hack 20
 rofi.lines: 10
