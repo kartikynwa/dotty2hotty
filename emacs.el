@@ -83,7 +83,7 @@
 (use-package evil
   :ensure t
   :config
-  (use-package undo-tree :ensure t)
+  (use-package undo-tree :ensure t :diminish undo-tree-mode)
   (setq evil-want-C-u-scroll t
         evil-want-visual-char-semi-exclusive t
         evil-magic t
@@ -183,9 +183,12 @@
 
 (add-hook 'org-mode-hook 'my/org-mode-hook)
 
+(use-package org-indent :diminish org-indent-mode)
+
 ;; ivy-mode
 (use-package ivy
   :ensure t
+  :diminish ivy-mode
   :init
   (use-package counsel :ensure t)
   (use-package swiper :ensure t)
@@ -294,6 +297,7 @@
 ;; which-key shows promt that tells what keystrokes do. reallly neat.
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (setq which-key-sort-order #'which-key-prefix-then-key-order
         which-key-sort-uppercase-first nil
