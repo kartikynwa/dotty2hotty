@@ -137,6 +137,7 @@
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :keymaps 'global
+                      "M-=" 'count-words
                       "M-v" 'clipboard-yank))
 
 ;; disable backups
