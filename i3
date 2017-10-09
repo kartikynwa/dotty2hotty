@@ -20,8 +20,9 @@ font pango:NotoSans 11
 
 # Gaps global
 for_window [class="^.*"] border pixel 3
-smart_gaps on
+#smart_gaps on
 gaps inner 15 
+#gaps outer 10
 
 # Monitor controls
 bindsym $mod+Shift+m exec ~/dotty2hotty/screenlayout/laptop_screen.sh

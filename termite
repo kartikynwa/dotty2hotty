@@ -10,7 +10,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Hack 16
+font = Consolas 15
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -35,7 +35,8 @@ filter_unmatched_urls = true
 #modify_other_keys = false
 
 [colors]
-foreground = #657b83
+# foreground = #657b83
+foreground = #073642
 foreground_bold = #073642
 #foreground_dim = #888888
 background = #fdf6e3

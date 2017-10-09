@@ -5,10 +5,10 @@
 echo "This will install ksynwa's dotfiles for:"
 echo "  - i3, polybar, rofi, compton"
 echo "  - zsh+zprezto, termite"
-echo "  - nvim+dein"
+echo "  - nvim+dein, emacs"
 echo "  - xinitrc"
 echo "Ensure that ^ have been installed. Pls."
-echo "Proceed?"
+echo "Proceed? [y/n]"
 
 read input
 
@@ -17,7 +17,7 @@ if [ ! "$input" == "y" ]; then
     exit
 fi
 
-files="compton i3 nvim rofi polybar termite zshrc xinitrc Xresources"
+files="compton i3 nvim rofi polybar termite zshrc xinitrc Xresources emacs.el"
 
 echo "You seem okay. Let us backup your old files."
 
@@ -27,6 +27,7 @@ for file in $files; do
     linkpath=$HOME/`head -2 $file | tail -1 | cut -d "=" -f 2`
     configpath=$PWD/$file
     if [ -f $path ]; then
+        echo "linkpath is $linkpath"
         mv $linkpath backup/$file
         echo "$file config has been backed up."
     else
