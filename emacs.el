@@ -7,6 +7,11 @@
 ;; who we are
 (setq user-full-name "Kartik Singh")
 (setq user-mail-address "kartik.ynwa@gmail.com")
+(setq-default frame-title-format '("%b [%m]"))
+
+;; custom file location
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file) (load custom-file 'noerror))
 
 
 (require 'package)
@@ -24,18 +29,6 @@
   (require 'use-package))
 (require 'diminish)
 (require 'bind-key)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
- '(flycheck-c/c++-clang-executable "clang-3.5")
- '(package-selected-packages
-   (quote
-    (nlinum general counsel highlight-parentheses evil-snipe evil-surround evil-magit flycheck magit olivetti smart-mode-line markdown-mode ivy evil undo-tree solarized-theme use-package))))
 
 ;; font:default
 (set-face-attribute 'default nil
@@ -68,7 +61,7 @@
 (use-package hl-line
   :config
   (global-hl-line-mode 1))
-  
+
 
 ;; show column number in mode line
 (setq column-number-mode t)
@@ -81,9 +74,8 @@
 ;; evil mode - i am not sure how undo-tree works so I will just install it
 ;; beforehand
 (use-package evil
-  :ensure t
   :config
-  (use-package undo-tree :ensure t :diminish undo-tree-mode)
+  (use-package undo-tree :diminish undo-tree-mode)
   (setq evil-want-C-u-scroll t
         evil-want-visual-char-semi-exclusive t
         evil-magic t
@@ -107,8 +99,8 @@
   (global-evil-surround-mode 1))
 
 (use-package evil-snipe
-  :diminish evil-snipe-local-mode
   :ensure t
+  :diminish evil-snipe-local-mode
   :after evil
   :init
   (evil-snipe-mode 1)
@@ -133,12 +125,19 @@
                       "h" 'evil-window-left
                       "j" 'evil-window-down
                       "k" 'evil-window-up
-                      "l" 'evil-window-right)
+                      "l" 'evil-window-right
+                      "n" 'neotree-toggle)
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :keymaps 'global
-                      "M-=" 'count-words
-                      "M-v" 'clipboard-yank))
+                      "M-="  'count-words
+                      "M-v"  'clipboard-yank
+                      "C-SPC" 'company-complete-common-or-cycle
+                      "S-SPC" 'company-complete-common-or-cycle-previous)
+  (general-define-key :keymaps 'neotree-mode-map
+                      "RET" 'neotree-enter
+                      "q" 'neotree-hide
+                      "TAB" 'neotree-quick-look))
 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -148,6 +147,9 @@
 (setq-default c-basic-indent 2)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
+
+;; neotree
+(use-package neotree)
 
 ;; org-mode tweaks
 (use-package org
@@ -161,14 +163,12 @@
                 org-image-actual-width nil
                 org-indent-indentation-per-level 2
                 org-indent-mode-turns-on-hiding-stars t
-                org-todo-keywords '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)")
-                                    (sequence "TODO(T)" "|" "DONE(D)")
+                org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
                                     (sequence "IDEA(i)" "NEXT(n)" "ACTIVE(a)" "WAITING(w)" "LATER(l)" "|" "CANCELLED(c)")))
   (custom-set-faces '(org-todo ((t (:box nil))))
                     '(org-done ((t (:box nil))))
                     '(org-checkbox ((t (:box nil :foreground nil :background nil)))))
   (use-package org-bullets
-    :ensure t
     :init (add-hook 'org-mode-hook #'org-bullets-mode)
     :config (setq org-bullets-bullet-list '("#"))))
 
@@ -184,7 +184,7 @@
 
 (add-hook 'org-mode-hook 'my/org-mode-hook)
 
-(use-package org-indent :diminish org-indent-mode)
+(use-package org-indent :ensure f :diminish org-indent-mode)
 
 ;; ivy-mode
 (use-package ivy
@@ -241,17 +241,26 @@
 ;; company mode code completion
 (use-package company
   :ensure t
+  :diminish company-mode
   :init
   (add-hook 'after-init-hook 'global-company-mode)
-  (use-package company-irony :ensure t :defer t)
+  (use-package company-irony :defer t)
   (setq company-idle-delay              nil
         company-minimum-prefix-length   2
         company-show-numbers            t
-        company-tooltip-limit           20)
-  :diminish company-mode
-  :bind
-  ("C-;" . company-complete-common)
-  ("C-SPC" . company-complete-common))
+        company-tooltip-limit           20))
+
+(defun company-complete-common-or-cycle-previous (&optional arg)
+  "Insert the common part of all candidates, or select the previous one.
+With ARG, move by that many elements."
+  (interactive "p")
+  (when (company-manual-begin)
+    (let ((tick (buffer-chars-modified-tick)))
+      (call-interactively 'company-complete-common)
+      (when (eq tick (buffer-chars-modified-tick))
+        (let ((company-selection-wrap-around t)
+              (current-prefix-arg arg))
+          (call-interactively 'company-select-previous))))))
 
 ;; projectile
 (use-package projectile
@@ -270,7 +279,6 @@
   ;; Use evil keybindings within magit
   :config
   (use-package evil-magit
-    :ensure t
     :config
     ;; Default commit editor opening in insert mode
     (add-hook 'with-editor-mode-hook 'evil-insert-state)
@@ -316,6 +324,13 @@
   :init
   (add-hook 'prog-mode-hook 'nlinum-mode))
 
+;;persistent-scratch buffer
+(use-package persistent-scratch
+  :disabled t
+  :ensure t
+  :config
+  (persistent-scratch-setup-default))
+
 ;; open todo file
 (defun todo! ()
   "Opens the todo file which has things that need to be done but probably won't be."
@@ -328,11 +343,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-checkbox ((t (:box nil :foreground nil :background nil))))
- '(org-done ((t (:box nil))))
- '(org-todo ((t (:box nil)))))

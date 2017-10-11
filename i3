@@ -61,7 +61,8 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+o exec --no-startup-id rofi -show fb -modi fb:~/dotty2hotty/scripterino/rofi-file-browser.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.

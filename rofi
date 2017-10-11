@@ -2,14 +2,24 @@
 ! PATH=.config/rofi/config
 !
 ! ------------------------------------------------------------------------------
-! ROFI Color theme
+! ROFI Color theme - Rose
+! Copyright: Rasmus Steinke
+! ------------------------------------------------------------------------------
+!rofi.color-enabled: true
+!rofi.color-window: #051519, #0A2B33, #0A2B33
+!rofi.color-normal: #051519, #a3a6a4, #051519, #0A2B33, #c5c8c6
+!rofi.color-active: #051519, #008ed4, #051519, #0A2B33, #008ed4
+!rofi.color-urgent: #051519, #da4281, #051519, #0A2B33, #da4281
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme - Solarized dark
 ! Copyright: Rasmus Steinke
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
-rofi.color-window: #051519, #0A2B33, #0A2B33
-rofi.color-normal: #051519, #a3a6a4, #051519, #0A2B33, #c5c8c6
-rofi.color-active: #051519, #008ed4, #051519, #0A2B33, #008ed4
-rofi.color-urgent: #051519, #da4281, #051519, #0A2B33, #da4281
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
 
 
 rofi.font: Consolas 20

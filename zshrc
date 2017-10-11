@@ -14,6 +14,5 @@ fi
 
 # Customize to your needs...
 autoload zmv
-export PATH=~/.anaconda3/bin:$PATH
 export EDITOR=nvim
 alias vim=nvim
