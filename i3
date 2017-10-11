@@ -194,25 +194,44 @@ mode "resize" {
 
 # Color stuff
 #
-set $bg-color            #2f343f
-set $inactive-bg-color   #4f4646
-set $text-color          #f3f4f5
-set $inactive-text-color #676e7D
-set $urgent-bg-color     #e53935
-set $indicator-color     #8a93a8
+#set $bg-color            #2f343f
+#set $inactive-bg-color   #4f4646
+#set $text-color          #f3f4f5
+#set $inactive-text-color #676e7D
+#set $urgent-bg-color     #e53935
+#set $indicator-color     #8a93a8
+
+set $base03           #002b36
+set $base02           #073642
+set $base01           #586e75
+set $base00           #657b83
+set $base0            #839496
+set $base1            #93a1a1
+set $base2            #eee8d5
+set $base3            #fdf6e3
+set $yellow           #b58900
+set $orange           #cb4b16
+set $red              #dc322f
+set $magenta          #d33682
+set $violet           #6c71c4
+set $blue             #268bd2
+set $cyan             #2aa198
+set $green            #859900
+set $custom           #1c5766
 
 # window colors
 #                       border             background         text                 indicator
-client.focused          $bg-color          $bg-color          $text-color          $indicator-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
-client.urgent $urgent-bg-color $urgent-bg-color $text-color $indicator-color
+client.focused          $blue              $blue              $base3               $violet
+client.unfocused        $base02            $base02            $base1               $base01
+client.focused_inactive $base02            $base02            $base2               $violet
+client.urgent           $magenta           $magenta           $base3               $red
 
 bindsym $mod+r mode "resize"
 
 # Window settings
 for_window [class="feh"] border normal, floating enable
 for_window [class="mpv"] border normal, floating enable
+for_window [class="explorer.exe"] border normal, floating enable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
