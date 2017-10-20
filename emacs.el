@@ -130,14 +130,17 @@
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :keymaps 'global
-                      "M-="  'count-words
-                      "M-v"  'clipboard-yank
-                      "C-SPC" 'company-complete-common-or-cycle
-                      "S-SPC" 'company-complete-common-or-cycle-previous)
+                      "TAB"   'company-complete-common
+                      "M-="   'count-words
+                      "M-v"   'clipboard-yank)
   (general-define-key :keymaps 'neotree-mode-map
+                      :states 'normal
                       "RET" 'neotree-enter
                       "q" 'neotree-hide
-                      "TAB" 'neotree-quick-look))
+                      "<tab>" 'neotree-quick-look)
+  (general-define-key :keymaps 'company-active-map
+                      "<tab>" 'company-complete-common-or-cycle
+                      "<backtab>" 'company-select-previous))
 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -240,27 +243,26 @@
 
 ;; company mode code completion
 (use-package company
-  :ensure t
+  :defines company-dabbrev-downcase
   :diminish company-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  (use-package company-irony :defer t)
-  (setq company-idle-delay              nil
-        company-minimum-prefix-length   2
-        company-show-numbers            t
-        company-tooltip-limit           20))
+  :config
+  (add-hook 'prog-mode-hook #'company-auto-suggest-on)
+  (global-company-mode +1))
 
-(defun company-complete-common-or-cycle-previous (&optional arg)
-  "Insert the common part of all candidates, or select the previous one.
-With ARG, move by that many elements."
-  (interactive "p")
-  (when (company-manual-begin)
-    (let ((tick (buffer-chars-modified-tick)))
-      (call-interactively 'company-complete-common)
-      (when (eq tick (buffer-chars-modified-tick))
-        (let ((company-selection-wrap-around t)
-              (current-prefix-arg arg))
-          (call-interactively 'company-select-previous))))))
+(defun company-auto-suggest-on ()
+  "Settings for company-mode idle completion."
+  (interactive)
+  (setq-local company-idle-delay 0.1)
+	(setq-local company-minimum-prefix-length 2)
+	(setq-local company-selection-wrap-around t)
+  (setq-local company-dabbrev-downcase nil))
+
+;; yasnippets
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
+  (yas-global-mode 1))
 
 ;; projectile
 (use-package projectile
@@ -335,8 +337,7 @@ With ARG, move by that many elements."
 (defun todo! ()
   "Opens the todo file which has things that need to be done but probably won't be."
   (interactive)
-  (find-file "~/orgy/todo.org")
-  (outline-show-all))
+  (find-file "~/orgy/todo.org"))
 
 ;; open todo file at startup
 (todo!)

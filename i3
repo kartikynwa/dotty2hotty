@@ -19,15 +19,15 @@ set $mod Mod4
 font pango:NotoSans 11
 
 # Gaps global
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 4
 #smart_gaps on
 gaps inner 15 
 #gaps outer 10
 
 # Monitor controls
-bindsym $mod+Shift+m exec ~/dotty2hotty/screenlayout/laptop_screen.sh
-bindsym $mod+Shift+n exec ~/dotty2hotty/screenlayout/dvi.sh
-bindsym $mod+Shift+b exec ~/dotty2hotty/screenlayout/both.sh
+bindsym $mod+Shift+m exec --no-startup-id ~/dotty2hotty/screenlayout/laptop_screen.sh
+bindsym $mod+Shift+n exec --no-startup-id ~/dotty2hotty/screenlayout/dvi.sh
+bindsym $mod+Shift+b exec --no-startup-id ~/dotty2hotty/screenlayout/both.sh
 
 # exec_always stuff
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
@@ -35,7 +35,7 @@ exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/wall.sh
 
 # exec startup
-exec compton -b
+exec --no-startup-id compton -b
 exec --no-startup-id redshift-gtk
 # exec xrdb ~/.Xresources
 
@@ -62,7 +62,6 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+o exec --no-startup-id rofi -show fb -modi fb:~/dotty2hotty/scripterino/rofi-file-browser.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -119,9 +118,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # mpd player controls
-bindsym XF86AudioPlay exec cmus-remote --pause
-bindsym XF86AudioPrev exec cmus-remote --prev
-bindsym XF86AudioNext exec cmus-remote --next
+bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev
+bindsym XF86AudioNext exec --no-startup-id cmus-remote --next
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -221,7 +220,7 @@ set $custom           #1c5766
 
 # window colors
 #                       border             background         text                 indicator
-client.focused          $blue              $blue              $base3               $violet
+client.focused          $blue              $blue              $base3               $orange
 client.unfocused        $base02            $base02            $base1               $base01
 client.focused_inactive $base02            $base02            $base2               $violet
 client.urgent           $magenta           $magenta           $base3               $red
