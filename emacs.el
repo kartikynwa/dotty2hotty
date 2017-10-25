@@ -140,7 +140,8 @@
                       "<tab>" 'neotree-quick-look)
   (general-define-key :keymaps 'company-active-map
                       "<tab>" 'company-complete-common-or-cycle
-                      "<backtab>" 'company-select-previous))
+                      "<backtab>" 'company-select-previous
+                      "ESC" 'company-abort))
 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -341,6 +342,7 @@
 
 ;; open todo file at startup
 (todo!)
+(blink-cursor-mode 0)
 
 (provide 'init)
 ;;; init.el ends here

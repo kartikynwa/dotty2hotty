@@ -16,3 +16,4 @@ fi
 autoload zmv
 export EDITOR=nvim
 alias vim=nvim
+alias porn="mpv 'https://www.pornhub.com/random'"

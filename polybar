@@ -407,9 +407,9 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = 
+label-open = power
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = power
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
