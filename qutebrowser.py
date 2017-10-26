@@ -85,7 +85,7 @@ c.colors.completion.even.bg = solarized['base02']
 
 ## Text color of the completion widget.
 ## Type: QtColor
-c.colors.completion.fg = solarized['base3']
+c.colors.completion.fg = solarized['base1']
 
 ## Background color of the selected completion item.
 ## Type: QssColor
@@ -113,7 +113,7 @@ c.colors.completion.odd.bg = solarized['base02']
 
 ## Color of the scrollbar in completion view
 ## Type: QssColor
-c.colors.completion.scrollbar.bg = solarized['base0']
+c.colors.completion.scrollbar.bg = solarized['base1']
 
 ## Color of the scrollbar handle in completion view.
 ## Type: QssColor
@@ -168,15 +168,15 @@ c.colors.downloads.start.fg = solarized['base3']
 ## Background color for hints. Note that you can use a `rgba(...)` value
 ## for transparency.
 ## Type: QssColor
-# c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
+c.colors.hints.bg = solarized['violet']
 
 ## Font color for hints.
 ## Type: QssColor
-c.colors.hints.fg = solarized['base03']
+c.colors.hints.fg = solarized['base3']
 
 ## Font color for the matched part of hints.
 ## Type: QssColor
-c.colors.hints.match.fg = solarized['green']
+c.colors.hints.match.fg = solarized['base1']
 
 ## Background color of the keyhint widget.
 ## Type: QssColor
@@ -248,7 +248,7 @@ c.colors.statusbar.caret.bg = solarized['blue']
 
 ## Foreground color of the statusbar in caret mode.
 ## Type: QssColor
-c.colors.statusbar.caret.fg = solarized['base3']
+c.colors.statusbar.caret.fg = solarized['base1']
 
 ## Background color of the statusbar in caret mode with a selection.
 ## Type: QssColor
@@ -256,7 +256,7 @@ c.colors.statusbar.caret.selection.bg = solarized['violet']
 
 ## Foreground color of the statusbar in caret mode with a selection.
 ## Type: QssColor
-c.colors.statusbar.caret.selection.fg = solarized['base3']
+c.colors.statusbar.caret.selection.fg = solarized['base1']
 
 ## Background color of the statusbar in command mode.
 ## Type: QssColor
@@ -264,7 +264,7 @@ c.colors.statusbar.command.bg = solarized['base03']
 
 ## Foreground color of the statusbar in command mode.
 ## Type: QssColor
-c.colors.statusbar.command.fg = solarized['base3']
+c.colors.statusbar.command.fg = solarized['base1']
 
 ## Background color of the statusbar in private browsing + command mode.
 ## Type: QssColor
@@ -280,7 +280,7 @@ c.colors.statusbar.insert.bg = solarized['green']
 
 ## Foreground color of the statusbar in insert mode.
 ## Type: QssColor
-c.colors.statusbar.insert.fg = solarized['base3']
+c.colors.statusbar.insert.fg = solarized['base1']
 
 ## Background color of the statusbar.
 ## Type: QssColor
@@ -288,7 +288,7 @@ c.colors.statusbar.normal.bg = solarized['base03']
 
 ## Foreground color of the statusbar.
 ## Type: QssColor
-c.colors.statusbar.normal.fg = solarized['base3']
+c.colors.statusbar.normal.fg = solarized['base1']
 
 ## Background color of the statusbar in passthrough mode.
 ## Type: QssColor
@@ -296,7 +296,7 @@ c.colors.statusbar.passthrough.bg = solarized['magenta']
 
 ## Foreground color of the statusbar in passthrough mode.
 ## Type: QssColor
-c.colors.statusbar.passthrough.fg = solarized['base3']
+c.colors.statusbar.passthrough.fg = solarized['base1']
 
 ## Background color of the statusbar in private browsing mode.
 ## Type: QssColor
@@ -308,7 +308,7 @@ c.colors.statusbar.private.fg = solarized['base3']
 
 ## Background color of the progress bar.
 ## Type: QssColor
-c.colors.statusbar.progress.bg = solarized['base3']
+c.colors.statusbar.progress.bg = solarized['base1']
 
 ## Foreground color of the URL in the statusbar on error.
 ## Type: QssColor
@@ -316,7 +316,7 @@ c.colors.statusbar.url.error.fg = solarized['red']
 
 ## Default foreground color of the URL in the statusbar.
 ## Type: QssColor
-c.colors.statusbar.url.fg = solarized['base3']
+c.colors.statusbar.url.fg = solarized['base1']
 
 ## Foreground color of the URL in the statusbar for hovered links.
 ## Type: QssColor
@@ -325,12 +325,12 @@ c.colors.statusbar.url.hover.fg = solarized['base2']
 ## Foreground color of the URL in the statusbar on successful load
 ## (http).
 ## Type: QssColor
-c.colors.statusbar.url.success.http.fg = solarized['base3']
+c.colors.statusbar.url.success.http.fg = solarized['base1']
 
 ## Foreground color of the URL in the statusbar on successful load
 ## (https).
 ## Type: QssColor
-c.colors.statusbar.url.success.https.fg = solarized['base3']
+c.colors.statusbar.url.success.https.fg = solarized['base1']
 
 ## Foreground color of the URL in the statusbar when there's a warning.
 ## Type: QssColor
@@ -383,7 +383,7 @@ c.colors.tabs.selected.even.bg = solarized['base03']
 
 ## Foreground color of selected even tabs.
 ## Type: QtColor
-c.colors.tabs.selected.even.fg = solarized['base3']
+c.colors.tabs.selected.even.fg = solarized['base1']
 
 ## Background color of selected odd tabs.
 ## Type: QtColor
@@ -391,7 +391,7 @@ c.colors.tabs.selected.odd.bg = solarized['base03']
 
 ## Foreground color of selected odd tabs.
 ## Type: QtColor
-c.colors.tabs.selected.odd.fg = solarized['base3']
+c.colors.tabs.selected.odd.fg = solarized['base1']
 
 ## Background color for webpages if unset (or empty to use the theme's
 ## color)
@@ -749,7 +749,7 @@ c.colors.tabs.selected.odd.fg = solarized['base3']
 ## The editor (and arguments) to use for the `open-editor` command. `{}`
 ## gets replaced by the filename of the file to be edited.
 ## Type: ShellCommand
-# c.editor.command = ['gvim', '-f', '{}']
+c.editor.command = ['termite', '-e', 'nvim', '{}']
 
 ## Encoding to use for the editor.
 ## Type: Encoding
@@ -773,7 +773,7 @@ c.fonts.downloads = '12pt monospace'
 
 ## Font used for the hints.
 ## Type: Font
-c.fonts.hints = '12pt monospace'
+c.fonts.hints = 'bold 14pt monospace'
 
 ## Font used in the keyhint widget.
 ## Type: Font
@@ -818,19 +818,19 @@ c.fonts.tabs = '12pt monospace'
 
 ## Font family for fixed fonts.
 ## Type: FontFamily
-# c.fonts.web.family.fixed = ''
+c.fonts.web.family.fixed = 'Consolas'
 
 ## Font family for sans-serif fonts.
 ## Type: FontFamily
-# c.fonts.web.family.sans_serif = ''
+c.fonts.web.family.sans_serif = 'Noto Sans'
 
 ## Font family for serif fonts.
 ## Type: FontFamily
-# c.fonts.web.family.serif = ''
+c.fonts.web.family.serif = 'Georgia'
 
 ## Font family for standard fonts.
 ## Type: FontFamily
-# c.fonts.web.family.standard = ''
+c.fonts.web.family.standard = 'Noto Sans'
 
 ## The default font size for regular text.
 ## Type: Int
@@ -865,7 +865,7 @@ c.fonts.tabs = '12pt monospace'
 
 ## CSS border value for hints.
 ## Type: String
-# c.hints.border = '1px solid #E3BE23'
+c.hints.border = '1px solid ' + solarized['base03']
 
 ## Chars used for hint strings.
 ## Type: UniqueCharString
@@ -1124,7 +1124,7 @@ c.fonts.tabs = '12pt monospace'
 
 ## Open new tabs (middleclick/ctrl+click) in the background.
 ## Type: Bool
-# c.tabs.background = False
+c.tabs.background = True
 
 ## On which mouse button to close tabs.
 ## Type: String
@@ -1409,8 +1409,8 @@ c.zoom.default = '125%'
 # config.bind('F', 'hint all tab')
 # config.bind('G', 'scroll-to-perc')
 # config.bind('H', 'back')
-# config.bind('J', 'tab-next')
-# config.bind('K', 'tab-prev')
+config.bind('K', 'tab-next')
+config.bind('J', 'tab-prev')
 # config.bind('L', 'forward')
 # config.bind('M', 'bookmark-add')
 # config.bind('N', 'search-prev')

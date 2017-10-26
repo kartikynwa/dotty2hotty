@@ -221,7 +221,7 @@ set $custom           #1c5766
 
 # window colors
 #                       border             background         text                 indicator
-client.focused          $blue              $blue              $base3               $orange
+client.focused          $violet            $violet            $base3               $orange
 client.unfocused        $base02            $base02            $base1               $base01
 client.focused_inactive $base02            $base02            $base2               $violet
 client.urgent           $magenta           $magenta           $base3               $red
