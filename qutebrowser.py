@@ -30,7 +30,7 @@ solarized = {
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
-# c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save'}
+c.aliases = {'w': 'session-save', 'q': 'close', 'wq': 'quit --save'}
 
 ## How often (in milliseconds) to auto-save config/cookies/etc.
 ## Type: Int
@@ -276,7 +276,7 @@ c.colors.statusbar.command.private.fg = solarized['base3']
 
 ## Background color of the statusbar in insert mode.
 ## Type: QssColor
-c.colors.statusbar.insert.bg = solarized['green']
+c.colors.statusbar.insert.bg = solarized['base02']
 
 ## Foreground color of the statusbar in insert mode.
 ## Type: QssColor
@@ -292,7 +292,7 @@ c.colors.statusbar.normal.fg = solarized['base1']
 
 ## Background color of the statusbar in passthrough mode.
 ## Type: QssColor
-c.colors.statusbar.passthrough.bg = solarized['magenta']
+c.colors.statusbar.passthrough.bg = solarized['base02']
 
 ## Foreground color of the statusbar in passthrough mode.
 ## Type: QssColor
@@ -342,11 +342,11 @@ c.colors.statusbar.url.warn.fg = solarized['yellow']
 
 ## Background color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.bg = solarized['base01']
+c.colors.tabs.even.bg = solarized['base02']
 
 ## Foreground color of unselected even tabs.
 ## Type: QtColor
-c.colors.tabs.even.fg = solarized['base2']
+c.colors.tabs.even.fg = solarized['base1']
 
 ## Color for the tab indicator on errors.
 ## Type: QtColor
@@ -371,27 +371,27 @@ c.colors.tabs.indicator.stop = solarized['orange']
 
 ## Background color of unselected odd tabs.
 ## Type: QtColor
-c.colors.tabs.odd.bg = solarized['base01']
+c.colors.tabs.odd.bg = solarized['base03']
 
 ## Foreground color of unselected odd tabs.
 ## Type: QtColor
-c.colors.tabs.odd.fg = solarized['base2']
+c.colors.tabs.odd.fg = solarized['base1']
 
 ## Background color of selected even tabs.
 ## Type: QtColor
-c.colors.tabs.selected.even.bg = solarized['base03']
+c.colors.tabs.selected.even.bg = solarized['violet']
 
 ## Foreground color of selected even tabs.
 ## Type: QtColor
-c.colors.tabs.selected.even.fg = solarized['base1']
+c.colors.tabs.selected.even.fg = solarized['base2']
 
 ## Background color of selected odd tabs.
 ## Type: QtColor
-c.colors.tabs.selected.odd.bg = solarized['base03']
+c.colors.tabs.selected.odd.bg = solarized['violet']
 
 ## Foreground color of selected odd tabs.
 ## Type: QtColor
-c.colors.tabs.selected.odd.fg = solarized['base1']
+c.colors.tabs.selected.odd.fg = solarized['base2']
 
 ## Background color for webpages if unset (or empty to use the theme's
 ## color)
@@ -409,7 +409,7 @@ c.colors.tabs.selected.odd.fg = solarized['base1']
 
 ## The height of the completion, in px or as percentage of the window.
 ## Type: PercOrInt
-# c.completion.height = '50%'
+c.completion.height = '40%'
 
 ## Minimum amount of characters needed to update completions.
 ## Type: Int
@@ -1298,7 +1298,9 @@ c.tabs.background = True
 ## used by prepending the search engine name to the search term, e.g.
 ## `:open google qutebrowser`.
 ## Type: Dict
-# c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
+                       'g': 'https://encrypted.google.com/search?q={}'
+}
 
 ## The page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
@@ -1414,7 +1416,7 @@ config.bind('J', 'tab-prev')
 # config.bind('L', 'forward')
 # config.bind('M', 'bookmark-add')
 # config.bind('N', 'search-prev')
-# config.bind('O', 'set-cmd-text -s :open -t')
+config.bind('O', 'set-cmd-text :open {url:pretty}')
 # config.bind('PP', 'open -t -- {primary}')
 # config.bind('Pp', 'open -t -- {clipboard}')
 # config.bind('R', 'reload -f')
@@ -1423,6 +1425,8 @@ config.bind('J', 'tab-prev')
 # config.bind('Sq', 'open qute://bookmarks')
 # config.bind('Ss', 'open qute://settings')
 # config.bind('T', 'tab-focus')
+config.bind('W', 'set-cmd-text -s :open -p')
+config.bind('X', 'close')
 # config.bind('ZQ', 'quit')
 # config.bind('ZZ', 'quit --save')
 # config.bind('[[', 'navigate prev')
@@ -1468,6 +1472,7 @@ config.bind('J', 'tab-prev')
 # config.bind('sk', 'set-cmd-text -s :bind')
 # config.bind('sl', 'set-cmd-text -s :set -t')
 # config.bind('ss', 'set-cmd-text -s :set')
+config.bind('t', 'set-cmd-text -s :open -t')
 # config.bind('th', 'back -t')
 # config.bind('tl', 'forward -t')
 # config.bind('u', 'undo')
@@ -1550,6 +1555,7 @@ config.bind('J', 'tab-prev')
 # config.bind('<Down>', 'command-history-next', mode='command')
 # config.bind('<Escape>', 'leave-mode', mode='command')
 # config.bind('<Return>', 'command-accept', mode='command')
+config.bind('<Ctrl-Return>', 'set-cmd-text --append .com ;; command-accept', mode='command')
 # config.bind('<Shift-Delete>', 'completion-item-del', mode='command')
 # config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
 # config.bind('<Tab>', 'completion-item-focus next', mode='command')
