@@ -8,6 +8,7 @@
 (setq user-full-name "Kartik Singh")
 (setq user-mail-address "kartik.ynwa@gmail.com")
 (setq-default frame-title-format '("%b [%m]"))
+(setq ad-redefinition-action 'accept)
 
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -33,7 +34,7 @@
 ;; font:default
 (set-face-attribute 'default nil
                     :font "Consolas"
-                    :height 140)
+                    :height 143)
 
 ;; set default column width
 (setq-default fill-column 80)

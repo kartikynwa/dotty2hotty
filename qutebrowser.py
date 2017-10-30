@@ -739,7 +739,7 @@ c.completion.height = '40%'
 ## Valid values:
 ##   - top
 ##   - bottom
-# c.downloads.position = 'top'
+c.downloads.position = 'bottom'
 
 ## Number of milliseconds to wait before removing finished downloads. If
 ## set to -1, downloads are never removed.
@@ -749,7 +749,7 @@ c.completion.height = '40%'
 ## The editor (and arguments) to use for the `open-editor` command. `{}`
 ## gets replaced by the filename of the file to be edited.
 ## Type: ShellCommand
-c.editor.command = ['termite', '-e', 'nvim', '{}']
+c.editor.command = ['termite', '-e', 'nvim {}']
 
 ## Encoding to use for the editor.
 ## Type: Encoding
@@ -865,7 +865,7 @@ c.fonts.web.family.standard = 'Noto Sans'
 
 ## CSS border value for hints.
 ## Type: String
-c.hints.border = '1px solid ' + solarized['base03']
+c.hints.border = '1px solid ' + solarized['blue']
 
 ## Chars used for hint strings.
 ## Type: UniqueCharString
@@ -1164,7 +1164,7 @@ c.tabs.background = True
 ##   - startpage: Load the start page.
 ##   - default-page: Load the default page.
 ##   - close: Close the window.
-# c.tabs.last_close = 'ignore'
+c.tabs.last_close = 'ignore'
 
 ## Switch between tabs using the mouse wheel.
 ## Type: Bool
@@ -1207,7 +1207,7 @@ c.tabs.background = True
 ##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
 ##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
 ##   - last-used: Select the previously selected tab.
-# c.tabs.select_on_remove = 'next'
+c.tabs.select_on_remove = 'last-used'
 
 ## When to show the tab bar.
 ## Type: String
@@ -1246,7 +1246,7 @@ c.tabs.background = True
 ## private mode is enabled. * `{current_url}` : The url of the current
 ## web page.
 ## Type: FormatString
-# c.tabs.title.format = '{index}: {title}'
+c.tabs.title.format = '{index}: {title} {private}'
 
 ## The format to use for the tab title for pinned tabs. The same
 ## placeholders like for `tabs.title.format` are defined.
@@ -1299,10 +1299,11 @@ c.tabs.background = True
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
-                       'g': 'https://encrypted.google.com/search?q={}'
+                       'g': 'https://encrypted.google.com/search?q={}',
+                       'gi': 'https://www.google.com/search?tbm=isch&q={}'
 }
 
-## The page(s) to open at the start.
+## The page(s) to open at the start
 ## Type: List of FuzzyUrl, or FuzzyUrl
 # c.url.start_pages = ['https://start.duckduckgo.com']
 
@@ -1419,6 +1420,7 @@ config.bind('J', 'tab-prev')
 config.bind('O', 'set-cmd-text :open {url:pretty}')
 # config.bind('PP', 'open -t -- {primary}')
 # config.bind('Pp', 'open -t -- {clipboard}')
+config.bind('Q', 'close')
 # config.bind('R', 'reload -f')
 # config.bind('Sb', 'open qute://bookmarks#bookmarks')
 # config.bind('Sh', 'open qute://history')
@@ -1426,7 +1428,6 @@ config.bind('O', 'set-cmd-text :open {url:pretty}')
 # config.bind('Ss', 'open qute://settings')
 # config.bind('T', 'tab-focus')
 config.bind('W', 'set-cmd-text -s :open -p')
-config.bind('X', 'close')
 # config.bind('ZQ', 'quit')
 # config.bind('ZZ', 'quit --save')
 # config.bind('[[', 'navigate prev')
