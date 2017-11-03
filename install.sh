@@ -17,7 +17,8 @@ if [ ! "$input" == "y" ]; then
     exit
 fi
 
-files="compton i3 nvim rofi polybar termite zshrc xinitrc Xresources emacs.el"
+# files="compton i3 nvim rofi polybar termite zshrc xinitrc Xresources emacs.el"
+files="i3 rofi polybar xinitrc Xresources emacs.el"
 
 echo "You seem okay. Let us backup your old files."
 

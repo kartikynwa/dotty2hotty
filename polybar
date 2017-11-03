@@ -66,7 +66,7 @@ module-margin-right = 1
 
 font-0 = Consolas:size=11
 
-modules-left = i3 music
+modules-left = i3
 modules-center = xwindow 
 modules-right = date i3vol wlan battery
 
@@ -104,7 +104,7 @@ format-underline = #d700af
 [module/i3vol]
 type = custom/script
 interval = 1
-exec = ~/.scripterino/volume
+exec = ~/dotty2hotty/scripterino/volume
 accent = ${solarized.blue}
 format-prefix = "vol "
 format-prefix-foreground = ${self.accent}
@@ -262,7 +262,7 @@ label =  %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlo1
+interface = wlp5s0
 interval = 3.0
 accent = ${solarized.green}
 

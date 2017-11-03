@@ -10,10 +10,16 @@
 (setq-default frame-title-format '("%b [%m]"))
 (setq ad-redefinition-action 'accept)
 
+;; stop the fucking cursor from blinking
+(blink-cursor-mode 0)
+
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file) (load custom-file 'noerror))
 
+;; utf 8 unicode glyps for memes
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -42,6 +48,9 @@
 ;; fuck bells
 (setq visible-bell nil)
 (setq ring-bell-function 'ignore)
+
+;; rainbow
+(use-package rainbow-mode :ensure t)
 
 ;; m i n i m a l
 (if window-system (scroll-bar-mode -1))
@@ -154,7 +163,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; neotree
-(use-package neotree)
+(use-package neotree :ensure t)
 
 ;; org-mode tweaks
 (use-package org
@@ -174,6 +183,8 @@
                     '(org-done ((t (:box nil))))
                     '(org-checkbox ((t (:box nil :foreground nil :background nil)))))
   (use-package org-bullets
+    :ensure t
+    :defines org-bullets-bullet-list
     :init (add-hook 'org-mode-hook #'org-bullets-mode)
     :config (setq org-bullets-bullet-list '("#"))))
 
@@ -245,6 +256,7 @@
 
 ;; company mode code completion
 (use-package company
+  :ensure t
   :defines company-dabbrev-downcase
   :diminish company-mode
   :config
@@ -343,7 +355,6 @@
 
 ;; open todo file at startup
 (todo!)
-(blink-cursor-mode 0)
 
 (provide 'init)
 ;;; init.el ends here

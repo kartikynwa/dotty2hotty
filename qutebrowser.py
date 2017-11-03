@@ -290,14 +290,6 @@ c.colors.statusbar.normal.bg = solarized['base03']
 ## Type: QssColor
 c.colors.statusbar.normal.fg = solarized['base1']
 
-## Background color of the statusbar in passthrough mode.
-## Type: QssColor
-c.colors.statusbar.passthrough.bg = solarized['base02']
-
-## Foreground color of the statusbar in passthrough mode.
-## Type: QssColor
-c.colors.statusbar.passthrough.fg = solarized['base1']
-
 ## Background color of the statusbar in private browsing mode.
 ## Type: QssColor
 c.colors.statusbar.private.bg = solarized['base01']
