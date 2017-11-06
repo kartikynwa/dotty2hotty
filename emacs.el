@@ -231,8 +231,8 @@
 (defun prose! ()
   "I don't want no distraction, m8."
   (interactive)
-  (turn-on-auto-fill)
-  (olivetti-mode 1))
+  (olivetti-mode 1)
+  (turn-on-auto-fill))
 
 (add-hook 'text-mode-hook 'prose!)
 
@@ -258,16 +258,13 @@
 (use-package company
   :ensure t
   :defines company-dabbrev-downcase
-  :diminish company-mode
-  :config
-  (add-hook 'prog-mode-hook #'company-auto-suggest-on)
-  (global-company-mode +1))
+  :diminish company-mode)
 
 (defun company-auto-suggest-on ()
   "Settings for company-mode idle completion."
   (interactive)
   (setq-local company-idle-delay 0.1)
-	(setq-local company-minimum-prefix-length 2)
+	(setq-local company-minimum-prefix-length 3)
 	(setq-local company-selection-wrap-around t)
   (setq-local company-dabbrev-downcase nil))
 

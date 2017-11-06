@@ -1,15 +1,24 @@
+#!/bin/bash
+
 if [ ! -x /usr/bin/cmus-remote ];
 then
   echo "cmus is not installed."
   exit
 fi
 
-ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist" | cut -d " " -f 3- )
+# ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist" | cut -d " " -f 3- )
 TITLE=$( cmus-remote -Q 2>/dev/null | grep "tag title" | cut -d " " -f 3- )
 
-if [ -z "$ARTIST" ];
+if [ -z "$TITLE" ];
 then
-echo ""
+  echo ""
 else
-echo "\"$TITLE\" by $ARTIST"
+  # echo "\"$TITLE\" by $ARTIST"
+  if [ ${#TITLE} -ge 28 ]
+  then
+    TITLE=$( echo $TITLE | cut -c -25 )
+    echo "${TITLE}..."
+  else
+    echo "$TITLE"
+  fi
 fi

@@ -32,7 +32,7 @@ green = #859900
 background = ${solarized.base03}
 background-alt = ${solarized.base02}
 ;foreground = ${xrdb:color7:#222}
-foreground = ${solarized.base0}
+foreground = ${solarized.base1}
 foreground-alt = ${solarized.base1}
 primary = #ffb52a
 secondary = #e60053
@@ -54,8 +54,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 10
-border-bottom-size = 0
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -66,9 +65,9 @@ module-margin-right = 1
 
 font-0 = Consolas:size=11
 
-modules-left = i3
+modules-left = i3 music
 modules-center = xwindow 
-modules-right = date i3vol wlan battery
+modules-right = wlan date i3vol battery
 
 tray-position = right
 tray-padding = 0
@@ -91,7 +90,7 @@ format-underline = ${self.accent}
 accent = ${solarized.red}
 exec = ~/dotty2hotty/scripterino/cmus-now-playing
 format-prefix-foreground = ${self.accent}
-format-prefix = "cmus "
+; format-prefix = "cmus "
 format = <label>
 
 [module/fuzzyclock]
@@ -106,7 +105,7 @@ type = custom/script
 interval = 1
 exec = ~/dotty2hotty/scripterino/volume
 accent = ${solarized.blue}
-format-prefix = "vol "
+; format-prefix = "vol "
 format-prefix-foreground = ${self.accent}
 format = <label>
 format-underline = ${self.accent}
@@ -122,7 +121,7 @@ format-underline = ${self.accent}
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+; format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
@@ -248,7 +247,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+; format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage%%
@@ -264,9 +263,9 @@ label =  %percentage_used%%
 type = internal/network
 interface = wlp5s0
 interval = 3.0
-accent = ${solarized.green}
+accent = ${solarized.violet}
 
-format-connected-prefix = "wlan "
+; format-connected-prefix = "wlan "
 format-connected-prefix-foreground = ${self.accent}
 format-connected = <label-connected>
 format-connected-underline = ${self.accent}
@@ -313,7 +312,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-underline = ${self.accent}
-format-prefix = "chrono "
+; format-prefix = "chrono "
 format-prefix-foreground = ${self.accent}
 
 label = %date% %time%
@@ -350,19 +349,19 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 98
+full-at = 90
 accent = ${solarized.magenta}
 
 format-charging-prefix-foreground = ${self.accent}
 format-charging-suffix-foreground = ${self.accent}
-format-charging-prefix = "bat "
+; format-charging-prefix = "bat "
 format-charging-suffix = " +"
 format-charging = <label-charging> 
 format-charging-underline = ${self.accent}
 
 format-discharging-prefix-foreground = ${self.accent}
 format-discharging-suffix-foreground = ${self.accent}
-format-discharging-prefix = "bat "
+; format-discharging-prefix = "bat "
 format-discharging-suffix = " -"
 format-discharging = <label-discharging>
 format-discharging-underline = ${self.accent}

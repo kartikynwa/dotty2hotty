@@ -21,7 +21,7 @@ font pango:NotoSans 11
 # Gaps global
 for_window [class="^.*"] border pixel 4
 #smart_gaps on
-gaps inner 15 
+#gaps inner 15 
 #gaps outer 10
 
 # Monitor controls
@@ -35,6 +35,7 @@ exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/wall.sh
 
 # exec startup
+exec --no-startup-id unclutter --timeout 3
 exec --no-startup-id compton -b
 exec --no-startup-id redshift-gtk
 exec --no-startup-id unclutter --timeout 2 --ignore-scrolling
@@ -121,9 +122,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # mpd player controls
-bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause
-bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev
-bindsym XF86AudioNext exec --no-startup-id cmus-remote --next
+bindsym $mod+slash exec --no-startup-id cmus-remote --pause
+bindsym $mod+comma exec --no-startup-id cmus-remote --prev
+bindsym $mod+period exec --no-startup-id cmus-remote --next
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
