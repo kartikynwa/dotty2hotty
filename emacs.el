@@ -40,7 +40,7 @@
 ;; font:default
 (set-face-attribute 'default nil
                     :font "Consolas"
-                    :height 143)
+                    :height 130)
 
 ;; set default column width
 (setq-default fill-column 80)
@@ -139,19 +139,18 @@
                       "n" 'neotree-toggle)
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
-  (general-define-key :keymaps 'global
-                      "TAB"   'company-complete-common
-                      "M-="   'count-words
+  (general-define-key :states '(insert)
+                      [tab]   'company-complete-common
                       "M-v"   'clipboard-yank)
   (general-define-key :keymaps 'neotree-mode-map
                       :states 'normal
                       "RET" 'neotree-enter
                       "q" 'neotree-hide
-                      "<tab>" 'neotree-quick-look)
-  (general-define-key :keymaps 'company-active-map
-                      "<tab>" 'company-complete-common-or-cycle
-                      "<backtab>" 'company-select-previous
-                      "ESC" 'company-abort))
+                      [tab] 'neotree-quick-look)
+  (general-define-key :keymaps  'company-active-map
+                      [tab]     'company-complete-common-or-cycle
+                      [backtab] 'company-select-previous
+                      [escape]  'company-abort))
 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -257,16 +256,12 @@
 ;; company mode code completion
 (use-package company
   :ensure t
+  :diminish company-mode
   :defines company-dabbrev-downcase
-  :diminish company-mode)
-
-(defun company-auto-suggest-on ()
-  "Settings for company-mode idle completion."
-  (interactive)
-  (setq-local company-idle-delay 0.1)
-	(setq-local company-minimum-prefix-length 3)
-	(setq-local company-selection-wrap-around t)
-  (setq-local company-dabbrev-downcase nil))
+  :config
+  (setq company-idle-delay nil
+        company-tooltip-limit 10)
+  (global-company-mode 1))
 
 ;; yasnippets
 (use-package yasnippet

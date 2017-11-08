@@ -44,6 +44,7 @@ alias ll="ls --color -lh --group-directories-first"
 alias rm="rm -vI"
 alias cp="cp -vi"
 alias mv="mv -vi"
+alias mkdir="mkdir -pv"
 alias tetherusb="sudo dhcpcd enp0s20f0u3"
 
 # Modules
