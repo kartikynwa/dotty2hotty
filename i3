@@ -233,6 +233,7 @@ bindsym $mod+r mode "resize"
 
 # Window settings
 for_window [class="feh"] border normal, floating enable
+for_window [class="Pinentry"] border normal, floating enable
 for_window [class="mpv"] border normal, floating enable
 for_window [class="explorer.exe"] border normal, floating enable
 

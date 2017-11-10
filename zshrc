@@ -10,6 +10,7 @@ SAVEHIST=1000
 # Variables
 export BROWSER="qutebrowser"
 export EDITOR="vim"
+export PASSWORD_STORE_CLIP_TIME=5
 export PATH="${HOME}/.local/bin:${PATH}"
 
 # Colours for ls

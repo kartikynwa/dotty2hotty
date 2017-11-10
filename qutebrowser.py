@@ -814,7 +814,7 @@ c.fonts.web.family.fixed = 'Consolas'
 
 ## Font family for sans-serif fonts.
 ## Type: FontFamily
-c.fonts.web.family.sans_serif = 'Noto Sans'
+c.fonts.web.family.sans_serif = 'Fira Sans'
 
 ## Font family for serif fonts.
 ## Type: FontFamily

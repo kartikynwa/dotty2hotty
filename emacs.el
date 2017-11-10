@@ -40,7 +40,7 @@
 ;; font:default
 (set-face-attribute 'default nil
                     :font "Consolas"
-                    :height 130)
+                    :height 140)
 
 ;; set default column width
 (setq-default fill-column 80)
