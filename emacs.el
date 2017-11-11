@@ -13,6 +13,16 @@
 ;; stop the fucking cursor from blinking
 (blink-cursor-mode 0)
 
+;; m i n i m a l
+(if window-system (scroll-bar-mode -1))
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+;; font:default
+(set-face-attribute 'default nil
+                    :font "Consolas"
+                    :height 140)
+
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file) (load custom-file 'noerror))
@@ -20,6 +30,13 @@
 ;; utf 8 unicode glyps for memes
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
+
+;; set default column width
+(setq-default fill-column 80)
+
+;; fuck bells
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -37,26 +54,10 @@
 (require 'diminish)
 (require 'bind-key)
 
-;; font:default
-(set-face-attribute 'default nil
-                    :font "Consolas"
-                    :height 140)
-
-;; set default column width
-(setq-default fill-column 80)
-
-;; fuck bells
-(setq visible-bell nil)
-(setq ring-bell-function 'ignore)
-
 ;; rainbow
 (use-package rainbow-mode :ensure t)
-
-;; m i n i m a l
-(if window-system (scroll-bar-mode -1))
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
+;; 
+;; 
 ;; solarized-theme
 (use-package solarized-theme
   :ensure t
@@ -66,42 +67,42 @@
   (setq x-underline-at-descent-line t)
   (load-theme 'solarized-light)
   (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
-
-;; current line highlight
-(use-package hl-line
-  :config
-  (global-hl-line-mode 1))
-
-
+;; 
+;; ;; current line highlight
+;; (use-package hl-line
+;;   :config
+;;   (global-hl-line-mode 1))
+;; 
+;; 
 ;; show column number in mode line
 (setq column-number-mode t)
-
+;; 
 ;; change splash screen
 (setq inhibit-splash-screen t
       initial-scratch-message nil
       initial-major-mode 'markdown-mode)
-
-;; evil mode - i am not sure how undo-tree works so I will just install it
-;; beforehand
+;; 
+;; evil mode 
 (use-package evil
+  :ensure t
   :config
-  (use-package undo-tree :diminish undo-tree-mode)
+  (use-package undo-tree :ensure t :diminish undo-tree-mode)
   (setq evil-want-C-u-scroll t
-        evil-want-visual-char-semi-exclusive t
-        evil-magic t
-        evil-echo-state t
-        evil-indent-convert-tabs t
-        evil-ex-search-vim-style-regexp t
-        evil-ex-substitute-global t
-        evil-ex-visual-char-range t  ; column range for ex commands
-        evil-insert-skip-empty-lines t
-        evil-mode-line-format 'nil
+;;      evil-want-visual-char-semi-exclusive t
+;;      evil-magic t
+;;      evil-echo-state t
+;;      evil-indent-convert-tabs t
+;;      evil-ex-search-vim-style-regexp t
+;;      evil-ex-substitute-global t
+;;      evil-ex-visual-char-range t  ; column range for ex commands
+;;      evil-insert-skip-empty-lines t
+;;      evil-mode-line-format 'nil
         ;; more vim-like behavior
         evil-symbol-word-search t
         ;; don't activate mark on shift-click
         shift-select-mode nil)
   (evil-mode 1))
-
+;; 
 (use-package evil-surround
   :ensure t
   :after evil
@@ -115,7 +116,7 @@
   :init
   (evil-snipe-mode 1)
   (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
-
+;; 
 (use-package general
   :ensure t
   :config
@@ -130,40 +131,40 @@
                       "p" 'projectile-command-map
                       "." 'projectile-find-file
                       "x" 'kill-buffer
-                      "g" 'magit-status
+;;                    "g" 'magit-status
                       "s" 'swiper
                       "h" 'evil-window-left
                       "j" 'evil-window-down
                       "k" 'evil-window-up
-                      "l" 'evil-window-right
-                      "n" 'neotree-toggle)
+                      "l" 'evil-window-right)
+;;                    "n" 'neotree-toggle)
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
-                      [tab]   'company-complete-common
-                      "M-v"   'clipboard-yank)
-  (general-define-key :keymaps 'neotree-mode-map
-                      :states 'normal
-                      "RET" 'neotree-enter
-                      "q" 'neotree-hide
-                      [tab] 'neotree-quick-look)
-  (general-define-key :keymaps  'company-active-map
-                      [tab]     'company-complete-common-or-cycle
-                      [backtab] 'company-select-previous
-                      [escape]  'company-abort))
-
+;;                    [tab]   'company-complete-common
+                      "M-v"   'clipboard-yank))
+;;(general-define-key :keymaps 'neotree-mode-map
+;;                    :states 'normal
+;;                    "RET" 'neotree-enter
+;;                    "q" 'neotree-hide
+;;                    [tab] 'neotree-quick-look)
+;;(general-define-key :keymaps  'company-active-map
+;;                    [tab]     'company-complete-common-or-cycle
+;;                    [backtab] 'company-select-previous
+;;                    [escape]  'company-abort))
+;; 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
 (setq-default auto-save-default nil) ; stop creating #autosave# files
-
+;; 
 ;; fuck tabs
 (setq-default c-basic-indent 2)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
-
-;; neotree
-(use-package neotree :ensure t)
-
+;; 
+;; ;; neotree
+;; (use-package neotree :ensure t)
+;; 
 ;; org-mode tweaks
 (use-package org
   :config
@@ -198,9 +199,10 @@
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
 (add-hook 'org-mode-hook 'my/org-mode-hook)
-
-(use-package org-indent :ensure f :diminish org-indent-mode)
-
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; 
+;; (use-package org-indent :ensure f :diminish org-indent-mode)
+;; 
 ;; ivy-mode
 (use-package ivy
   :ensure t
@@ -219,28 +221,28 @@
 
 ;; markdown mode
 (use-package markdown-mode :ensure t)
-
-;; olivetti settings
-(use-package olivetti
-  :ensure t
-  :config
-  (setq-default olivetti-body-width 90))
-
-;; prose mode for prose
-(defun prose! ()
-  "I don't want no distraction, m8."
-  (interactive)
-  (olivetti-mode 1)
-  (turn-on-auto-fill))
-
-(add-hook 'text-mode-hook 'prose!)
-
-;; scrolling hax
-(use-package smooth-scrolling
-  :disabled t
-  :config
-  (smooth-scrolling-mode t))
-
+;; 
+;; ;; olivetti settings
+;; (use-package olivetti
+;;   :ensure t
+;;   :config
+;;   (setq-default olivetti-body-width 90))
+;; 
+;; ;; prose mode for prose
+;; (defun prose! ()
+;;   "I don't want no distraction, m8."
+;;   (interactive)
+;;   (olivetti-mode 1)
+;;   (turn-on-auto-fill))
+;; 
+;; (add-hook 'text-mode-hook 'prose!)
+;; 
+;; ;; scrolling hax
+;; (use-package smooth-scrolling
+;;   :disabled t
+;;   :config
+;;   (smooth-scrolling-mode t))
+;; 
 ;; parentheses highlighting
 (use-package paren
   :init
@@ -252,65 +254,65 @@
   (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
   :config
   (set-face-attribute 'hl-paren-face nil :underline t))
-
-;; company mode code completion
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :defines company-dabbrev-downcase
-  :config
-  (setq company-idle-delay nil
-        company-tooltip-limit 10)
-  (global-company-mode 1))
-
-;; yasnippets
-(use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
-  (yas-global-mode 1))
-
+;; 
+;; ;; company mode code completion
+;; (use-package company
+;;   :ensure t
+;;   :diminish company-mode
+;;   :defines company-dabbrev-downcase
+;;   :config
+;;   (setq company-idle-delay nil
+;;         company-tooltip-limit 10)
+;;   (global-company-mode 1))
+;; 
+;; ;; yasnippets
+;; (use-package yasnippet
+;;   :ensure t
+;;   :config
+;;   (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
+;;   (yas-global-mode 1))
+;; 
 ;; projectile
 (use-package projectile
   :ensure t
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode))
-
-;; == magit ==
-(use-package magit
-  :ensure t
-  :defer t
-  :bind ("C-x g" . magit-status)
-  :init
-  (setq magit-diff-refine-hunk 'all)
-  ;; Use evil keybindings within magit
-  :config
-  (use-package evil-magit
-    :config
-    ;; Default commit editor opening in insert mode
-    (add-hook 'with-editor-mode-hook 'evil-insert-state)
-    (evil-define-key 'normal with-editor-mode-map
-      (kbd "RET") 'with-editor-finish
-      [escape] 'with-editor-cancel
-      )
-    (evil-define-key 'normal git-rebase-mode-map
-      "l" 'git-rebase-show-commit)))
-
-;; == flycheck ==
-(use-package flycheck
-  :ensure t
-  :diminish flycheck-mode
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  ;; check OS type
-  (if (string-equal system-type "gnu/linux")
-      (progn
-        (custom-set-variables
-         '(flycheck-c/c++-clang-executable "clang-3.5")
-         )))
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc)))
-
+;; 
+;; ;; == magit ==
+;; (use-package magit
+;;   :ensure t
+;;   :defer t
+;;   :bind ("C-x g" . magit-status)
+;;   :init
+;;   (setq magit-diff-refine-hunk 'all)
+;;   ;; Use evil keybindings within magit
+;;   :config
+;;   (use-package evil-magit
+;;     :config
+;;     ;; Default commit editor opening in insert mode
+;;     (add-hook 'with-editor-mode-hook 'evil-insert-state)
+;;     (evil-define-key 'normal with-editor-mode-map
+;;       (kbd "RET") 'with-editor-finish
+;;       [escape] 'with-editor-cancel
+;;       )
+;;     (evil-define-key 'normal git-rebase-mode-map
+;;       "l" 'git-rebase-show-commit)))
+;; 
+;; ;; == flycheck ==
+;; (use-package flycheck
+;;   :ensure t
+;;   :diminish flycheck-mode
+;;   :init
+;;   (add-hook 'after-init-hook #'global-flycheck-mode)
+;;   ;; check OS type
+;;   (if (string-equal system-type "gnu/linux")
+;;       (progn
+;;         (custom-set-variables
+;;          '(flycheck-c/c++-clang-executable "clang-3.5")
+;;          )))
+;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc)))
+;; 
 ;; which-key shows promt that tells what keystrokes do. reallly neat.
 (use-package which-key
   :ensure t
@@ -325,28 +327,28 @@
   (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
   (which-key-setup-side-window-bottom)
   (add-hook 'after-init-hook #'which-key-mode))
-
-;; nlinum - show line numbers
-(use-package nlinum
-  :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'nlinum-mode))
-
-;;persistent-scratch buffer
-(use-package persistent-scratch
-  :disabled t
-  :ensure t
-  :config
-  (persistent-scratch-setup-default))
-
+;; 
+;; ;; nlinum - show line numbers
+;; (use-package nlinum
+;;   :ensure t
+;;   :init
+;;   (add-hook 'prog-mode-hook 'nlinum-mode))
+;; 
+;; ;;persistent-scratch buffer
+;; (use-package persistent-scratch
+;;   :disabled t
+;;   :ensure t
+;;   :config
+;;   (persistent-scratch-setup-default))
+;; 
 ;; open todo file
 (defun todo! ()
   "Opens the todo file which has things that need to be done but probably won't be."
   (interactive)
   (find-file "~/orgy/todo.org"))
-
+;; 
 ;; open todo file at startup
 (todo!)
-
+;; 
 (provide 'init)
 ;;; init.el ends here
