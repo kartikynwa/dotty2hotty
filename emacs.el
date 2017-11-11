@@ -141,17 +141,17 @@
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
-;;                    [tab]   'company-complete-common
-                      "M-v"   'clipboard-yank))
+                      [tab]   'company-complete-common
+                      "M-v"   'clipboard-yank)
 ;;(general-define-key :keymaps 'neotree-mode-map
 ;;                    :states 'normal
 ;;                    "RET" 'neotree-enter
 ;;                    "q" 'neotree-hide
 ;;                    [tab] 'neotree-quick-look)
-;;(general-define-key :keymaps  'company-active-map
-;;                    [tab]     'company-complete-common-or-cycle
-;;                    [backtab] 'company-select-previous
-;;                    [escape]  'company-abort))
+  (general-define-key :keymaps  'company-active-map
+                      [tab]     'company-complete-common-or-cycle
+                      [backtab] 'company-select-previous
+                      [escape]  'company-abort))
 ;; 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -255,22 +255,22 @@
   :config
   (set-face-attribute 'hl-paren-face nil :underline t))
 ;; 
-;; ;; company mode code completion
-;; (use-package company
-;;   :ensure t
-;;   :diminish company-mode
-;;   :defines company-dabbrev-downcase
-;;   :config
-;;   (setq company-idle-delay nil
-;;         company-tooltip-limit 10)
-;;   (global-company-mode 1))
-;; 
-;; ;; yasnippets
-;; (use-package yasnippet
-;;   :ensure t
-;;   :config
-;;   (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
-;;   (yas-global-mode 1))
+;; company mode code completion
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :defines company-dabbrev-downcase
+  :config
+  (setq company-idle-delay nil
+        company-tooltip-limit 10)
+  (global-company-mode 1))
+
+;; yasnippets
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
+  (yas-global-mode 1))
 ;; 
 ;; projectile
 (use-package projectile
