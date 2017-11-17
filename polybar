@@ -34,9 +34,9 @@ background-alt = ${solarized.base02}
 ;foreground = ${xrdb:color7:#222}
 foreground = ${solarized.base1}
 foreground-alt = ${solarized.base1}
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+primary = ${solarized.green}
+secondary = ${solarized.base0}
+alert = ${solarized.red}
 
 
 [bar/example]
@@ -184,7 +184,7 @@ accent = ${solarized.violet}
 ;pin-workspaces = true
 
 ;label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${solarized.base3}
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
@@ -353,14 +353,14 @@ full-at = 90
 accent = ${solarized.magenta}
 
 format-charging-prefix-foreground = ${self.accent}
-format-charging-suffix-foreground = ${self.accent}
+format-charging-suffix-foreground = ${colors.foreground}
 ; format-charging-prefix = "bat "
 format-charging-suffix = " +"
 format-charging = <label-charging> 
 format-charging-underline = ${self.accent}
 
 format-discharging-prefix-foreground = ${self.accent}
-format-discharging-suffix-foreground = ${self.accent}
+format-discharging-suffix-foreground = ${colors.foreground}
 ; format-discharging-prefix = "bat "
 format-discharging-suffix = " -"
 format-discharging = <label-discharging>

@@ -5,10 +5,10 @@
 
 # 2016 Oliver Kraitschy - http://okraits.de
 
-OPTIONS="reboot\nshutdown\nsuspend\nhibernate\nkill-i3"
+OPTIONS="1. hibernate\n2. reboot\n3. shutdown\n4. suspend\n5. kill-i3"
 
 # source configuration or use default values
-LAUNCHER="rofi -dmenu -lines 5 -width 25 -p adieu:"
+LAUNCHER="rofi -dmenu -lines 5 -width 25 -p adios:"
 USE_LOCKER="false"
 LOCKER="i3lock"
 
@@ -21,20 +21,20 @@ option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
 then
     case $option in
-      kill-i3)
-        i3-msg exit
+      1. hibernate)
+        systemctl hibernate
         ;;
-      reboot)
+      2. reboot)
         systemctl reboot
         ;;
-      shutdown)
+      3. shutdown)
         systemctl poweroff
         ;;
-      suspend)
+      4. suspend)
         systemctl suspend
         ;;
-      hibernate)
-        systemctl hibernate
+      5. kill-wm)
+        i3-msg exit
         ;;
       *)
         ;;

@@ -79,8 +79,7 @@
 ;; 
 ;; change splash screen
 (setq inhibit-splash-screen t
-      initial-scratch-message nil
-      initial-major-mode 'markdown-mode)
+      initial-scratch-message nil)
 ;; 
 ;; evil mode 
 (use-package evil
@@ -116,6 +115,19 @@
   :init
   (evil-snipe-mode 1)
   (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
+
+(use-package hydra
+  :ensure t
+  :config
+  (defhydra hydra-spell ()
+    "hydra-spell"
+    ("c" flyspell-goto-next-error "flyspell-goto-next-error")
+    ("C" ispell-word "ispell-word"))
+  (defun spell-check-hydra ()
+    "goto next error and initiate hydra body"
+    (interactive)
+    (flyspell-goto-next-error)
+    (hydra-spell/body)))
 ;; 
 (use-package general
   :ensure t
@@ -132,6 +144,7 @@
                       "." 'projectile-find-file
                       "x" 'kill-buffer
 ;;                    "g" 'magit-status
+                      "c" 'spell-check-hydra
                       "s" 'swiper
                       "h" 'evil-window-left
                       "j" 'evil-window-down
@@ -156,6 +169,9 @@
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
 (setq-default auto-save-default nil) ; stop creating #autosave# files
+
+;; spell check
+(setq ispell-dictionary "en_GB")
 ;; 
 ;; fuck tabs
 (setq-default c-basic-indent 2)
@@ -198,8 +214,8 @@
                   org-document-title))
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
-(add-hook 'org-mode-hook 'my/org-mode-hook)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'org-mode-hook 'my/org-mode-hook)
+(add-hook 'text-mode-hook #'turn-on-auto-fill)
 ;; 
 ;; (use-package org-indent :ensure f :diminish org-indent-mode)
 ;; 
@@ -221,12 +237,19 @@
 
 ;; markdown mode
 (use-package markdown-mode :ensure t)
-;; 
-;; ;; olivetti settings
-;; (use-package olivetti
-;;   :ensure t
-;;   :config
-;;   (setq-default olivetti-body-width 90))
+
+;; haskell mode
+(use-package haskell-mode :ensure t)
+
+;; olivetti settings
+(use-package olivetti
+  :ensure t
+  :init
+  (setq-default olivetti-body-width 90)
+  :config
+  (add-hook 'text-mode-hook #'turn-on-olivetti-mode))
+
+(use-package visual-fill-column :ensure t)
 ;; 
 ;; ;; prose mode for prose
 ;; (defun prose! ()
@@ -328,11 +351,11 @@
   (which-key-setup-side-window-bottom)
   (add-hook 'after-init-hook #'which-key-mode))
 ;; 
-;; ;; nlinum - show line numbers
-;; (use-package nlinum
-;;   :ensure t
-;;   :init
-;;   (add-hook 'prog-mode-hook 'nlinum-mode))
+;; nlinum - show line numbers
+(use-package nlinum
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'nlinum-mode))
 ;; 
 ;; ;;persistent-scratch buffer
 ;; (use-package persistent-scratch
@@ -342,13 +365,12 @@
 ;;   (persistent-scratch-setup-default))
 ;; 
 ;; open todo file
-(defun todo! ()
+(defun todo-at-startup ()
   "Opens the todo file which has things that need to be done but probably won't be."
-  (interactive)
   (find-file "~/orgy/todo.org"))
 ;; 
 ;; open todo file at startup
-(todo!)
+(add-hook 'emacs-startup-hook #'todo-at-startup)
 ;; 
 (provide 'init)
 ;;; init.el ends here

@@ -26,8 +26,7 @@ for_window [class="^.*"] border pixel 4
 
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id ~/dotty2hotty/screenlayout/laptop_screen.sh
-bindsym $mod+Shift+n exec --no-startup-id ~/dotty2hotty/screenlayout/dvi.sh
-bindsym $mod+Shift+b exec --no-startup-id ~/dotty2hotty/screenlayout/both.sh
+bindsym $mod+Shift+n exec --no-startup-id ~/dotty2hotty/screenlayout/hdmi.sh
 
 # exec_always stuff
 exec_always --no-startup-id $HOME/dotty2hotty/scripterino/polybar_launch.sh
@@ -63,9 +62,23 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id zsh -c "rofi -show run"
+bindsym $mod+d exec --no-startup-id zsh -i -c "rofi -show run"
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-bindsym $mod+Escape exec --no-startup-id ~/dotty2hotty/scripterino/rofi-power
+# bindsym $mod+Escape exec --no-startup-id ~/dotty2hotty/scripterino/rofi-power
+
+# Power menu mode
+set $sysmenu " [h]ibernate [p]oweroff [r]eboot [s]uspend "
+bindsym $mod+Escape      mode $sysmenu
+
+mode $sysmenu {
+    bindsym h         mode "default"; exec "systemctl hibernate"
+    bindsym p         mode "default"; exec "systemctl poweroff"
+    bindsym r         mode "default"; exec "systemctl reboot"
+    bindsym s         mode "default"; exec "systemctl suspend"
+    bindsym Return    mode "default"
+    bindsym Escape    mode "default"
+}
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.

@@ -7,6 +7,9 @@ HISTFILE=~/.config/zsh.d/.zshhist
 HISTSIZE=1000
 SAVEHIST=1000
 
+# add to fpath
+fpath=(~/.config/zsh.d $fpath)
+
 # Variables
 export BROWSER="qutebrowser"
 export EDITOR="vim"
@@ -46,7 +49,8 @@ alias rm="rm -vI"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
-alias tetherusb="sudo dhcpcd enp0s20f0u3"
+alias tetherusb="sudo dhcpcd enp0s20f0u2"
+alias btctl=bluetoothctl
 
 # Modules
 autoload -Uz compinit
@@ -89,3 +93,10 @@ setprompt() {
   RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
+
+# Delete key suckless terminal
+function zle-line-init () { echoti smkx }
+function zle-line-finish () { echoti rmkx }
+zle -N zle-line-init
+zle -N zle-line-finish
+
