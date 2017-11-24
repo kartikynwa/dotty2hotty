@@ -38,6 +38,7 @@ exec --no-startup-id unclutter --timeout 3
 exec --no-startup-id compton -b
 exec --no-startup-id redshift-gtk
 exec --no-startup-id unclutter --timeout 2 --ignore-scrolling
+exec --no-startup-id $TERMINAL -T "floating_terminal"
 # exec xrdb ~/.Xresources
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -55,8 +56,13 @@ exec --no-startup-id unclutter --timeout 2 --ignore-scrolling
 floating_modifier $mod
 
 # start a terminal
-#set $TERMINAL termite
-bindsym $mod+Return exec i3-sensible-terminal
+set $TERMINAL st
+bindsym $mod+Return exec $TERMINAL
+
+# Scratchpad terminal.
+# https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+# Using a custom title string with criteria is deliberate and keeps things simple.
+bindsym $mod+space scratchpad show
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -126,7 +132,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -248,7 +254,9 @@ bindsym $mod+r mode "resize"
 for_window [class="feh"] border normal, floating enable
 for_window [class="Pinentry"] border normal, floating enable
 for_window [class="mpv"] border normal, floating enable
+for_window [class="Vlc"] border normal, floating enable
 for_window [class="explorer.exe"] border normal, floating enable
+for_window [instance=$TERMINAL title="floating_terminal"] floating enable, move scratchpad
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

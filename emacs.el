@@ -216,6 +216,8 @@
 
 ;; (add-hook 'org-mode-hook 'my/org-mode-hook)
 (add-hook 'text-mode-hook #'turn-on-auto-fill)
+(add-hook 'org-mode-hook #'turn-on-olivetti-mode)
+(add-hook 'markdown-mode-hook #'turn-on-olivetti-mode)
 ;; 
 ;; (use-package org-indent :ensure f :diminish org-indent-mode)
 ;; 
@@ -244,10 +246,8 @@
 ;; olivetti settings
 (use-package olivetti
   :ensure t
-  :init
-  (setq-default olivetti-body-width 90)
   :config
-  (add-hook 'text-mode-hook #'turn-on-olivetti-mode))
+  (setq-default olivetti-body-width 90))
 
 (use-package visual-fill-column :ensure t)
 ;; 
@@ -367,7 +367,8 @@
 ;; open todo file
 (defun todo-at-startup ()
   "Opens the todo file which has things that need to be done but probably won't be."
-  (find-file "~/orgy/todo.org"))
+  (find-file "~/orgy/todo.org")
+  (turn-on-olivetti-mode))
 ;; 
 ;; open todo file at startup
 (add-hook 'emacs-startup-hook #'todo-at-startup)
