@@ -51,6 +51,7 @@ alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias bt=bluetoothctl
 alias homewifi="netctl start wlp5s0-DEEPAK"
+alias mutt=neomutt
 
 # Modules
 autoload -Uz compinit
