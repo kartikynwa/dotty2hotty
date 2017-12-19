@@ -4,7 +4,7 @@
 
 I have made an intelligent design choice of not including an install script
 since I cannot really think of a situation where it would be useful. There are
-dependencies that need to be met before an install script can go its job. Making
+dependencies that need to be met before an install script can do its job. Making
 sure those dependencies are met is not a straightforward process.
 
 So here is how you use these dotfiles:
