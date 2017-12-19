@@ -1,0 +1,14 @@
+#!/bin/sh
+
+    
+case "$(printf "hibernate\npoweroff\nreboot\nsuspend" | dmenu \
+    -nb "#002b36" \
+    -nf "#93a1a1" \
+    -sf "#eee8d5" \
+    -sb "#d33682" \
+    -i )" in
+        hibernate) exec sudo ZZZ;;
+        poweroff) exec sudo poweroff;;
+        reboot) exec sudo reboot;;
+        suspend) exec sudo zzz;;
+esac

@@ -20,8 +20,8 @@
 
 ;; font:default
 (set-face-attribute 'default nil
-                    :font "Consolas"
-                    :height 140)
+                    :font "DejaVu Sans Mono"
+                    :height 130)
 
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -51,11 +51,12 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
+;;(require 'diminish)
+;;(require 'bind-key)
 
 ;; rainbow
 (use-package rainbow-mode :ensure t)
+(use-package diminish :ensure t)
 ;; 
 ;; 
 ;; solarized-theme
@@ -64,16 +65,21 @@
   :config
   (setq solarized-use-variable-pitch nil)
   (setq solarized-use-less-bold t)
+  (setq solarized-scale-org-headlines nil)
   (setq x-underline-at-descent-line t)
   (load-theme 'solarized-light)
   (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
-;; 
-;; ;; current line highlight
-;; (use-package hl-line
-;;   :config
-;;   (global-hl-line-mode 1))
-;; 
-;; 
+ 
+ ;; current line highlight
+ (use-package hl-line
+   :config
+   (global-hl-line-mode 1))
+
+;;(use-package gruvbox-theme
+;;  :ensure t
+;;  :config
+;;  (load-theme 'gruvbox-light-hard))
+
 ;; show column number in mode line
 (setq column-number-mode t)
 ;; 
@@ -101,6 +107,11 @@
         ;; don't activate mark on shift-click
         shift-select-mode nil)
   (evil-mode 1))
+;;(use-package evil-tabs
+;;  :ensure t
+;;  :diminish evil-tabs-mode
+;;  :config
+;;  (global-evil-tabs-mode t))
 ;; 
 (use-package evil-surround
   :ensure t
@@ -154,7 +165,7 @@
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
-                      [tab]   'company-complete-common
+                      [tab]   'company-indent-or-complete-common
                       "M-v"   'clipboard-yank)
 ;;(general-define-key :keymaps 'neotree-mode-map
 ;;                    :states 'normal
@@ -219,7 +230,6 @@
 (add-hook 'org-mode-hook #'turn-on-olivetti-mode)
 (add-hook 'markdown-mode-hook #'turn-on-olivetti-mode)
 ;; 
-;; (use-package org-indent :ensure f :diminish org-indent-mode)
 ;; 
 ;; ivy-mode
 (use-package ivy
@@ -242,6 +252,14 @@
 
 ;; haskell mode
 (use-package haskell-mode :ensure t)
+
+;; rust mode
+(use-package rust-mode :ensure t)
+(use-package racer
+  :ensure t
+  :config
+  (setq racer-rust-src-path "/home/kartik/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+  (add-hook 'rust-mode-hook #'racer-mode))
 
 ;; olivetti settings
 (use-package olivetti
@@ -285,7 +303,8 @@
   :defines company-dabbrev-downcase
   :config
   (setq company-idle-delay nil
-        company-tooltip-limit 10)
+        company-tooltip-limit 10
+        company-tooltip-align-annotations t)
   (global-company-mode 1))
 
 ;; yasnippets

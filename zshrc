@@ -11,10 +11,15 @@ SAVEHIST=1000
 fpath=(~/.config/zsh.d $fpath)
 
 # Variables
+export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2017/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
+
 export BROWSER="qutebrowser"
 export EDITOR="vim"
 export PASSWORD_STORE_CLIP_TIME=5
-export PATH="${HOME}/.local/bin:${PATH}"
+export GOROOT="/usr/lib/go"
+export GOPATH="${HOME}/go"
+export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
+
 
 # Colours for ls
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
@@ -50,8 +55,8 @@ alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias bt=bluetoothctl
-alias homewifi="netctl start wlp5s0-DEEPAK"
-alias mutt=neomutt
+alias rebuild="make clean all && sudo make install"
+alias music2phone="rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'  Music/synced_music/ 192.168.42.129:/sdcard/Music/synced_music"
 
 # Modules
 autoload -Uz compinit
@@ -69,6 +74,32 @@ zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[green]}%}%s%{${fg[cyan]}%}][%{${fg[blue]}%}%r/%S%%{${fg[cyan]}%}][%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}"
 
+# setprompt() {
+#   setopt prompt_subst
+# 
+#   if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
+#     p_host='%F{yellow}%M%f'
+#   else
+#     p_host='%F{blue}%M%f'
+#   fi
+# 
+#   PS1=${(j::Q)${(Z:Cn:):-$'
+#     %F{cyan}[%f
+#     %(!.%F{red}%n%f.%F{blue}%n%f)
+#     %F{cyan}@%f
+#     ${p_host}
+#     %F{cyan}][%f
+#     %F{blue}%~%f
+#     %F{cyan}]%f
+#     %(!.%F{red}%#%f.%F{magenta}%#%f)
+#     " "
+#   '}}
+# 
+#   PS2=$'%_>'
+#   RPROMPT=$'${vcs_info_msg_0_}'
+# }
+# setprompt
+
 setprompt() {
   setopt prompt_subst
 
@@ -79,14 +110,9 @@ setprompt() {
   fi
 
   PS1=${(j::Q)${(Z:Cn:):-$'
-    %F{cyan}[%f
-    %(!.%F{red}%n%f.%F{blue}%n%f)
-    %F{cyan}@%f
-    ${p_host}
-    %F{cyan}][%f
     %F{blue}%~%f
-    %F{cyan}]%f
-    %(!.%F{red}%#%f.%F{magenta}%#%f)
+    " "
+    %(!.%F{blue}%#%f.%F{blue}%#%f)
     " "
   '}}
 
