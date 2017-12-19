@@ -8,6 +8,7 @@ dependencies that need to be met before an install script can do its job. Making
 sure those dependencies are met is not a straightforward process.
 
 So here is how you use these dotfiles:
+
 1. Clone repository in the home directory. This is required for certain scripts
    to work.
 2. Manually symlink the included files as needed. The usual path where they need
