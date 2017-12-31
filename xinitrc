@@ -1,11 +1,12 @@
 #! /bin/bash
 #PATH=.xinitrc
-xrdb -merge ~/.Xresources
+xrdb -load ~/.Xresources
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &
 compton &
-slstatus &
 redshift &
+# slstatus &
+start-pulseaudio-x11 &
 xmodmap ~/.xmodmaprc
-exec dwm
+exec i3

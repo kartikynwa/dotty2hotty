@@ -185,9 +185,9 @@
 (setq ispell-dictionary "en_GB")
 ;; 
 ;; fuck tabs
-(setq-default c-basic-indent 2)
-(setq-default tab-width 2)
+(setq-default c-basic-offset 2)
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
 ;; 
 ;; ;; neotree
 ;; (use-package neotree :ensure t)
