@@ -305,7 +305,7 @@
   (setq company-idle-delay nil
         company-tooltip-limit 10
         company-tooltip-align-annotations t)
-  (global-company-mode 1))
+  (add-hook 'prog-mode-hook 'company-mode))
 
 ;; yasnippets
 (use-package yasnippet
