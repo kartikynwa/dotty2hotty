@@ -253,6 +253,9 @@
 ;; haskell mode
 (use-package haskell-mode :ensure t)
 
+;; racket mode
+(use-package racket-mode :ensure t)
+
 ;; rust mode
 (use-package rust-mode :ensure t)
 (use-package racer
