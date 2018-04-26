@@ -23,9 +23,9 @@ font pango:DejaVu Sans Mono 9
 
 # Gaps global
 for_window [class="^.*"] border pixel 2
-#smart_gaps on
-#gaps inner 15 
-#gaps outer 10
+smart_gaps on
+gaps inner 10
+gaps outer 5
 
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id ~/dotty2hotty/screenlayout/laptop_screen.sh
@@ -220,30 +220,58 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-set $base03           #002b36
-set $base02           #073642
-set $base01           #586e75
-set $base00           #657b83
-set $base0            #839496
-set $base1            #93a1a1
-set $base2            #eee8d5
-set $base3            #fdf6e3
-set $yellow           #b58900
-set $orange           #cb4b16
-set $red              #dc322f
-set $magenta          #d33682
-set $violet           #6c71c4
-set $blue             #268bd2
-set $cyan             #2aa198
-set $green            #859900
-set $custom           #1c5766
+# Solarized Colors
+# set $base03           #002b36
+# set $base02           #073642
+# set $base01           #586e75
+# set $base00           #657b83
+# set $base0            #839496
+# set $base1            #93a1a1
+# set $base2            #eee8d5
+# set $base3            #fdf6e3
+# set $yellow           #b58900
+# set $orange           #cb4b16
+# set $red              #dc322f
+# set $magenta          #d33682
+# set $violet           #6c71c4
+# set $blue             #268bd2
+# set $cyan             #2aa198
+# set $green            #859900
+# set $custom           #1c5766
 
-# window colors
+# Gruvbox colors
+set $bg #282828
+set $fg #ebdbb2
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $lightblue #83a598
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+
+# green gruvbox
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $green $green $fg $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+client.focused          $purple $purple $fg $purple $darkgray
+client.focused_inactive $darkgray $darkgray $lightblue $purple $darkgray
+client.unfocused        $darkgray $darkgray $lightblue $purple $darkgray
+client.urgent           $red $red $white $red $red
+
+# Solarized window colors
 #                       border    background text      indicator
-client.focused          $base01   $base01    $base3    $base01
-client.unfocused        $base02   $base02    $base3    $base02
-client.focused_inactive $base02   $base02    $base2    $violet
-client.urgent           $red      $red       $base3    $red
+# client.focused          $base01   $base01    $base3    $base01
+# client.unfocused        $base02   $base02    $base3    $base02
+# client.focused_inactive $base02   $base02    $base2    $violet
+# client.urgent           $red      $red       $base3    $red
 
 bindsym $mod+r mode "resize"
 
@@ -258,13 +286,20 @@ for_window [class="explorer.exe"] border normal, floating enable
 # finds out, if available)
 bar {
   position top
-  font pango:DejaVu Sans Mono 10
+  font pango:DejaVu Sans Mono 11
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   colors {
-    background $base02
-    separator $base1
-    focused_workspace $base01 $base01 $base3
-    inactive_workspace $base02 $base02 $base2
-    urgent_workspace $red $red $base3
+    background           $bg
+    separator            $blue
+    focused_workspace    $purple $purple $fg
+    inactive_workspace   $darkgray  $darkgray  $lightblue
+    active_workspace     $darkgray  $darkgray  $lightblue
+    urgent_workspace     $red       $red       $fg
+    # Solarized colors
+    # background $base02
+    # separator $base1
+    # focused_workspace $base01 $base01 $base3
+    # inactive_workspace $base02 $base02 $base2
+    # urgent_workspace $red $red $base3
   }
 }

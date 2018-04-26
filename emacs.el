@@ -21,7 +21,7 @@
 ;; font:default
 (set-face-attribute 'default nil
                     :font "DejaVu Sans Mono"
-                    :height 130)
+                    :height 120)
 
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -61,24 +61,24 @@
 ;; 
 ;; solarized-theme
 (use-package solarized-theme
-  :ensure t
-  :config
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-use-less-bold t)
-  (setq solarized-scale-org-headlines nil)
-  (setq x-underline-at-descent-line t)
-  (load-theme 'solarized-light)
-  (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
+  :ensure t)
+;;  :config
+;;  (setq solarized-use-variable-pitch nil)
+;;  (setq solarized-use-less-bold t)
+;;  (setq solarized-scale-org-headlines nil)
+;;  (setq x-underline-at-descent-line t)
+;;  (load-theme 'solarized-light)
+;;  (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
  
  ;; current line highlight
  (use-package hl-line
    :config
    (global-hl-line-mode 1))
 
-;;(use-package gruvbox-theme
-;;  :ensure t
-;;  :config
-;;  (load-theme 'gruvbox-light-hard))
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-medium))
 
 ;; show column number in mode line
 (setq column-number-mode t)
@@ -252,6 +252,11 @@
 
 ;; haskell mode
 (use-package haskell-mode :ensure t)
+
+;; emacs speaks statistics
+(use-package ess
+  :ensure t
+  :init (require 'ess-site))
 
 ;; racket mode
 (use-package racket-mode :ensure t)
