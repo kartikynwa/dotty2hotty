@@ -70,10 +70,10 @@
 ;;  (load-theme 'solarized-light)
 ;;  (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
  
- ;; current line highlight
- (use-package hl-line
-   :config
-   (global-hl-line-mode 1))
+;; current line highlight
+(use-package hl-line
+  :config
+  (global-hl-line-mode 1))
 
 (use-package gruvbox-theme
   :ensure t
@@ -86,6 +86,7 @@
 ;; change splash screen
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
+
 ;; 
 ;; evil mode 
 (use-package evil
@@ -165,17 +166,12 @@
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
-                      [tab]   'company-indent-or-complete-common
-                      "M-v"   'clipboard-yank)
+                      "M-v"   'clipboard-yank))
 ;;(general-define-key :keymaps 'neotree-mode-map
 ;;                    :states 'normal
 ;;                    "RET" 'neotree-enter
 ;;                    "q" 'neotree-hide
 ;;                    [tab] 'neotree-quick-look)
-  (general-define-key :keymaps  'company-active-map
-                      [tab]     'company-complete-common-or-cycle
-                      [backtab] 'company-select-previous
-                      [escape]  'company-abort))
 ;; 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -310,7 +306,7 @@
   :diminish company-mode
   :defines company-dabbrev-downcase
   :config
-  (setq company-idle-delay nil
+  (setq company-idle-delay 0
         company-tooltip-limit 10
         company-tooltip-align-annotations t)
   (add-hook 'prog-mode-hook 'company-mode))

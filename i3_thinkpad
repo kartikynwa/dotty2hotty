@@ -28,7 +28,9 @@ gaps inner 10
 gaps outer 5
 
 # Monitor controls
-bindsym $mod+Shift+m exec --no-startup-id ~/dotty2hotty/screenlayout/laptop_screen.sh
+bindsym $mod+Shift+m exec --no-startup-id xrandr --output HDMI1 --off \
+          --output DP1 --off --output eDP1 --primary --mode 1366x768 --pos 0x0\
+          --rotate normal --output VIRTUAL1 --off
 # bindsym $mod+Shift+n exec --no-startup-id ~/dotty2hotty/screenlayout/hdmi.sh
 
 # exec_always stuff
@@ -84,7 +86,7 @@ bindsym $mod+Escape      mode $sysmenu
 mode $sysmenu {
     bindsym h         exec --no-startup-id lock && sudo ZZZ, mode "default" 
     bindsym l         exec --no-startup-id lock, mode "default" 
-    bindsym p         exec --no-startup-id sudo poweroff
+    bindsym p         exec --no-startup-id sudo shutdown -h now
     bindsym r         exec --no-startup-id sudo reboot
     bindsym s         exec --no-startup-id lock && sudo zzz, mode "default" 
     bindsym Return    mode "default"

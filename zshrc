@@ -56,7 +56,6 @@ alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias bt=bluetoothctl
 alias rebuild="make clean all && sudo make install"
-alias music2phone="rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022' ~/music/synced_music/ 192.168.42.129:/sdcard/Music/synced_music"
 alias xq="xbps-query -Rs"
 
 alias porn="mpv 'https://www.pornhub.com/random'"
@@ -131,6 +130,8 @@ function zle-line-finish () { echoti rmkx }
 zle -N zle-line-init
 zle -N zle-line-finish
 
+# Music sync function
+alias music2phone="rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022' ~/music/synced_music/ 192.168.42.129:/sdcard/Music/synced_music"
 
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
