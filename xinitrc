@@ -5,7 +5,6 @@ xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &
 compton &
-redshift &
 # slstatus &
 start-pulseaudio-x11 &
 xmodmap ~/.xmodmaprc

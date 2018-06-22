@@ -10,8 +10,11 @@ SAVEHIST=1000
 # add to fpath
 fpath=(~/.config/zsh.d $fpath)
 
+# vim bindings
+# bindkey -v
+
 # Variables
-export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2017/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
+export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
 
 export BROWSER="qutebrowser"
 export EDITOR="vim"
@@ -57,6 +60,7 @@ alias mkdir="mkdir -pv"
 alias bt=bluetoothctl
 alias rebuild="make clean all && sudo make install"
 alias xq="xbps-query -Rs"
+alias dlna="minidlnad -f /home/$USER/.config/minidlna/minidlna.conf -P /home/$USER/.config/minidlna/minidlna.pid"
 
 alias porn="mpv 'https://www.pornhub.com/random'"
 alias rockradio="mpv 'http://dir.xiph.org/listen/1771713/listen.m3u'"
