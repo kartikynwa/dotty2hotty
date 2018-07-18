@@ -20,8 +20,7 @@
 
 ;; font:default
 (set-face-attribute 'default nil
-                    ;;:font "DejaVu Sans Mono"
-                    :font "Liberation Mono"
+                    :font "DejaVu Sans Mono"
                     :height 120)
 
 ;; custom file location
@@ -132,6 +131,25 @@
 (use-package hydra
   :ensure t
   :config
+  (defhydra hydra-evil-window-resize ()
+    "hydra-evil-window-resize"
+    ("j" evil-window-decrease-height "window-decrease-height")
+    ("k" evil-window-increase-height "window-increase-height")
+    ("h" evil-window-decrease-width "window-decrease-width")
+    ("l" evil-window-increase-width "window-increase-width"))
+  (defun evil-window-resize-hydra ()
+    "resize evil window"
+    (interactive)
+    (hydra-evil-window-resize/body))
+  (defhydra hydra-text-scale ()
+    "hydra-text-scale"
+    ("=" (text-scale-adjust 0) "text-scale-adjust")
+    ("+" text-scale-decrease "text-scale-decrease")
+    ("-" text-scale-increase "text-scale-increase"))
+  (defun text-scale-hydra ()
+    "text scale hydra"
+    (interactive)
+    (hydra-text-scale/body))
   (defhydra hydra-spell ()
     "hydra-spell"
     ("c" flyspell-goto-next-error "flyspell-goto-next-error")
@@ -148,25 +166,31 @@
   (general-define-key "M-SPC" nil)
   (general-define-key :prefix "SPC"
                       :non-normal-prefix "M-SPC"
-                      :states '(normal visual motion insert emacs)
+                      :states '(normal visual emacs)
                       "/" 'counsel-find-file
                       ":" 'counsel-M-x
                       "," 'switch-to-buffer
                       "w" 'evil-window-map
                       "p" 'projectile-command-map
                       "." 'projectile-find-file
-                      "x" 'kill-buffer
+                      "x" 'kill-current-buffer
 ;;                    "g" 'magit-status
                       "c" 'spell-check-hydra
+                      "z" 'text-scale-hydra
                       "s" 'swiper
+                      "r" 'evil-window-resize-hydra
                       "h" 'evil-window-left
                       "j" 'evil-window-down
                       "k" 'evil-window-up
                       "l" 'evil-window-right)
 ;;                    "n" 'neotree-toggle)
+  (general-define-key :prefix "C-c"
+                      :states '(normal visual motion insert emacs)
+                      "a" 'org-agenda)
   (general-define-key :states '(visual emacs)
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
+                      "C-SPC" 'company-complete
                       "M-v"   'clipboard-yank))
 ;;(general-define-key :keymaps 'neotree-mode-map
 ;;                    :states 'normal
@@ -190,6 +214,11 @@
 ;; (use-package neotree :ensure t)
 ;; 
 ;; org-mode tweaks
+(use-package wc-mode
+  :ensure t)
+
+(setq org-agenda-files (quote ("~/orgy/todo.org")))
+
 (use-package org
   :config
   (setq-default org-ellipsis "  "
@@ -201,6 +230,7 @@
                 org-image-actual-width nil
                 org-indent-indentation-per-level 2
                 org-indent-mode-turns-on-hiding-stars t
+                org-export-with-toc nil
                 org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
                                     (sequence "IDEA(i)" "NEXT(n)" "ACTIVE(a)" "WAITING(w)" "LATER(l)" "|" "CANCELLED(c)")))
   (custom-set-faces '(org-todo ((t (:box nil))))
@@ -307,7 +337,7 @@
   :diminish company-mode
   :defines company-dabbrev-downcase
   :config
-  (setq company-idle-delay 0
+  (setq company-idle-delay nil
         company-tooltip-limit 10
         company-tooltip-align-annotations t)
   (add-hook 'prog-mode-hook 'company-mode))

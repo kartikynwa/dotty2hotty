@@ -60,10 +60,15 @@ alias mkdir="mkdir -pv"
 alias bt=bluetoothctl
 alias rebuild="make clean all && sudo make install"
 alias xq="xbps-query -Rs"
+alias xu="sudo xbps-install -Su"
 alias dlna="minidlnad -f /home/$USER/.config/minidlna/minidlna.conf -P /home/$USER/.config/minidlna/minidlna.pid"
+
+alias gcm="git commit -m"
+alias gp="git push"
 
 alias porn="mpv 'https://www.pornhub.com/random'"
 alias rockradio="mpv 'http://dir.xiph.org/listen/1771713/listen.m3u'"
+alias classicalradio="mpv 'http://dir.xiph.org/listen/1191247/listen.m3u'"
 
 # Modules
 autoload -Uz compinit
