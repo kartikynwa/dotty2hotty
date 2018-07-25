@@ -203,7 +203,7 @@
 (setq-default auto-save-default nil) ; stop creating #autosave# files
 
 ;; spell check
-(setq ispell-dictionary "en_US")
+(setq ispell-dictionary "en_GB")
 ;; 
 ;; fuck tabs
 (setq-default c-basic-offset 2)

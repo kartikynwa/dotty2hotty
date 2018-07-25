@@ -63,12 +63,10 @@ alias xq="xbps-query -Rs"
 alias xu="sudo xbps-install -Su"
 alias dlna="minidlnad -f /home/$USER/.config/minidlna/minidlna.conf -P /home/$USER/.config/minidlna/minidlna.pid"
 
-alias gcm="git commit -m"
+alias 'gcm '="git commit -m "
 alias gp="git push"
 
 alias porn="mpv 'https://www.pornhub.com/random'"
-alias rockradio="mpv 'http://dir.xiph.org/listen/1771713/listen.m3u'"
-alias classicalradio="mpv 'http://dir.xiph.org/listen/1191247/listen.m3u'"
 
 # Modules
 autoload -Uz compinit
@@ -133,14 +131,24 @@ setprompt() {
 }
 setprompt
 
+if [[ $TERM = st-* ]]
+then
+  function zle-line-init () { echoti smkx }
+  function zle-line-finish () { echoti rmkx }
+  zle -N zle-line-init
+  zle -N zle-line-finish
+else
+  function zle-line-init () { }
+  function zle-line-finish () { }
+  echo This is not st!
+fi
+
 # Delete key suckless terminal
-function zle-line-init () { echoti smkx }
-function zle-line-finish () { echoti rmkx }
-zle -N zle-line-init
-zle -N zle-line-finish
 
 # Music sync function
-alias music2phone="rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022' ~/music/synced_music/ 192.168.42.129:/sdcard/Music/synced_music"
+alias music2phone="rsync -r --size-only --verbose --progress\
+  --ignore-existing -e 'ssh -p 8022' ~/music/synced_music/ \
+  192.168.42.129:/sdcard/Music/synced_music"
 
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
