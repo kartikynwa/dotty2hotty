@@ -3,7 +3,7 @@
 # Author:        moi
 
 # History - Relics of the past.
-HISTFILE=~/.config/zsh.d/.zshhist
+HISTFILE=~/.config/zsh.d/history
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -16,12 +16,12 @@ fpath=(~/.config/zsh.d $fpath)
 # Variables
 export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
 
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
 export EDITOR="vim"
 export PASSWORD_STORE_CLIP_TIME=5
-export GOROOT="/usr/lib/go"
-export GOPATH="${HOME}/go"
-export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
+# export GOROOT="/usr/lib/go"
+# export GOPATH="${HOME}/go"
+# export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
 
 
 # Colours for ls
@@ -131,17 +131,18 @@ setprompt() {
 }
 setprompt
 
-if [[ $TERM = st-* ]]
-then
-  function zle-line-init () { echoti smkx }
-  function zle-line-finish () { echoti rmkx }
-  zle -N zle-line-init
-  zle -N zle-line-finish
-else
-  function zle-line-init () { }
-  function zle-line-finish () { }
-  echo This is not st!
-fi
+## Fixes for the suckless simple terminal
+# if [[ $TERM = st-* ]]
+# then
+#   function zle-line-init () { echoti smkx }
+#   function zle-line-finish () { echoti rmkx }
+#   zle -N zle-line-init
+#   zle -N zle-line-finish
+# else
+#   function zle-line-init () { }
+#   function zle-line-finish () { }
+#   echo This is not st!
+# fi
 
 # Delete key suckless terminal
 

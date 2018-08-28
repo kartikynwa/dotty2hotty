@@ -7,5 +7,6 @@ unclutter &
 compton &
 # slstatus &
 start-pulseaudio-x11 &
-xmodmap ~/.xmodmaprc
+xmodmap ~/.xmodmaprc &
+xset -b
 exec i3
