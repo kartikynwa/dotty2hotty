@@ -1,12 +1,11 @@
-#! /bin/bash
+#!/bin/bash
 #PATH=.xinitrc
 xrdb -load ~/.Xresources
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &
 compton &
 # slstatus &
 start-pulseaudio-x11 &
-xmodmap ~/.xmodmaprc &
 xset -b
+[ -f ~/dotty2hotty/xmodmaprc ] && xmodmap ~/dotty2hotty/xmodmaprc
 exec i3

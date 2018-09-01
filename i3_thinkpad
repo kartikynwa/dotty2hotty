@@ -90,11 +90,11 @@ set $sysmenu " [h]ibernate [l]ock [p]oweroff [r]eboot [s]uspend "
 bindsym $mod+Escape      mode $sysmenu
 
 mode $sysmenu {
-    bindsym h         exec --no-startup-id lock && sudo ZZZ, mode "default" 
-    bindsym l         exec --no-startup-id lock, mode "default" 
+    bindsym h         exec --no-startup-id i3lock -c 282828 && sudo ZZZ, mode "default" 
+    bindsym l         exec --no-startup-id i3lock -c 282828, mode "default" 
     bindsym p         exec --no-startup-id sudo shutdown -h now
     bindsym r         exec --no-startup-id sudo reboot
-    bindsym s         exec --no-startup-id lock && sudo zzz, mode "default" 
+    bindsym s         exec --no-startup-id i3lock -c 282828 && sudo zzz, mode "default" 
     bindsym Return    mode "default"
     bindsym Escape    mode "default"
 }
