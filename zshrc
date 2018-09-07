@@ -131,18 +131,17 @@ setprompt() {
 }
 setprompt
 
-## Fixes for the suckless simple terminal
-# if [[ $TERM = st-* ]]
-# then
-#   function zle-line-init () { echoti smkx }
-#   function zle-line-finish () { echoti rmkx }
-#   zle -N zle-line-init
-#   zle -N zle-line-finish
-# else
-#   function zle-line-init () { }
-#   function zle-line-finish () { }
-#   echo This is not st!
-# fi
+# Fixes for the suckless simple terminal
+if [[ $TERM = st-* ]]
+then
+  function zle-line-init () { echoti smkx }
+  function zle-line-finish () { echoti rmkx }
+  zle -N zle-line-init
+  zle -N zle-line-finish
+else
+  function zle-line-init () { }
+  function zle-line-finish () { }
+fi
 
 # Delete key suckless terminal
 

@@ -67,7 +67,7 @@ exec --no-startup-id redshift
 floating_modifier $mod
 
 # start a terminal
-set $TERMINAL urxvt
+set $TERMINAL st
 bindsym $mod+Return exec $TERMINAL
 
 # Scratchpad terminal.
@@ -158,6 +158,7 @@ bindsym $mod+a focus parent
 bindsym $mod+slash exec --no-startup-id cmus-remote --pause
 bindsym $mod+comma exec --no-startup-id cmus-remote --prev
 bindsym $mod+period exec --no-startup-id cmus-remote --next
+bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/cmus-notify
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
