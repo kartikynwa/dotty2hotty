@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [ -n $1 ]
+then
+	streamlink -p mpv "https://twitch.tv/${1}"
+else
+	echo "USAGE:twitch <channe_name>"
+fi
