@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
-if [ -n $1 ]
+if [ $# -eq 2 ]
 then
-	streamlink -p mpv "https://twitch.tv/${1}"
+	streamlink -p mpv "https://twitch.tv/${1}" "${2}"
+elif [ $# -eq 1
+then
+	streamlink -p mpv "https://twitch.tv/${1}" best
 else
-	echo "USAGE:twitch <channe_name>"
+	echo "USAGE:twitch <channe_name> [<quality>]
 fi
