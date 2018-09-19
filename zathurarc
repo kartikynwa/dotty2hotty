@@ -1,0 +1,5 @@
+set guioptions ""
+set zoom-step 5
+
+map <S-Up> zoom in
+map <S-Down> zoom out
