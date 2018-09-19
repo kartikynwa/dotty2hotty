@@ -221,7 +221,7 @@
 
 (use-package org
   :config
-  (setq-default org-ellipsis "  "
+  (setq-default org-ellipsis "  "
                 org-startup-folded t
                 org-startup-indented t
                 org-hide-leading-stars t

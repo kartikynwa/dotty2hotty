@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if pgrep -x "transmission-da" > /dev/null
+then
+	echo "arr"
+fi
