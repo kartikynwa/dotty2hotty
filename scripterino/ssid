@@ -28,7 +28,7 @@ INTERFACE="wlp5s0"
 
 #------------------------------------------------------------------------
 
-SSID=`iw ${INTERFACE} info | grep ssid | awk '{print $2}'`
+SSID=`iw ${INTERFACE} info | grep ssid | cut -d " " -f2-`
 
 echo $SSID # full text
 # echo $SSID # short text

@@ -78,6 +78,9 @@ bindsym $mod+Return exec $TERMINAL
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# file mamager shortcut
+bindsym $mod+o exec pcmanfm
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
