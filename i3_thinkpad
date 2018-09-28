@@ -177,6 +177,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 # bindsym XF86AudioMute exec amixer -q set Master toggleControls
 
+# skedaddle between workspaces with this COOL hack
+bindsym $mod+Prior workspace next
+bindsym $mod+Next workspace prev
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
