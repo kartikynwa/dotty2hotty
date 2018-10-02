@@ -6,19 +6,26 @@ then
   exit
 fi
 
-# ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist" | cut -d " " -f 3- )
+ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist" | cut -d " " -f 3- )
 TITLE=$( cmus-remote -Q 2>/dev/null | grep "tag title" | cut -d " " -f 3- )
+FILENAME=$( cmus-remote -Q 2>/dev/null | grep "file " | cut -d " " -f 2- )
 
-if [ -z "$TITLE" ];
+# Generate output string
+if [ -n "$TITLE" ];
 then
-  echo ""
+  OUTPUT="\"$TITLE\" by $ARTIST"
+elif ] -n "$FILENAME" ];
+then
+  OUTPUT="$FILENAME"
 else
-  # echo "\"$TITLE\" by $ARTIST"
-  if [ ${#TITLE} -ge 28 ]
-  then
-    TITLE=$( echo $TITLE | cut -c -25 )
-    echo "${TITLE}..."
-  else
-    echo "$TITLE"
-  fi
+  OUTPUT=""
 fi
+
+# Splice output if it is too long
+if [ ${#OUTPUT} -ge 28 ]
+then
+  OUTPUT="$( echo $OUTPUT | cut -c -25 )..."
+fi
+
+# Echo the crap of out it
+echo $OUTPUT
