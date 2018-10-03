@@ -1,3 +1,6 @@
+#
+# PATH=~/.config/zathura/zathurarc
+
 set guioptions ""
 set zoom-step 5
 

@@ -1,5 +1,5 @@
 "
-" PATH=.config/nvim/init.vim
+" PATH=~/.config/nvim/init.vim
 
 "=======================
 "  dein Scripts

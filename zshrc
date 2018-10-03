@@ -1,4 +1,5 @@
 # Filename:      /etc/zsh/zshrc
+# PATH=~/.zshrc
 # Purpose:       config file for zsh (z shell)
 # Author:        moi
 
