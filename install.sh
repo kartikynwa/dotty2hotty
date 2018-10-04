@@ -29,11 +29,14 @@ for FILE in ./*;
 do
   [ -f $FILE ] || continue
   LINE=`sed '2q;d' $FILE`
+
   if [[ $LINE = *"PATH="* ]];
   then
     TARGET=${LINE##*PATH=}
-    echo $TARGET
+    ls $TARGET
   else
     continue
   fi
+
+
 done

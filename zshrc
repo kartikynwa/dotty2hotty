@@ -1,10 +1,10 @@
 # Filename:      /etc/zsh/zshrc
-# PATH=~/.zshrc
+# PATH=$HOME/.zshrc
 # Purpose:       config file for zsh (z shell)
 # Author:        moi
 
 # History - Relics of the past.
-HISTFILE=~/.config/zsh.d/history
+HISTFILE=$/.config/zsh.d/history
 HISTSIZE=1000
 SAVEHIST=1000
 

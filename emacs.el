@@ -1,5 +1,5 @@
 ;;; package -- Summary
-;;; PATH=~/.emacs.d/init.el
+;;; PATH=$HOME/.emacs.d/init.el
 ;;; Commentary:
 
 ;;; Code:

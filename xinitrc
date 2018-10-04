@@ -1,5 +1,5 @@
 #!/bin/bash
-# PATH=.xinitrc
+# PATH=$HOME/.xinitrc
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &

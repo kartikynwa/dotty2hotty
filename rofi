@@ -1,5 +1,5 @@
 !
-! PATH=~/.config/rofi/config
+! PATH=$HOME/.config/rofi/config
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme - Solarized dark
 ! Copyright: Rasmus Steinke
