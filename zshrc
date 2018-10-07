@@ -4,7 +4,7 @@
 # Author:        moi
 
 # History - Relics of the past.
-HISTFILE=$/.config/zsh.d/history
+HISTFILE=~/.config/zsh.d/history
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -148,8 +148,8 @@ fi
 
 # Music sync function
 alias music2phone="rsync -r --size-only --verbose --progress\
-  --ignore-existing -e 'ssh -p 8022' ~/music/synced_music/ \
-  192.168.42.129:/sdcard/Music/synced_music"
+  --ignore-existing -e 'ssh -p 8022' ~/Music/synced_music/ \
+  192.168.100.127:/sdcard/Music/synced_music"
 
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
