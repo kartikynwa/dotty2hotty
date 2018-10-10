@@ -27,6 +27,9 @@ smart_gaps on
 gaps inner 10
 gaps outer 5
 
+# floating window size constraints
+floating_maximum_size 1280 x 720
+
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id xrandr --output HDMI1 --off \
           --output DP1 --off --output eDP1 --primary --mode 1366x768 --pos 0x0\
