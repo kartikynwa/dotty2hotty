@@ -21,11 +21,12 @@ if [ -d ~/dotty2hotty ];
 then
   cd ~/dotty2hotty
 else
-  echo "mate what are you trying to do?"
+  echo "mate what you on about?"
+  echo "Clone the repository in the home directory."
   exit
 fi
 
-for FILE in ./*;
+for FILE in $PWD/*;
 do
   [ -f $FILE ] || continue
   LINE=`sed '2q;d' $FILE`
@@ -33,7 +34,13 @@ do
   if [[ $LINE = *"PATH="* ]];
   then
     TARGET=${LINE##*PATH=}
-    ls $TARGET
+    TARGET="${HOME}/$TARGET"
+    if [ -e ${TARGET} ]; then
+      echo "${TARGET} exists. Please resolve this fucktangle."
+    else
+      mkdir -pv $(dirname ${TARGET})
+      ln -s ${FILE} ${TARGET}
+    fi
   else
     continue
   fi
