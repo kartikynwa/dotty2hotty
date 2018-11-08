@@ -1,5 +1,7 @@
 #
-# PATH=$HOME/.config/zathura/zathurarc
+# PATH=.config/zathura/zathurarc
+
+set window-title-basename true
 
 set guioptions ""
 set zoom-step 5

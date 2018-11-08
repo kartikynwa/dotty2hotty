@@ -1,5 +1,5 @@
 "
-" PATH=$HOME/.vimrc
+" PATH=.vimrc
 
 "=====================
 "  Vim UI

@@ -1,5 +1,5 @@
 ;;; package -- Summary
-;;; PATH=$HOME/.emacs.d/init.el
+;;; PATH=.emacs.d/init.el
 ;;; Commentary:
 
 ;;; Code:
@@ -33,6 +33,7 @@
 
 ;; set default column width
 (setq-default fill-column 80)
+(global-visual-line-mode)
 
 ;; fuck bells
 (setq visible-bell nil)
@@ -78,7 +79,8 @@
 (use-package gruvbox-theme
   :ensure t
   :config
-  (load-theme 'gruvbox-dark-medium))
+  (load-theme 'gruvbox-dark-medium)
+  (set-face-background hl-line-face "#32302f"))
 
 ;; show column number in mode line
 (setq column-number-mode t)
@@ -213,6 +215,12 @@
 ;; ;; neotree
 ;; (use-package neotree :ensure t)
 ;; 
+
+;; AUCTeX
+(use-package auctex
+  :ensure t
+  :defer t)
+
 ;; org-mode tweaks
 (use-package wc-mode
   :ensure t)
@@ -252,12 +260,13 @@
                   org-document-title))
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
+(add-hook 'text-mode-hook #'turn-on-olivetti-mode)
 ;; (add-hook 'org-mode-hook 'my/org-mode-hook)
-(add-hook 'text-mode-hook #'turn-on-auto-fill)
-(add-hook 'org-mode-hook #'turn-on-olivetti-mode)
-(add-hook 'markdown-mode-hook #'turn-on-olivetti-mode)
-;; 
-;; 
+;; (add-hook 'text-mode-hook #'turn-on-auto-fill)
+;; (add-hook 'org-mode-hook #'turn-on-olivetti-mode)
+;; (add-hook 'markdown-mode-hook #'turn-on-olivetti-mode)
+
+
 ;; ivy-mode
 (use-package ivy
   :ensure t

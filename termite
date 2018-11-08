@@ -1,5 +1,5 @@
 #
-# P=.config/termite/config
+# PATH=.config/termite/config
 
 [options]
 scroll_on_output = false

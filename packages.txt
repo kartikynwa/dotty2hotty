@@ -1,0 +1,17 @@
+xorg
+i3-gaps
+
+mpv
+redshift
+st
+vim
+zathura
+zathura-cb
+zathura-pdf-mupdf
+zsh
+
+cmus
+i3lock
+pcmanfm
+rofi
+rofi-pass

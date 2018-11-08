@@ -1,5 +1,5 @@
 # Filename:      /etc/zsh/zshrc
-# PATH=$HOME/.zshrc
+# PATH=.zshrc
 # Purpose:       config file for zsh (z shell)
 # Author:        moi
 
@@ -58,15 +58,17 @@ alias rm="rm -vI"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
-alias bt=bluetoothctl
+
 alias rebuild="make clean all && sudo make install"
+
 alias xq="xbps-query -Rs"
 alias xu="sudo xbps-install -Su"
-alias dlna="minidlnad -f /home/$USER/.config/minidlna/minidlna.conf -P /home/$USER/.config/minidlna/minidlna.pid"
+alias mkdoc="sudo makewhatis /usr/share/man"
 
 alias 'gcm '="git commit -m "
 alias gp="git push"
 
+alias cdf="ssh singhk39@teach.cs.utoronto.ca"
 alias porn="mpv 'https://www.pornhub.com/random'"
 
 # Modules
