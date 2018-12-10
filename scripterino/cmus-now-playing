@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MAXLEN=40
+
 if [ ! -x /usr/bin/cmus-remote ];
 then
   echo "cmus is not installed."
@@ -14,17 +16,17 @@ FILENAME=$( cmus-remote -Q 2>/dev/null | grep "file " | cut -d " " -f 2- )
 if [ -n "$TITLE" ];
 then
   OUTPUT="\"$TITLE\" by $ARTIST"
-elif ] -n "$FILENAME" ];
+elif [ -n "$FILENAME" ];
 then
-  OUTPUT="$FILENAME"
+  OUTPUT="${FILENAME##*/}"
 else
   OUTPUT=""
 fi
 
 # Splice output if it is too long
-if [ ${#OUTPUT} -ge 28 ]
+if [ ${#OUTPUT} -ge ${MAXLEN} ]
 then
-  OUTPUT="$( echo $OUTPUT | cut -c -25 )..."
+  OUTPUT="$( echo $OUTPUT | cut -c -${MAXLEN} )..."
 fi
 
 # Echo the crap of out it

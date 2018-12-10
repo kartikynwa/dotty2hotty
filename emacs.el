@@ -82,6 +82,14 @@
   (load-theme 'gruvbox-dark-medium)
   (set-face-background hl-line-face "#32302f"))
 
+;; (use-package powerline :ensure t)
+
+;; (use-package spaceline
+;;   :after powerline
+;;   :ensure t
+;;   :config
+;;   (spaceline-emacs-theme))
+
 ;; show column number in mode line
 (setq column-number-mode t)
 ;; 
@@ -184,8 +192,8 @@
                       "h" 'evil-window-left
                       "j" 'evil-window-down
                       "k" 'evil-window-up
-                      "l" 'evil-window-right)
-;;                    "n" 'neotree-toggle)
+                      "l" 'evil-window-right
+                      "n" 'neotree-toggle)
   (general-define-key :prefix "C-c"
                       :states '(normal visual motion insert emacs)
                       "a" 'org-agenda)
@@ -193,12 +201,12 @@
                       "M-c" 'clipboard-kill-ring-save)
   (general-define-key :states '(insert)
                       "C-SPC" 'company-complete
-                      "M-v"   'clipboard-yank))
-;;(general-define-key :keymaps 'neotree-mode-map
-;;                    :states 'normal
-;;                    "RET" 'neotree-enter
-;;                    "q" 'neotree-hide
-;;                    [tab] 'neotree-quick-look)
+                      "M-v"   'clipboard-yank)
+  (general-define-key :keymaps 'neotree-mode-map
+                      :states 'normal
+                      "RET" 'neotree-enter
+                      "q" 'neotree-hide
+                      [tab] 'neotree-quick-look))
 ;; 
 ;; disable backups
 (setq-default make-backup-files nil) ; stop creating backup~ files
@@ -211,10 +219,12 @@
 (setq-default c-basic-offset 2)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-;; 
-;; ;; neotree
-;; (use-package neotree :ensure t)
-;; 
+
+;; neotree
+(use-package neotree
+  :ensure t
+  :config (setq neo-theme 'ascii))
+
 
 ;; AUCTeX
 (use-package auctex
@@ -299,11 +309,11 @@
 
 ;; rust mode
 (use-package rust-mode :ensure t)
-(use-package racer
-  :ensure t
-  :config
-  (setq racer-rust-src-path "/home/kartik/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-  (add-hook 'rust-mode-hook #'racer-mode))
+;;(use-package racer
+;;  :ensure t
+;;  :config
+;;  (setq racer-rust-src-path "/home/kartik/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+;;  (add-hook 'rust-mode-hook #'racer-mode))
 
 ;; olivetti settings
 (use-package olivetti

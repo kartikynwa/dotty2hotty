@@ -146,7 +146,23 @@ else
   function zle-line-finish () { }
 fi
 
-# Delete key suckless terminal
+# acempv function
+acempv () {
+  if [[ -n $1 ]]
+  then
+    mpv --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
+  else
+    echo "acempv: No argument given"
+  fi
+}
+
+# smloadr function
+smloadr () {
+  DIR=${PWD}
+  cd /home/kartik/Music/smloadr
+  ./SMLoadr-linux-x64 $1
+  cd ${DIR}
+}
 
 # Music sync function
 alias music2phone="rsync -r --size-only --verbose --progress\
