@@ -164,6 +164,20 @@ smloadr () {
   cd ${DIR}
 }
 
+# twitch wrapper with streamlink, mpv function
+twitch () {
+  if [[ -n $1 ]]
+  then
+    if [[ -n $2 ]]
+    then
+      streamlink -p mpv "https://twitch.tv/${1}" ${2}
+    else
+      streamlink -p mpv "https://twitch.tv/${1}" best
+    fi
+  else
+    echo "USAGE: twitch channel_name [quality]"
+  fi
+}
 # Music sync function
 alias music2phone="rsync -r --size-only --verbose --progress\
   --ignore-existing -e 'ssh -p 8022' ~/Music/synced_music/ \
