@@ -7,12 +7,24 @@ since I cannot really think of a situation where it would be useful. There are
 dependencies that need to be met before an install script can do its job. Making
 sure those dependencies are met is not a straightforward process.
 
-So here is how you use these dotfiles:
+### Install Dependencies
 
-1. Clone repository in the home directory. This is required for certain scripts
-   to work.
-2. Manually symlink the included files as needed. The usual path where they need
-   to be symlinked to is included in each file as the second line.
+```
+# xbps-install `cat packages.txt | tr '\n' ' '`
+```
+
+### Symlink Dotfiles 
+
+Be careful while doing this. Do not forget to look at which files the script
+symlinks. For now, the script doesn't overwrite any files but caution is advised
+anyway.
+```
+$ ./install.sh
+```
+
+### 3. Initiate
+
+Perform tasks listed in `INITIATION.md`.
 
 ## Things that do not matter
 

@@ -1,10 +1,12 @@
 xorg
 i3-gaps
+arandr
 
 mpv
 redshift
 st
 vim
+emacs-gtk2
 zathura
 zathura-cb
 zathura-pdf-mupdf
@@ -15,3 +17,8 @@ i3lock
 pcmanfm
 rofi
 rofi-pass
+
+alsa-utils
+pulseaudio
+ConsoleKit2
+pavucontrol
