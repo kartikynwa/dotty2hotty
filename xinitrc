@@ -6,6 +6,7 @@ unclutter &
 compton &
 # slstatus &
 start-pulseaudio-x11 &
+redshift &
 xset -b
 [ -f ~/dotty2hotty/xmodmaprc ] && xmodmap ~/dotty2hotty/xmodmaprc
 export QT_QPA_PLATFORMTHEME=gtk2

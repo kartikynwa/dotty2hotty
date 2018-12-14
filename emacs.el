@@ -319,7 +319,7 @@
 (use-package olivetti
   :ensure t
   :config
-  (setq-default olivetti-body-width 90))
+  (setq-default olivetti-body-width 80))
 
 (use-package visual-fill-column :ensure t)
 ;; 

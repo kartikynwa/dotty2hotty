@@ -1,3 +1,7 @@
+# Change default shell
+
+`chsh`
+
 # Add power commands to NOPASSWD
 
 Edit `\etc\sudoers` using the `visudo` command. Add the following line.
