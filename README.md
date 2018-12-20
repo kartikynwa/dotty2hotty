@@ -61,7 +61,7 @@ Welcome to the humble abode of my _dotfiles_. I once used to be the forlorn
 shipwreck much like yourself. Before undertaking this endeavour, I had little
 idea of how bash scripts, symlinking, and git work. Through the sheer force of
 immense willpower and unwavering tenacity, I succeeded in Googling a lot of
-shit and getting this done using information that other peeps had been so kind
+shit and getting this done using information that other people had been so kind
 to share.
 
 One of the things that bothered me about the dotfile git repositories of 
@@ -92,10 +92,10 @@ where the first line is the shebang.  Does it need to be? I really do not
 know. All I know is that it works and is really fucking cool. One flaw that
 stings me is that the repo folder _NEEDS_ to be created in the home
 directory. This can be fixed by making the scripts aware of their residing
-directories but who has got the time for that?
+directories but who has time for that?
 
-If you stumbled upon this untraversed corner of git repos looking for answers, I
-hope you have found something helpful that may let you be more like me and less
-like yourself.
+If you stumbled upon this untraversed corner of git repositories looking for
+answers, I hope you have found something helpful that may let you be more like
+me and less like yourself.
 
 Adieu, friend.
