@@ -179,9 +179,16 @@ twitch () {
   fi
 }
 # Music sync function
-alias music2phone="rsync -r --size-only --verbose --progress\
-  --ignore-existing -e 'ssh -p 8022' ~/Music/synced_music/ \
-  192.168.100.127:/sdcard/Music/synced_music"
+music2phone () {
+  PHONEIP="192.168.100.127"
+  if [[ -n $1 ]]
+  then
+    PHONEIP="${1}"
+  fi
+  rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'\
+    ~/Music/synced_music/\
+    ${PHONEIP}:/sdcard/Music/synced_music
+}
 
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
