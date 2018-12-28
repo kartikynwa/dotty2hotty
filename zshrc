@@ -158,10 +158,15 @@ acempv () {
 
 # smloadr function
 smloadr () {
-  DIR=${PWD}
-  cd /home/kartik/Music/smloadr
-  ./SMLoadr-linux-x64 $1
-  cd ${DIR}
+  if [[ -x /home/kartik/Music/smloadr ]]
+    then
+    DIR=${PWD}
+    cd /home/kartik/Music/smloadr
+    ./SMLoadr-linux-x64 $1
+    cd ${DIR}
+  else
+    echo "File doesn'r exist: ~/Music/smloadr/SMLoadr-linux-x64"
+  fi
 }
 
 # twitch wrapper with streamlink, mpv function
@@ -179,14 +184,14 @@ twitch () {
   fi
 }
 # Music sync function
-music2phone () {
+musicsync () {
   PHONEIP="192.168.100.127"
   if [[ -n $1 ]]
   then
     PHONEIP="${1}"
   fi
   rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'\
-    ~/Music/synced_music/\
+    --delete ~/Music/synced_music/\
     ${PHONEIP}:/sdcard/Music/synced_music
 }
 
