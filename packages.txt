@@ -1,6 +1,7 @@
 xorg
 i3-gaps
 arandr
+lxappearance
 
 mpv
 redshift
@@ -17,6 +18,7 @@ i3lock
 pcmanfm
 rofi
 rofi-pass
+engrampa
 
 alsa-utils
 pulseaudio

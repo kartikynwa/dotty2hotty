@@ -28,7 +28,7 @@ $ ./install.sh
 
 ### Add power commands to NOPASSWD
 
-Edit `\etc\sudoers` using the `visudo` command. Add the following line.
+Edit `\etc\sudoers` using the `visudo` command. Add the following line:
 
 ```
 %wheel ALL=(ALL) NOPASSWD: /usr/bin/halt, /usr/bin/poweroff, /usr/bin/reboot, \
@@ -50,6 +50,11 @@ $ echo 'Start ALSA service'
 ### Configure laptop lid behaviour
 
 In `/etc/acpi/handler.sh`. You know the rest (I hope haha).
+
+### GTK Theme
+
+My preference is [Materia](https://github.com/nana-4/materia-theme). Install
+instructions are on the Github page.
 
 
 ## Things that do not matter

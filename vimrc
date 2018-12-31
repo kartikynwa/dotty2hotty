@@ -31,3 +31,4 @@ set tabstop=2              " tab = 2 columns
 set softtabstop=2          " ---------------
 set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
+set formatoptions-=t       " stop the wrapping
