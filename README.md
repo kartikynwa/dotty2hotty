@@ -2,10 +2,9 @@
 
 ## Instructions
 
-I have made an intelligent design choice of not including an install script
-since I cannot really think of a situation where it would be useful. There are
-dependencies that need to be met before an install script can do its job. Making
-sure those dependencies are met is not a straightforward process.
+Initiatie your Void Linux installation using these awesome AI MACHINE LEARNING
+BLOCKCHAIN powered AGILE scripts which allow quick deployment of amazing
+FEATURES.
 
 ### Install Dependencies
 
@@ -69,12 +68,9 @@ immense willpower and unwavering tenacity, I succeeded in Googling a lot of
 shit and getting this done using information that other people had been so kind
 to share.
 
-One of the things that bothered me about the dotfile git repositories of 
-other "_developers_" was that there was no way of reliably knowing where
-the symlink was supposed to be made. A lot of them had a loop over the names
-of the files that would simple be placed in `~/.<name>` followed by edge cases.
-Some would have the files placed in a folder like  `config` then use black
-magic fuckery to append a `.` before them.
+I have tried to automate this setup as much as I can. The files that I want to
+copy over have a path in their second line in the form of a comment. This kinda
+works out but the scope of improvements is infinite.
 
 One of the more genius solutions was making a bare git repository in the home
 directory. It is talked about in
@@ -89,6 +85,7 @@ two reason:
 2. Can't put my finger on it but something about it makes it look like a
    little bit like a जुगाड़. It works, yeah. But something doesn't seem right
    about turning my home directory into _possibly_ a git directory. U feel me?
+   This may be just beacuse of the lack of knowledge on my part.
 
 As such I came up with my own patent pending IQ 150 method. I add the path where
 the symlink has to be created relating to the home directory as a comment in the
