@@ -19,6 +19,7 @@ export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-
 
 export BROWSER="firefox"
 export EDITOR="vim"
+export SUDO_EDITOR="rvim"
 export PASSWORD_STORE_CLIP_TIME=5
 # export GOROOT="/usr/lib/go"
 # export GOPATH="${HOME}/go"
@@ -52,6 +53,7 @@ setopt autocd \
        hist_ignore_all_dups
 
 # Aliases (or Alii)
+alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
 alias ll="ls --color -lh --group-directories-first"
 alias rm="rm -vI"
@@ -158,14 +160,14 @@ acempv () {
 
 # smloadr function
 smloadr () {
-  if [[ -x /home/kartik/Music/smloadr ]]
-    then
+  if [ -x /home/kartik/Music/smloadr ]
+  then
     DIR=${PWD}
     cd /home/kartik/Music/smloadr
     ./SMLoadr-linux-x64 $1
     cd ${DIR}
   else
-    echo "File doesn'r exist: ~/Music/smloadr/SMLoadr-linux-x64"
+    echo "File doesn't exist: ~/Music/smloadr/SMLoadr-linux-x64"
   fi
 }
 
@@ -183,15 +185,40 @@ twitch () {
     echo "USAGE: twitch channel_name [quality]"
   fi
 }
+
 # Music sync function
 musicsync () {
-  PHONEIP="192.168.100.127"
-  if [[ -n $1 ]]
+  local PHONEIP=""
+  local DELETE=""
+  for arg in "$@"
+  do
+    case $arg in
+      -h|--help)
+        echo "USAGE: musicsync [-d] [<phone_ip>]"
+        return 1
+        ;;
+      -d|--delete)
+        local DELETE="--delete"
+        ;;
+      *)
+        if [ ! -z ${PHONEIP} ]
+        then
+          echo "USAGE: musicsync [-d] [<phone_ip>]"
+          echo "what are you doing mate"
+          return 0
+        fi
+        PHONEIP="${arg}"
+        ;;
+    esac
+  done
+
+  if [ -z ${PHONEIP} ]
   then
-    PHONEIP="${1}"
+    PHONEIP="192.168.100.127"
   fi
+
   rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'\
-    --delete ~/Music/synced_music/\
+    ${DELETE} ~/Music/synced_music/\
     ${PHONEIP}:/sdcard/Music/synced_music
 }
 
