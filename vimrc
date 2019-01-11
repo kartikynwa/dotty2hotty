@@ -32,3 +32,7 @@ set softtabstop=2          " ---------------
 set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
 set formatoptions-=t       " stop the wrapping
+
+if has('gui_running')
+  colorscheme evening
+endif

@@ -188,13 +188,18 @@ twitch () {
 
 # Music sync function
 musicsync () {
+
+  help () {
+    echo "USAGE: musicsync [-d] [<phone_ip>]"
+  }
+
   local PHONEIP=""
   local DELETE=""
   for arg in "$@"
   do
     case $arg in
       -h|--help)
-        echo "USAGE: musicsync [-d] [<phone_ip>]"
+        help
         return 1
         ;;
       -d|--delete)
@@ -203,8 +208,7 @@ musicsync () {
       *)
         if [ ! -z ${PHONEIP} ]
         then
-          echo "USAGE: musicsync [-d] [<phone_ip>]"
-          echo "what are you doing mate"
+          help
           return 0
         fi
         PHONEIP="${arg}"
