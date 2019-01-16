@@ -163,6 +163,7 @@ bindsym $mod+period exec --no-startup-id cmus-remote --next
 bindsym $mod+equal exec --no-startup-id cmus-remote --volume +5%
 bindsym $mod+minus exec --no-startup-id cmus-remote --volume -5%
 bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/cmus-notify
+bindsym $mod+c exec --no-startup-id ~/dotty2hotty/scripterino/start-cmus-in-workspace-music
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness

@@ -423,12 +423,39 @@
   (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
   (which-key-setup-side-window-bottom)
   (add-hook 'after-init-hook #'which-key-mode))
-;; 
+
+;; web mode indents
+(defun setup-web-indent (n)
+  ;; web development
+  (setq-local coffee-tab-width n)              ; coffeescript
+  (setq-local javascript-indent-level n)       ; javascript-mode
+  (setq-local js-indent-level n)               ; js-mode
+  (setq-local js2-basic-offset n)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset n)    ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset n)   ; web-mode, js code in html file
+  (setq-local css-indent-offset n)             ; css-mode
+  (setq-local web-mode-script-padding n)       ;
+  (setq-local web-mode-style-padding n)        ; some kinda paddings haha
+  (setq-local web-mode-block-padding n))       ; 
+
+(defun web-indent ()
+  (setup-web-indent 2))
+  
+
+;; web-mode (wth lol)
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+  (add-hook 'web-mode-hook 'web-indent))
+
 ;; nlinum - show line numbers
 (use-package nlinum
   :ensure t
   :init
-  (add-hook 'prog-mode-hook #'nlinum-mode))
+  (add-hook 'prog-mode-hook #'nlinum-mode)
+  (add-hook 'web-mode-hook #'nlinum-mode))
 ;; 
 ;; ;;persistent-scratch buffer
 ;; (use-package persistent-scratch

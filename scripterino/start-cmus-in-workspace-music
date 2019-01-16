@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+CMUS_PID=$(pidof cmus)
+TERMINAL=st
+
+startcmus() {
+  i3-msg workspace music
+  $TERMINAL -e cmus
+}
+
+if [ -z $CMUS_PID ]; then
+  startcmus
+else
+  notify-send "cmus is running"
+fi
+
