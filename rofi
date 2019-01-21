@@ -13,3 +13,4 @@
 rofi.theme: ~/dotty2hotty/rofi-gruvbox-dark.rasi
 rofi.font: DejaVu Sans Mono 14
 rofi.lines: 10
+rofi.matching: regex

@@ -28,7 +28,10 @@ INTERFACE="wlp5s0"
 
 #------------------------------------------------------------------------
 
-SSID=`iw ${INTERFACE} info | grep ssid | cut -d " " -f2-`
+# Doesn't work with wifi firmware downgrade
+# SSID=`iw ${INTERFACE} info | grep ssid | cut -d " " -f2-`
+
+SSID=`iw ${INTERFACE} link | grep SSID: | awk -F': ' '{ print $2; }'`
 
 echo $SSID # full text
 # echo $SSID # short text

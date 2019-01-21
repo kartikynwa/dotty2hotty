@@ -21,6 +21,7 @@ export BROWSER="firefox"
 export EDITOR="vim"
 export SUDO_EDITOR="rvim"
 export PASSWORD_STORE_CLIP_TIME=5
+export WINEDEBUG=-all
 # export GOROOT="/usr/lib/go"
 # export GOPATH="${HOME}/go"
 # export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
@@ -60,6 +61,7 @@ alias rm="rm -vI"
 alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
+alias syslog="socklog"
 
 alias rebuild="make clean all && sudo make install"
 
