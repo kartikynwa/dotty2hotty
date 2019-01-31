@@ -5,7 +5,7 @@ xrdb -load ~/.Xresources
 unclutter &
 compton &
 # slstatus &
-start-pulseaudio-x11 &
+# start-pulseaudio-x11 &
 redshift &
 xset -b
 [ -f ~/dotty2hotty/xmodmaprc ] && xmodmap ~/dotty2hotty/xmodmaprc
