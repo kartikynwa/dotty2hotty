@@ -21,25 +21,26 @@ if [ -d ~/dotty2hotty ];
 then
   cd ~/dotty2hotty
 else
-  echo "mate what you on about?"
-  echo "Clone the repository in the home directory."
+  echo "ERROR: This script kinda sucks and only works if the git repo is"
+  echo "cloned in the home directory."
   exit
 fi
 
-for FILE in $PWD/*;
+for FILENAME in dotfiles/*;
 do
-  [ -f $FILE ] || continue
-  LINE=`sed '2q;d' $FILE`
+  [ -f ${FILENAME} ] || continue
+  LINE=$( grep -m 1 DEST= ${FILENAME} )
 
-  if [[ $LINE = *"PATH="* ]];
+  if [ -n "${LINE}" ];
   then
-    TARGET=${LINE##*PATH=}
-    TARGET="${HOME}/$TARGET"
+    TARGET=${LINE##*DEST=}
+    TARGET="${HOME}/${TARGET}"
+    echo $TARGET
     if [ -e ${TARGET} ]; then
-      echo "${TARGET} exists. Please resolve this fucktangle."
+      echo "${TARGET} already exists. Please resolve this fucktangle."
     else
       mkdir -pv $(dirname ${TARGET})
-      ln -s ${FILE} ${TARGET}
+      ln -s ${PWD}/${FILENAME} ${TARGET}
     fi
   else
     continue

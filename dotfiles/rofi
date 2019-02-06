@@ -1,5 +1,5 @@
 !
-! PATH=.config/rofi/config
+! DEST=.config/rofi/config
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme - Solarized dark
 ! Copyright: Rasmus Steinke
@@ -10,7 +10,7 @@
 !rofi.color-active: #002b37, #268bd2, #002b37, #003642, #268bd2
 !rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
 
-rofi.theme: ~/dotty2hotty/rofi-gruvbox-dark.rasi
+rofi.theme: ~/dotty2hotty/config_files/rofi-gruvbox-dark.rasi
 rofi.font: DejaVu Sans Mono 14
 rofi.lines: 10
 rofi.matching: regex

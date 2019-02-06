@@ -1,5 +1,5 @@
 #
-# PATH=.config/dunst/dunstrc
+# DEST=.config/dunst/dunstrc
 [global]
     font = DejaVu Sans Mono 10
 

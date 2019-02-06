@@ -1,5 +1,5 @@
 #!/bin/bash
-# PATH=.xinitrc
+# DEST=.xinitrc
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &
@@ -8,6 +8,6 @@ compton &
 # start-pulseaudio-x11 &
 redshift &
 xset -b
-[ -f ~/dotty2hotty/xmodmaprc ] && xmodmap ~/dotty2hotty/xmodmaprc
+[ -f ~/dotty2hotty/config_files/xmodmaprc ] && xmodmap ~/dotty2hotty/config_files/xmodmaprc
 export QT_QPA_PLATFORMTHEME=gtk2
 exec i3

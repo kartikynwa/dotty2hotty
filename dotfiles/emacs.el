@@ -1,5 +1,5 @@
 ;;; package -- Summary
-;;; PATH=.emacs.d/init.el
+;;; DEST=.emacs.d/init.el
 ;;; Commentary:
 
 ;;; Code:
@@ -425,22 +425,22 @@
   (add-hook 'after-init-hook #'which-key-mode))
 
 ;; web mode indents
-(defun setup-web-indent (n)
-  ;; web development
-  (setq-local coffee-tab-width n)              ; coffeescript
-  (setq-local javascript-indent-level n)       ; javascript-mode
-  (setq-local js-indent-level n)               ; js-mode
-  (setq-local js2-basic-offset n)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
-  (setq-local web-mode-css-indent-offset n)    ; web-mode, css in html file
-  (setq-local web-mode-code-indent-offset n)   ; web-mode, js code in html file
-  (setq-local css-indent-offset n)             ; css-mode
-  (setq-local web-mode-script-padding n)       ;
-  (setq-local web-mode-style-padding n)        ; some kinda paddings haha
-  (setq-local web-mode-block-padding n))       ; 
+;;(defun setup-web-indent (n)
+;;   web development
+;;  (setq-local coffee-tab-width n)              ; coffeescript
+;;  (setq-local javascript-indent-level n)       ; javascript-mode
+;;  (setq-local js-indent-level n)               ; js-mode
+;;  (setq-local js2-basic-offset n)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+;;  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+;;  (setq-local web-mode-css-indent-offset n)    ; web-mode, css in html file
+;;  (setq-local web-mode-code-indent-offset n)   ; web-mode, js code in html file
+;;  (setq-local css-indent-offset n)             ; css-mode
+;;  (setq-local web-mode-script-padding n)       ;
+;;  (setq-local web-mode-style-padding n)        ; some kinda paddings haha
+;;  (setq-local web-mode-block-padding n))       ; 
 
-(defun web-indent ()
-  (setup-web-indent 2))
+;; (defun web-indent ()
+;;   (setup-web-indent 2))
   
 
 ;; web-mode (wth lol)
@@ -448,8 +448,18 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-  (add-hook 'web-mode-hook 'web-indent))
+  (setq-default coffee-tab-width 2)              ; coffeescript
+  (setq-default javascript-indent-level 2)       ; javascript-mode
+  (setq-default js-indent-level 2)               ; js-mode
+  (setq-default js2-basic-offset 2)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-default web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq-default web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq-default web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  (setq-default css-indent-offset 2)             ; css-mode
+  (setq-default web-mode-script-padding 2)       ;
+  (setq-default web-mode-style-padding 2)        ; some kinda paddings haha
+  (setq-default web-mode-block-padding 2))       ; 
+;;(add-hook 'web-mode-hook 'web-indent))
 
 ;; nlinum - show line numbers
 (use-package nlinum

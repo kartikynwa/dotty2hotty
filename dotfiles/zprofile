@@ -1,5 +1,5 @@
 #
-# PATH=.zprofile
+# DEST=.zprofile
 
 export EDITOR=vi
 

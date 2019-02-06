@@ -1,5 +1,5 @@
 #
-# PATH=.config/cmus/rc
+# DEST=.config/cmus/rc
 set format_playlist= %-20%a|%3n.|%-50t|%l%=|%4y|%5d|%{?X!=0?%3X ?    }
 set format_playlist_va= %-20%a|%3n.|%-50t|%l%=|%4y|%5d|%{?X!=0?%3X ?    }
 # set format_playlist_va= %-20%A|%3n.|%-50t|%l%=|%4y|%5d|%{?X!=0?%3X ?    } # For album artist
