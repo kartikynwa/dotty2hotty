@@ -1,5 +1,5 @@
 ;;; package -- Summary
-;;; DEST=.emacs.d/init.el
+;;; DOT_DEST=.emacs.d/init.el
 ;;; Commentary:
 
 ;;; Code:

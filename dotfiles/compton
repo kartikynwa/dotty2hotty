@@ -1,5 +1,5 @@
 #
-# DEST=.config/compton.conf
+# DOT_DEST=.config/compton.conf
 backend = "glx";
 paint-on-overlay = true;
 glx-no-stencil = true;

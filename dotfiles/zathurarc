@@ -1,5 +1,5 @@
 #
-# DEST=.config/zathura/zathurarc
+# DOT_DEST=.config/zathura/zathurarc
 
 set window-title-basename true
 

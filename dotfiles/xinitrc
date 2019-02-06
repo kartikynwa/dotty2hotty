@@ -1,5 +1,5 @@
 #!/bin/bash
-# DEST=.xinitrc
+# DOT_DEST=.xinitrc
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &

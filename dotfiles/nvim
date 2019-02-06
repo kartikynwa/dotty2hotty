@@ -1,5 +1,5 @@
 "
-" DEST=.config/nvim/init.vim
+" DOT_DEST=.config/nvim/init.vim
 
 "=======================
 "  dein Scripts

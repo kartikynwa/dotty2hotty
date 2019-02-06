@@ -1,5 +1,5 @@
 # Filename:      /etc/zsh/zshrc
-# DEST=.zshrc
+# DOT_DEST=.zshrc
 # Purpose:       config file for zsh (z shell)
 # Author:        moi
 

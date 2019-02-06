@@ -26,21 +26,19 @@ else
   exit
 fi
 
-for FILENAME in dotfiles/*;
+for filename in dotfiles/*;
 do
-  [ -f ${FILENAME} ] || continue
-  LINE=$( grep -m 1 DEST= ${FILENAME} )
+  [ -f ${filename} ] || continue
+  line=$( grep -m 1 "DOT_DEST=" ${filename} )
 
-  if [ -n "${LINE}" ];
+  if [ -n "${line}" ];
   then
-    TARGET=${LINE##*DEST=}
-    TARGET="${HOME}/${TARGET}"
-    echo $TARGET
-    if [ -e ${TARGET} ]; then
-      echo "${TARGET} already exists. Please resolve this fucktangle."
+    destination="${HOME}/${line##*DOT_DEST=}"
+    if [ -e ${destination} ]; then
+      echo "${destination} already exists."
     else
-      mkdir -pv $(dirname ${TARGET})
-      ln -s ${PWD}/${FILENAME} ${TARGET}
+      mkdir -pv $(dirname ${destination})
+      ln -s ${PWD}/${filename} ${destination}
     fi
   else
     continue

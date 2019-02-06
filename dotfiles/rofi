@@ -1,5 +1,5 @@
 !
-! DEST=.config/rofi/config
+! DOT_DEST=.config/rofi/config
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme - Solarized dark
 ! Copyright: Rasmus Steinke
