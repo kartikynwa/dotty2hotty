@@ -3,6 +3,6 @@
 
 export EDITOR=vi
 
-if [ -z $TMUX ]; then
+if [ -z $TMUX ] && [ -z $SSH_CLIENT ] && [ -z $SSH2_CLIENT ]; then
   startx
 fi
