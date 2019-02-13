@@ -62,6 +62,7 @@ alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
+alias v="nvim"
 
 alias rebuild="make clean all && sudo make install"
 
@@ -150,9 +151,19 @@ else
   function zle-line-finish () { }
 fi
 
+# mkcd, mkdir and cd's illegitimate daughter
+mkcd () {
+  if [ -n $1 ]; then
+    mkdir -vp "$1"
+    cd "$1"
+  else 
+    echo "mkcd: missing operand"
+  fi
+}
+
 # acempv function
 acempv () {
-  if [[ -n $1 ]]
+  if [ -n $1 ]
   then
     mpv --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
   else
@@ -175,9 +186,9 @@ smloadr () {
 
 # twitch wrapper with streamlink, mpv function
 twitch () {
-  if [[ -n $1 ]]
+  if [ -n $1 ]
   then
-    if [[ -n $2 ]]
+    if [ -n $2 ]
     then
       streamlink -p mpv "https://twitch.tv/${1}" ${2}
     else

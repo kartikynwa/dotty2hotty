@@ -38,7 +38,7 @@ do
       echo "${destination} already exists."
     else
       mkdir -pv "$(dirname "${destination}")"
-      ln -s "${PWD}/${filename}" "${destination}"
+      ln -vs "${PWD}/${filename}" "${destination}"
     fi
   else
     continue

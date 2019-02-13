@@ -1,78 +1,33 @@
 "
 " DOT_DEST=.config/nvim/init.vim
+"
 
-"=======================
-"  dein Scripts
-"=======================
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" required:
-set runtimepath+=/home/kartik/.config/nvim/dein//repos/github.com/Shougo/dein.vim
-
-" required:
-if dein#load_state('/home/kartik/.config/nvim/dein/')
-  call dein#begin('/home/kartik/.config/nvim/dein/')
-
-  " Let dein manage dein
-  " required:
-  call dein#add('/home/kartik/.config/nvim/dein//repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('w0ng/vim-hybrid')
-  call dein#add('tpope/vim-surround')
-  call dein#add('junegunn/goyo.vim')
-  call dein#add('Shougo/deoplete.nvim')
-" call dein#add('ervandew/supertab') " conflicts with deoplete
-  call dein#add('ternjs/tern_for_vim', { 'build' : 'npm install'})
-  call dein#add('SirVer/ultisnips')
-  call dein#add('honza/vim-snippets')
-  call dein#add('godlygeek/tabular')
-  call dein#add('shime/vim-livedown')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('reedes/vim-pencil')
-
-
-  " this one is a bad boy. please read instructions.
-  " to install, you need to increase dein timeout limit.
-  " cool, huh?
-  " actually fuck this shit lol
-  " call dein#add('Valloric/YouCompleteMe')
-
-  " You can specify revision/branch/tag.
-  " call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-  " required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
-
-"End dein Scripts-------------------------
-
+"=====================
+"  vim-plug
 "====================
-"  Colors
-"====================
-
-if (has("termguicolors"))
-    set termguicolors
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let g:hybrid_custom_term_colors = 1
-" reduced contrast palette for hybrid colorscheme
-" let g:hybrid_reduced_contrast = 1
-colorscheme hybrid
-" set background=dark
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+Plug 'morhetz/gruvbox'
+
+Plug 'justinmk/vim-sneak'
+
+Plug 'tpope/vim-surround'
+
+call plug#end()
 
 "=====================
 "  Vim UI
 "====================
 
+colorscheme gruvbox
 filetype plugin indent on  " filetype detection plugin and indent
 syntax enable              " syntax highlighting
 set nohlsearch             " no persistent higlighting of search
@@ -88,56 +43,6 @@ set splitbelow             " split window goes below
 set textwidth=80
 set colorcolumn=+1
 
-"========================
-"  Completetion (kill me)
-"========================
-
-let g:deoplete#enable_at_startup = 1
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-" let g:deoplete#disable_auto_complete = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" omnifuncs
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
-" tern
-let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_signature_in_pum = 1
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" tern
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
-
-" remap TAB
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" close the preview window when you're not using it
-let g:SuperTabClosePreviewOnPopupClose = 1
-
-"===================
-"  Prose
-"===================
-
-let g:goyo_width = 85
-let g:pencil#autoformat = 0      " 0=disable, 1=enable (def)
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
-
 "====================
 "  Fromatting
 "====================
@@ -149,3 +54,8 @@ set tabstop=2              " tab = 2 columns
 set softtabstop=2          " ---------------
 set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
+set formatoptions-=t       " stop the wrapping
+
+if has('gui_running')
+  colorscheme evening
+endif
