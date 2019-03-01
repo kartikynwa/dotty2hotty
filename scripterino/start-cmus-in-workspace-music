@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 CMUS_PID=$(pidof cmus)
-TERMINAL=st
+TERMINAL=urxvt
 
 startcmus() {
   i3-msg workspace music

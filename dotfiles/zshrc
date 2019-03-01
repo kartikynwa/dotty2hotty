@@ -63,6 +63,7 @@ alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
 alias v="nvim"
+alias vdiff="nvim -d"
 
 alias rebuild="make clean all && sudo make install"
 

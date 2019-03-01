@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+capacity=$(acpi -b | grep "Battery 0" | cut -d':' -f2 | cut -d',' -f2 | cut -c2-)
+status=$(acpi -b | grep "Battery 0" | cut -d':' -f2 | cut -d',' -f1)
+
+if [ "$status" = " Charging" ]; then
+  symbol="+"
+elif [ "$status" = " Discharging" ]; then
+  symbol="-"
+else
+  symbol="="
+fi
+
+echo "$capacity $symbol "

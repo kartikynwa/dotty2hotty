@@ -76,6 +76,7 @@
   :config
   (global-hl-line-mode 1))
 
+;; Gruvbox theme
 (use-package gruvbox-theme
   :ensure t
   :config
@@ -89,6 +90,33 @@
 ;;   :ensure t
 ;;   :config
 ;;   (spaceline-emacs-theme))
+
+;; breaking open parentheses
+(defun new-line-dwim ()
+  (interactive)
+  (let ((break-open-pair (or (and (looking-back "{") (looking-at "}"))
+                             (and (looking-back ">") (looking-at "<"))
+                             (and (looking-back "(") (looking-at ")"))
+                             (and (looking-back "\\[") (looking-at "\\]")))))
+    (newline)
+    (when break-open-pair
+      (save-excursion
+        (newline)
+        (indent-for-tab-command)))
+    (indent-for-tab-command)))
+
+;; smartparens mode
+(use-package smartparens
+    :ensure smartparens
+    :init
+    (add-hook 'prog-mode-hook #'turn-on-smartparens-mode)
+    :config
+    (setq sp-show-pair-from-inside nil)
+    (setq sp-highlight-pair-overlay nil)
+    (require 'smartparens-config)
+    :bind ("RET" . new-line-dwim))
+
+
 
 ;; show column number in mode line
 (setq column-number-mode t)
