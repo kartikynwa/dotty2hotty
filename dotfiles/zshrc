@@ -187,9 +187,9 @@ smloadr () {
 
 # twitch wrapper with streamlink, mpv function
 twitch () {
-  if [ -n $1 ]
+  if [ -n "$1" ]
   then
-    if [ -n $2 ]
+    if [ -n "$2" ]
     then
       streamlink -p mpv "https://twitch.tv/${1}" ${2}
     else

@@ -42,6 +42,8 @@
 
 Xcursor.theme: Paper
 
+xterm.font: xft:DejaVuSansMono:pixelsize=18
+
 URxvt.termName: rxvt-unicode-256color
 URxvt.font: xft:DejaVuSansMono:pixelsize=18
 URxvt.scrollBar: false

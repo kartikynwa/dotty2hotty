@@ -298,7 +298,7 @@
                   org-document-title))
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
-(add-hook 'text-mode-hook #'turn-on-olivetti-mode)
+;; (add-hook 'text-mode-hook #'turn-on-olivetti-mode)
 ;; (add-hook 'org-mode-hook 'my/org-mode-hook)
 ;; (add-hook 'text-mode-hook #'turn-on-auto-fill)
 ;; (add-hook 'org-mode-hook #'turn-on-olivetti-mode)
@@ -346,8 +346,7 @@
 ;; olivetti settings
 (use-package olivetti
   :ensure t
-  :config
-  (setq-default olivetti-body-width 80))
+  :init (setq-default olivetti-body-width 80))
 
 (use-package visual-fill-column :ensure t)
 ;; 
@@ -492,9 +491,10 @@
 ;; nlinum - show line numbers
 (use-package nlinum
   :ensure t
-  :init
-  (add-hook 'prog-mode-hook #'nlinum-mode)
-  (add-hook 'web-mode-hook #'nlinum-mode))
+  :config (global-nlinum-mode))
+;;  :init
+;;  (add-hook 'prog-mode-hook #'nlinum-mode)
+;;  (add-hook 'web-mode-hook #'nlinum-mode))
 ;; 
 ;; ;;persistent-scratch buffer
 ;; (use-package persistent-scratch
@@ -506,8 +506,7 @@
 ;; open todo file
 (defun todo-at-startup ()
   "Opens the todo file which has things that need to be done but probably won't be."
-  (find-file "~/orgy/todo.org")
-  (turn-on-olivetti-mode))
+  (find-file "~/orgy/todo.org"))
 ;; 
 ;; open todo file at startup
 (add-hook 'emacs-startup-hook #'todo-at-startup)
