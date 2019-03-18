@@ -5,6 +5,7 @@ set window-title-basename true
 
 set guioptions ""
 set zoom-step 5
+set scroll-step 20
 
 map <S-Up> zoom in
 map <S-Down> zoom out
