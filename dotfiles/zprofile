@@ -3,6 +3,8 @@
 
 export EDITOR=vi
 
+rm -f ~/.ACEStream/.acestream_cache/*
+
 if [ -z $TMUX ] && [ -z $SSH_CLIENT ] && [ -z $SSH2_CLIENT ]; then
   startx
 fi

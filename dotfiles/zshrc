@@ -157,6 +157,14 @@ else
   function zle-line-finish () { }
 fi
 
+cheat () {
+  if [ -n $1 ]; then
+    curl cheat.sh/$1
+  else
+    echo "USAGE: cheat <command>"
+  fi
+}
+
 # mkcd, mkdir and cd's illegitimate daughter
 mkcd () {
   if [ -n $1 ]; then
@@ -237,7 +245,7 @@ musicsync () {
 
   if [ -z ${PHONEIP} ]
   then
-    PHONEIP="192.168.100.127"
+    PHONEIP="192.168.0.127"
   fi
 
   rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'\
