@@ -33,7 +33,8 @@ do
 
   if [ -n "${line}" ];
   then
-    destination="${HOME}/${line##*DOT_DEST=}"
+    _destination=${line##*DOT_DEST=}
+    destination="${HOME}/${_destination%\ *}"
     if [ -e "${destination}" ]; then
       echo "${destination} already exists."
     else
