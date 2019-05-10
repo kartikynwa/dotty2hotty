@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+CMUS_PID=$(pidof transmission-daemon)
+
+if [ -z $CMUS_PID ]; then
+  transmission-daemon
+fi
+
+transmission-qt

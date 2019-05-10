@@ -12,5 +12,6 @@ if [ -z $CMUS_PID ]; then
   startcmus
 else
   notify-send "cmus is running"
+  i3-msg workspace music
 fi
 

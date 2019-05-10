@@ -179,7 +179,7 @@ mkcd () {
 acempv () {
   if [ -n $1 ]
   then
-    mpv --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
+    mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
   else
     echo "acempv: No argument given"
   fi
