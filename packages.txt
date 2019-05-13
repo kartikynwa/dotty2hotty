@@ -17,6 +17,7 @@ zsh
 
 cmus
 i3lock
+slock
 pcmanfm
 rofi
 rofi-pass
