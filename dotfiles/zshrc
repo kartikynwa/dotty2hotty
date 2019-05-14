@@ -222,6 +222,7 @@ musicsync () {
 
   local PHONEIP=""
   local DELETE=""
+  local REVERSE=""
   for arg in "$@"
   do
     case $arg in
@@ -231,6 +232,9 @@ musicsync () {
         ;;
       -d|--delete)
         local DELETE="--delete"
+        ;;
+      --reverse)
+        local REVERSE="--reverse"
         ;;
       *)
         if [ ! -z ${PHONEIP} ]
@@ -248,9 +252,24 @@ musicsync () {
     PHONEIP="192.168.0.127"
   fi
 
-  rsync -r --size-only --verbose --progress --ignore-existing -e 'ssh -p 8022'\
-    ${DELETE} ~/Music/synced_music/\
-    ${PHONEIP}:/sdcard/Music/synced_music
+  local HOSTMUSICDIR=~/Music/synced_music
+  local PHONEMUSICDIR=/sdcard/Music/synced_music
+  
+  if [ -z ${REVERSE} ]
+  then
+    local SRC=${HOSTMUSICDIR%/}/
+    local DEST=${PHONEIP}:${PHONEMUSICDIR%/}/
+  else
+    local SRC=${PHONEIP}:/sdcard/Music/synced_music/
+    local DEST=~/Music/synced_music/
+  fi
+
+  echo "Syncing files:"
+  echo "Source: ${SRC}"
+  echo "Dest: ${DEST}"
+  rsync --recursive --size-only --verbose --progress --ignore-existing\
+    -e 'ssh -p 8022' ${DELETE}\
+    ${SRC} ${DEST}
 }
 
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
