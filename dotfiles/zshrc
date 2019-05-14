@@ -217,7 +217,9 @@ twitch () {
 musicsync () {
 
   help () {
-    echo "USAGE: musicsync [-d] [<phone_ip>]"
+    echo "USAGE: musicsync [-d] [--reverse] [<phone_ip>]"
+    echo "  -d          delete files missing from host"
+    echo "  --reverse   sync from phone to host"
   }
 
   local PHONEIP=""
