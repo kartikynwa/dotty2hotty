@@ -268,7 +268,7 @@ musicsync () {
 
   echo "Syncing files:"
   echo "Source: ${SRC}"
-  echo "Dest: ${DEST}"
+  echo "Dest.:  ${DEST}"
   rsync --recursive --size-only --verbose --progress --ignore-existing\
     -e 'ssh -p 8022' ${DELETE}\
     ${SRC} ${DEST}
