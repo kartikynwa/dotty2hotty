@@ -6,7 +6,10 @@ then
   exit
 fi
 
-ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist " | cut -d " " -f 3- )
+ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag albumartist " | cut -d " " -f 3- )
+if [ -z "$ARTIST" ]; then
+  ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist " | cut -d " " -f 3- )
+fi
 TITLE=$( cmus-remote -Q 2>/dev/null | grep "tag title " | cut -d " " -f 3- )
 ALBUM=$( cmus-remote -Q 2>/dev/null | grep "tag album " | cut -d " " -f 3- )
 FILENAME=$( cmus-remote -Q 2>/dev/null | grep "file " | cut -d " " -f 2- )
