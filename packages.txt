@@ -4,6 +4,7 @@ i3-gaps
 arandr
 lxappearance
 unclutter-xfixes
+dejavu-fonts-ttf
 
 mpv
 redshift
