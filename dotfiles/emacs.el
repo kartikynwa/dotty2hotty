@@ -107,7 +107,7 @@
 
 ;; smartparens mode
 (use-package smartparens
-    :ensure smartparens
+    :ensure t
     :init
     (add-hook 'prog-mode-hook #'turn-on-smartparens-mode)
     :config
@@ -116,6 +116,14 @@
     (require 'smartparens-config)
     :bind ("RET" . new-line-dwim))
 
+
+;; indentation highlights
+;;(use-package highlight-indent-guides
+;;  :ensure t
+;;  :init
+;;  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+;;  :config
+;;  (setq highlight-indent-guides-method 'character))
 
 
 ;; show column number in mode line

@@ -1,6 +1,7 @@
 "
 " DOT_DEST=.config/nvim/init.vim
 "
+set nomodeline
 
 "=====================
 "  vim-plug

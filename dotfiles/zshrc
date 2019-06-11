@@ -68,7 +68,7 @@ alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
-alias v="nvim"
+alias v="vim"
 alias vdiff="nvim -d"
 
 alias rebuild="make clean all && sudo make install"
@@ -149,18 +149,6 @@ setprompt() {
 # }
 
 setprompt
-
-# Fixes for the suckless simple terminal
-if [[ $TERM = st-* ]]
-then
-  function zle-line-init () { echoti smkx }
-  function zle-line-finish () { echoti rmkx }
-  zle -N zle-line-init
-  zle -N zle-line-finish
-else
-  function zle-line-init () { }
-  function zle-line-finish () { }
-fi
 
 cheat () {
   if [ -n $1 ]; then
