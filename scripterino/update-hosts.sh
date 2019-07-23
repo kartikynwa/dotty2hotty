@@ -1,15 +1,16 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-HOSTFILEURL="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" 
+set -eou pipefail
 
-HOSTFILE=$(curl -f "$HOSTFILEURL" 2> /dev/null)
+TIMEFILE=/var/run/update-hosts.timefile
 
-while [ $? -ne 0 ]; do
-  sleep 1h
-  HOSTFILE=$(curl -f "$HOSTFILEURL" 2> /dev/null)
-done
+if [ "$#" -ge 1 ] && [ "$1" = "--timefile" ]; then
+	echo $TIMEFILE
+	exit
+fi
 
-DISTRACTIONS="
+hostsfile_url="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" 
+distractions="
 # [Distraction]
 0.0.0.0 reddit.com     
 0.0.0.0 i.reddit.com
@@ -17,8 +18,17 @@ DISTRACTIONS="
 0.0.0.0 www.reddit.com
 0.0.0.0 m.reddit.com
 0.0.0.0 api.reddit.com
+0.0.0.0 old.reddit.com
 # 0.0.0.0 imgur.com
 # 0.0.0.0 i.imgur.com
 "
 
-echo "${HOSTFILE}\n${DISTRACTIONS}" > /etc/hosts
+temp_hostsfile=$( mktemp )
+trap "rm -f \"$temp_hostsfile\"" ERR INT
+
+curl --retry 5 --retry-delay 1800 -sf "$hostsfile_url" | grep "^#\|^0.0.0.0 \|^$" > "$temp_hostsfile"
+echo "$distractions" >> "$temp_hostsfile"
+cat "$temp_hostsfile" > /etc/hosts
+
+logger "/etc/hosts updated sucessfully."
+touch $TIMEFILE

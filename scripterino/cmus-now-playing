@@ -8,7 +8,7 @@ then
   exit
 fi
 
-ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag albumartist " | cut -d " " -f 3- )
+# ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag albumartist " | cut -d " " -f 3- )
 if [ -z "$ARTIST" ]; then
   ARTIST=$( cmus-remote -Q 2>/dev/null | grep "tag artist " | cut -d " " -f 3- )
 fi

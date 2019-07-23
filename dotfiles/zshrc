@@ -26,7 +26,7 @@ export BROWSER="firefox"
 export EDITOR="vim"
 export SUDO_EDITOR="rvim"
 export PASSWORD_STORE_CLIP_TIME=5
-export WINEDEBUG=-all
+ export WINEDEBUG=-all
 # export GOROOT="/usr/lib/go"
 # export GOPATH="${HOME}/go"
 # export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
@@ -59,7 +59,7 @@ setopt autocd \
        hist_ignore_all_dups
 
 # Aliases (or Alii)
-alias n="nnn"
+alias n="NNN_USE_EDITOR=1 nnn"
 alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
 alias ll="ls --color -lh --group-directories-first"
@@ -69,7 +69,7 @@ alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
 alias v="vim"
-alias vdiff="nvim -d"
+alias bulkrename="qmv -f do"
 
 alias rebuild="make clean all && sudo make install"
 
@@ -81,7 +81,10 @@ alias 'gcm '="git commit -m "
 alias gp="git push"
 
 alias cdf="ssh singhk39@teach.cs.utoronto.ca"
+
+alias getsubtitle="subliminal download -l en"
 alias porn="mpv 'https://www.pornhub.com/random'"
+alias vod="mpv \"$(xsel)\""
 
 # Modules
 autoload -Uz compinit
@@ -150,6 +153,13 @@ setprompt() {
 
 setprompt
 
+checksha256 () {
+  FILE=$(mktemp)
+  curl "$1" > "$FILE"
+  sha256sum "$FILE"
+  rm "$FILE"
+}
+
 cheat () {
   if [ -n $1 ]; then
     curl cheat.sh/$1
@@ -179,12 +189,25 @@ mkcd () {
 
 # acempv function
 acempv () {
-  if [ -n $1 ]
+  if [ -z $1 ]
   then
-    mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
-  else
     echo "acempv: No argument given"
+  else
+    mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
   fi
+}
+
+iwantopus () {
+
+  if [ -z "$1" ]
+  then
+    input_format="flac"
+  else
+    input_format=$1
+  fi
+
+  fd -e "${input_format}" -x ffmpeg -i "{}" -b:a 320k "{.}.opus"
+
 }
 
 # smloadr function
