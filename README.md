@@ -33,7 +33,7 @@ $ ./install.sh
 
 ### Add power commands to NOPASSWD
 
-Edit `\etc\sudoers` using the `visudo` command. Add the following line:
+Edit `/etc/sudoers` using the `visudo` command. Add the following line:
 
 ```
 %wheel ALL=(ALL) NOPASSWD: /usr/bin/halt, /usr/bin/poweroff, /usr/bin/reboot, \
