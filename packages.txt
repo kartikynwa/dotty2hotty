@@ -21,6 +21,7 @@ rofi
 rofi-pass
 transmission-daemon
 transmission-qt
+fd
 
 # multimedia
 mpv
