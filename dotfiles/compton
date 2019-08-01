@@ -6,9 +6,9 @@ glx-no-stencil = true;
 glx-no-rebind-pixmap = true;
 vsync = "opengl-swc";
 
-use-ewmh-active-win = false;
-mark-ovredir-focused = true;
-inactive-dim = 0.1;
+# use-ewmh-active-win = false;
+# mark-ovredir-focused = true;
+# inactive-dim = 0.1;
 # blur-background = true;
 # blur-background-fixed = true;
 # blur-kern = "5x5box";

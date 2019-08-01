@@ -1,8 +1,13 @@
 # Salve, straggler.
 
+## Screenshots
+
+![screenshot_1](screenshots/screenshot_1.png "Naked")
+![screenshot_2](screenshots/screenshot_2.png "Solid")
+
 ## Instructions
 
-Initiatie your Void Linux installation using these awesome AI MACHINE LEARNING
+Initiate your Void Linux installation using these awesome AI MACHINE LEARNING
 BLOCKCHAIN powered AGILE scripts which allow quick deployment of amazing
 FEATURES.
 
