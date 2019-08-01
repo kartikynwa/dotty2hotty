@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 echo "This script places the config files in their designated folders"
 echo "regardless of whether the program is installed or not."
@@ -36,7 +36,7 @@ do
     _destination=${line##*DOT_DEST=}
     destination="${HOME}/${_destination%\ *}"
     if [ -e "${destination}" ]; then
-      echo "${destination} already exists."
+      echo "${destination}: Already exists. No changes made."
     else
       mkdir -pv "$(dirname "${destination}")"
       ln -vs "${PWD}/${filename}" "${destination}"

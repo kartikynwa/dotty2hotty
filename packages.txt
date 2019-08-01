@@ -1,33 +1,34 @@
+# X and related
 xorg
-xterm
-i3-gaps
+rxvt-unicode
+i3
+i3lock
+i3blocks
 arandr
 lxappearance
 unclutter-xfixes
 dejavu-fonts-ttf
-
-mpv
 redshift
-st
-rxvt-unicode
+
+# utilities
 vim
 emacs-gtk2
+zsh
+pcmanfm
+engrampa
+rofi
+rofi-pass
+
+# multimedia
+mpv
+cmus
 zathura
 zathura-cb
 zathura-pdf-mupdf
-zsh
-
-cmus
-i3lock
-pcmanfm
-rofi
-rofi-pass
-engrampa
-
 alsa-utils
-# pulseaudio
-# ConsoleKit2
-# pavucontrol
+pulseaudio
+ConsoleKit2
+pavucontrol
 cmus
 cmus-ffmpeg
 cmus-flac

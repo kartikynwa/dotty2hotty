@@ -84,7 +84,6 @@ alias cdf="ssh singhk39@teach.cs.utoronto.ca"
 
 alias getsubtitle="subliminal download -l en"
 alias porn="mpv 'https://www.pornhub.com/random'"
-alias vod="mpv \"$(xsel)\""
 
 # Modules
 autoload -Uz compinit
@@ -129,7 +128,7 @@ setprompt() {
     %F{cyan}]%f
   '}}
 }
-# setprompt
+setprompt
 
 # setprompt() {
 #   setopt prompt_subst
@@ -151,7 +150,9 @@ setprompt() {
 #   RPROMPT=$'${vcs_info_msg_0_}'
 # }
 
-setprompt
+# setprompt
+
+# PS1=$'%{\e[0;31m♥%} %{\e[0;91m%}%c %{\e[0;35m%}❯%{\e[0m%} '
 
 checksha256 () {
   FILE=$(mktemp)
@@ -185,6 +186,11 @@ mkcd () {
   else 
     echo "mkcd: missing operand"
   fi
+}
+
+# alias vod="mpv \"$(xsel -b)\""
+vod () {
+  mpv "$(xsel)"
 }
 
 # acempv function
