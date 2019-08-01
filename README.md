@@ -2,8 +2,7 @@
 
 ## Screenshots
 
-![screenshot_1](screenshots/screenshot_1.png "Naked")
-![screenshot_2](screenshots/screenshot_2.png "Solid")
+![screenshot_1](screenshots/screenshot_1.png "Naked") ![screenshot_2](screenshots/screenshot_2.png "Solid")
 
 ## Instructions
 
