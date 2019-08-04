@@ -56,4 +56,5 @@ set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
 set formatoptions-=t       " stop the wrapping
 
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox

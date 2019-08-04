@@ -18,6 +18,9 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
+;; display line numbers by default
+(global-display-line-numbers-mode)
+
 ;; font:default
 (set-face-attribute 'default nil
                     :font "DejaVu Sans Mono"
@@ -80,8 +83,8 @@
 (use-package gruvbox-theme
   :ensure t
   :config
-  (load-theme 'gruvbox-dark-medium)
-  (set-face-background hl-line-face "#32302f"))
+  (load-theme 'gruvbox-dark-hard)
+  (set-face-background hl-line-face "#282828"))
 
 ;; (use-package powerline :ensure t)
 
@@ -496,14 +499,6 @@
 ;;   (setq-default web-mode-block-padding 2))       ; 
 ;;(add-hook 'web-mode-hook 'web-indent))
 
-;; nlinum - show line numbers
-(use-package nlinum
-  :ensure t
-  :config (global-nlinum-mode))
-;;  :init
-;;  (add-hook 'prog-mode-hook #'nlinum-mode)
-;;  (add-hook 'web-mode-hook #'nlinum-mode))
-;; 
 ;; ;;persistent-scratch buffer
 ;; (use-package persistent-scratch
 ;;   :disabled t
