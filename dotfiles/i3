@@ -92,11 +92,11 @@ set $sysmenu " [h]ibernate [l]ock [p]oweroff [r]eboot [s]uspend "
 bindsym $mod+Escape      mode $sysmenu
 
 mode $sysmenu {
-    bindsym h         exec --no-startup-id i3lock -c 282828 && sudo ZZZ, mode "default" 
-    bindsym l         exec i3lock -c 282828, mode "default" 
+    bindsym h         exec --no-startup-id i3lock -c 1c1c1c && sudo ZZZ, mode "default" 
+    bindsym l         exec i3lock -c 1c1c1c, mode "default" 
     bindsym p         exec --no-startup-id sudo poweroff now
     bindsym r         exec --no-startup-id sudo reboot
-    bindsym s         exec --no-startup-id i3lock -c 282828 && sudo zzz, mode "default" 
+    bindsym s         exec --no-startup-id i3lock -c 1c1c1c && sudo zzz, mode "default" 
     bindsym Return    mode "default"
     bindsym Escape    mode "default"
 }
@@ -259,7 +259,7 @@ mode "resize" {
 # set $custom           #1c5766
 
 # Gruvbox colors
-set $bg #282828
+set $bg #1c1c1c
 set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
