@@ -22,6 +22,8 @@ Plug 'justinmk/vim-sneak'
 
 Plug 'tpope/vim-surround'
 
+Plug 'junegunn/goyo.vim'
+
 call plug#end()
 
 "=====================
