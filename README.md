@@ -59,7 +59,9 @@ In `/etc/acpi/handler.sh`. You know the rest (I hope haha).
 ### Font Rendering (?)
 
 I am unsure whether this step is required but disabling bitmap fonts helps
-prevent some problems (eg. with Firefox).
+prevent some problems (eg. with Firefox). I don't know if this works because my
+laptop has a slick 720p screen which is only marginally better than literally
+using a teletype.
 
 [Blog link.](http://blog.brunomiguel.net/geekices/how-to-get-good-font-rendering-in-void-linux/)
 [Archived link.](https://web.archive.org/web/20190801090733/http://blog.brunomiguel.net/geekices/how-to-get-good-font-rendering-in-void-linux/)
