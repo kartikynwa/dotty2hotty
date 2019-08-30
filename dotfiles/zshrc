@@ -195,12 +195,14 @@ vod () {
 
 # acempv function
 acempv () {
+  link=""
   if [ -z $1 ]
   then
-    echo "acempv: No argument given"
+    link="$(xsel)"
   else
-    mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/$1/stream.mp4"
+    link="$1"
   fi
+  mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/${link}/stream.mp4"
 }
 
 iwantopus () {
@@ -212,7 +214,8 @@ iwantopus () {
     input_format=$1
   fi
 
-  fd -e "${input_format}" -x ffmpeg -i "{}" -b:a 320k "{.}.opus"
+  mkdir -p "./opus"
+  fd -e "${input_format}" -x ffmpeg -i "{}" -b:a 320k "./opus/{.}.opus"
 
 }
 

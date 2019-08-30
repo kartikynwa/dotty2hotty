@@ -1,10 +1,7 @@
 #!/usr/bin/env sh
 
-echo "This script places the config files in their designated folders"
-echo "regardless of whether the program is installed or not."
-echo ""
-echo "This process is destructive in nature. Please consider the possibilities"
-echo "before answering the following question."
+echo "This script symlinks the dotfiles to their respective paths."
+echo "Please verify the scripe before running it."
 echo ""
 while true; do
   read -rp "Do you wish to proceed? " yn
