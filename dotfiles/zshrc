@@ -168,6 +168,7 @@ cheat () {
     echo "USAGE: cheat <command>"
   fi
 }
+compdef cheat=whereis
 
 # shuffle music/media
 shuffle () {
@@ -215,7 +216,7 @@ iwantopus () {
   fi
 
   mkdir -p "./opus"
-  fd -e "${input_format}" -x ffmpeg -i "{}" -b:a 320k "./opus/{.}.opus"
+  fd -e "${input_format}" -d 1 -x ffmpeg -i "{}" -b:a 320k "./opus/{.}.opus"
 
 }
 

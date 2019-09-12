@@ -156,6 +156,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# battery notification
+bindsym $mod+b exec --no-startup-id notify-send "Battery: $( ~/dotty2hotty/scripterino/battery_2 )"
+
 # mpd player controls
 bindsym $mod+slash exec --no-startup-id cmus-remote --pause
 bindsym $mod+comma exec --no-startup-id cmus-remote --prev
