@@ -70,6 +70,8 @@ alias mkdir="mkdir -pv"
 alias syslog="socklog"
 alias v="vim"
 alias bulkrename="qmv -f do"
+alias td="transmission-daemon"
+alias tr="transmission-remote"
 
 alias rebuild="make clean all && sudo make install"
 

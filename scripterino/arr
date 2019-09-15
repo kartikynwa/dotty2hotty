@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-if pgrep -x "transmission-da" > /dev/null
+# export torrent_client="transmission-da"
+export torrent_client="qbittorrent-nox"
+
+if pgrep -x "${torrent_client}" > /dev/null
 then
 	echo "arr"
 fi
