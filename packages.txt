@@ -9,6 +9,7 @@ lxappearance
 unclutter-xfixes
 dejavu-fonts-ttf
 redshift
+util-linux
 
 # utilities
 firefox

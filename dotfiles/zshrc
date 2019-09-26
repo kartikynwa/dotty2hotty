@@ -59,7 +59,7 @@ setopt autocd \
        hist_ignore_all_dups
 
 # Aliases (or Alii)
-alias n="NNN_USE_EDITOR=1 nnn"
+alias n="NNN_USE_EDITOR=1 NNN_OPENER=rifle nnn"
 alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
 alias ll="ls --color -lh --group-directories-first"
@@ -72,6 +72,7 @@ alias v="vim"
 alias bulkrename="qmv -f do"
 alias td="transmission-daemon"
 alias tr="transmission-remote"
+alias za="zathura"
 
 alias rebuild="make clean all && sudo make install"
 
