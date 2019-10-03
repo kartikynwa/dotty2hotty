@@ -134,7 +134,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+g split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -167,6 +167,9 @@ bindsym $mod+equal exec --no-startup-id cmus-remote --volume +5%
 bindsym $mod+minus exec --no-startup-id cmus-remote --volume -5%
 bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/cmus-notify
 bindsym $mod+c exec --no-startup-id ~/dotty2hotty/scripterino/start-cmus-in-workspace-music
+
+# vod
+bindsym $mod+v exec --no-startup-id $TERMINAL -e sh -c 'mpv $(xsel)'
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness

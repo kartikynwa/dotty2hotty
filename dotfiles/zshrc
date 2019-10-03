@@ -73,6 +73,7 @@ alias bulkrename="qmv -f do"
 alias td="transmission-daemon"
 alias tr="transmission-remote"
 alias za="zathura"
+alias rw="sudo sv restart wpa_supplicant" # my wifi chip is trash
 
 alias rebuild="make clean all && sudo make install"
 
