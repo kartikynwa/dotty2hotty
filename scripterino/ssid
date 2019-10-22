@@ -31,8 +31,8 @@ INTERFACE="wlp5s0"
 # Doesn't work with wifi firmware downgrade
 # SSID=`iw ${INTERFACE} info | grep ssid | cut -d " " -f2-`
 
-SSID=`iw ${INTERFACE} link | grep SSID: | cut -c7-`
+SSID=$(iw ${INTERFACE} link | grep SSID: | cut -c7-)
 
-echo $SSID # full text
+echo "$SSID" # full text
 # echo $SSID # short text
 

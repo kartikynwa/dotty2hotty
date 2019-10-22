@@ -8,7 +8,7 @@ startcmus() {
   $TERMINAL -e cmus
 }
 
-if [ -z $CMUS_PID ]; then
+if [ -z "$CMUS_PID" ]; then
   startcmus
 else
   notify-send "cmus is running"

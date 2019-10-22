@@ -14,6 +14,7 @@ if [ -z "$ARTIST" ]; then
 fi
 TITLE=$( cmus-remote -Q 2>/dev/null | grep "tag title " | cut -d " " -f 3- )
 FILENAME=$( cmus-remote -Q 2>/dev/null | grep "file " | cut -d " " -f 2- )
+VOL=$( cmus-remote -Q 2>/dev/null | grep "set vol_left " | cut -d " " -f 3- )
 
 # Generate output string
 if [ -n "$TITLE" ];
@@ -33,4 +34,6 @@ then
 fi
 
 # Echo the crap of out it
-echo $OUTPUT
+if [ -n "$OUTPUT" ]; then
+  echo "${OUTPUT} [${VOL}%]"
+fi

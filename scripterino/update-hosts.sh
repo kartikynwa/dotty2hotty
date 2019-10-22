@@ -24,11 +24,12 @@ distractions="
 "
 
 temp_hostsfile=$( mktemp )
-trap "rm -f \"$temp_hostsfile\"" ERR INT
+trap 'rm -f \"$temp_hostsfile\"' ERR INT
 
 curl --retry 5 --retry-delay 1800 -sf "$hostsfile_url" | grep "^#\|^0.0.0.0 \|^$" > "$temp_hostsfile"
 echo "$distractions" >> "$temp_hostsfile"
 cat "$temp_hostsfile" > /etc/hosts
 
 logger "/etc/hosts updated sucessfully."
+echo "hosts file updated at: $(date)" >> /root/update-hosts.log
 touch $TIMEFILE

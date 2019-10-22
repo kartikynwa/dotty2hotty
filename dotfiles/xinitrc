@@ -3,7 +3,7 @@
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/wall.sh
 unclutter &
-compton &
+# compton &
 # slstatus &
 # start-pulseaudio-x11 &
 redshift &
