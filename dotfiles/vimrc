@@ -24,6 +24,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'junegunn/goyo.vim'
 
+Plug 'junegunn/Limelight.vim'
+
 call plug#end()
 
 "=====================
@@ -34,7 +36,7 @@ filetype plugin indent on  " filetype detection plugin and indent
 syntax on                  " syntax highlighting
 set nohlsearch             " no persistent higlighting of search
 set incsearch              " highlight while searching tho
-set nowrap                 " don't wrap lines please - actually do it lol
+set nowrap                 " don't wrap lines please
 set number                 " show line numbers
 set laststatus=2           " last window always has a status line
 set backspace=2            " don't know what this does sorry
@@ -60,3 +62,40 @@ set formatoptions-=t       " stop the wrapping
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
+
+
+"====================
+"  Goyo settings
+"====================
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set wrap
+  set linebreak
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"====================
+"  gVim
+"====================
+
+if has("gui_running")
+  set bg=light
+  set guifont=DejaVu\ Sans\ Mono\ 16
+  set guioptions-=m  "menu bar
+  set guioptions-=T  "toolbar
+  set guioptions-=r  "scrollbar
+endif

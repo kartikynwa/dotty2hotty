@@ -19,7 +19,7 @@
 (menu-bar-mode -1)
 
 ;; display line numbers by default
-(global-display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; font:default
 (set-face-attribute 'default nil
@@ -73,11 +73,11 @@
 ;;  (setq x-underline-at-descent-line t)
 ;;  (load-theme 'solarized-light)
 ;;  (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
- 
+
 ;; current line highlight
 (use-package hl-line
   :config
-  (global-hl-line-mode 1))
+  (add-hook 'prog-mode-hook #'hl-line-mode))
 
 ;; Gruvbox theme
 (use-package gruvbox-theme
@@ -110,15 +110,14 @@
 
 ;; smartparens mode
 (use-package smartparens
-    :ensure t
-    :init
-    (add-hook 'prog-mode-hook #'turn-on-smartparens-mode)
-    :config
-    (setq sp-show-pair-from-inside nil)
-    (setq sp-highlight-pair-overlay nil)
-    (require 'smartparens-config)
-    :bind ("RET" . new-line-dwim))
-
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'turn-on-smartparens-mode)
+  :config
+  (setq sp-show-pair-from-inside nil)
+  (setq sp-highlight-pair-overlay nil)
+  (require 'smartparens-config)
+  :bind ("RET" . new-line-dwim))
 
 ;; indentation highlights
 ;;(use-package highlight-indent-guides
@@ -143,26 +142,21 @@
   :config
   (use-package undo-tree :ensure t :diminish undo-tree-mode)
   (setq evil-want-C-u-scroll t
-;;      evil-want-visual-char-semi-exclusive t
-;;      evil-magic t
-;;      evil-echo-state t
-;;      evil-indent-convert-tabs t
-;;      evil-ex-search-vim-style-regexp t
-;;      evil-ex-substitute-global t
-;;      evil-ex-visual-char-range t  ; column range for ex commands
-;;      evil-insert-skip-empty-lines t
-;;      evil-mode-line-format 'nil
+        ;;      evil-want-visual-char-semi-exclusive t
+        ;;      evil-magic t
+        ;;      evil-echo-state t
+        ;;      evil-indent-convert-tabs t
+        ;;      evil-ex-search-vim-style-regexp t
+        ;;      evil-ex-substitute-global t
+        ;;      evil-ex-visual-char-range t  ; column range for ex commands
+        ;;      evil-insert-skip-empty-lines t
+        ;;      evil-mode-line-format 'nil
         ;; more vim-like behavior
         evil-symbol-word-search t
         ;; don't activate mark on shift-click
         shift-select-mode nil)
   (evil-mode 1))
-;;(use-package evil-tabs
-;;  :ensure t
-;;  :diminish evil-tabs-mode
-;;  :config
-;;  (global-evil-tabs-mode t))
-;; 
+
 (use-package evil-surround
   :ensure t
   :after evil
@@ -208,7 +202,7 @@
     (interactive)
     (flyspell-goto-next-error)
     (hydra-spell/body)))
-;; 
+ 
 (use-package general
   :ensure t
   :config
@@ -223,9 +217,11 @@
                       "p" 'projectile-command-map
                       "." 'projectile-find-file
                       "x" 'kill-current-buffer
-;;                    "g" 'magit-status
+                      ;;                    "g" 'magit-status
                       "c" 'spell-check-hydra
                       "z" 'text-scale-hydra
+                      "d" 'define-word-at-point
+                      "D" 'define-word
                       "s" 'swiper
                       "r" 'evil-window-resize-hydra
                       "h" 'evil-window-left
@@ -309,13 +305,6 @@
                   org-document-title))
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
-;; (add-hook 'text-mode-hook #'turn-on-olivetti-mode)
-;; (add-hook 'org-mode-hook 'my/org-mode-hook)
-;; (add-hook 'text-mode-hook #'turn-on-auto-fill)
-;; (add-hook 'org-mode-hook #'turn-on-olivetti-mode)
-;; (add-hook 'markdown-mode-hook #'turn-on-olivetti-mode)
-
-
 ;; ivy-mode
 (use-package ivy
   :ensure t
@@ -348,34 +337,31 @@
 
 ;; rust mode
 (use-package rust-mode :ensure t)
-;;(use-package racer
-;;  :ensure t
-;;  :config
-;;  (setq racer-rust-src-path "/home/kartik/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-;;  (add-hook 'rust-mode-hook #'racer-mode))
 
-;; olivetti settings
-(use-package olivetti
+;; writeroom settings
+(use-package writeroom-mode
   :ensure t
-  :init (setq-default olivetti-body-width 80))
+  :config
+  (setq-default writeroom-fullscreen-effect "maximized"))
+
+;; nov.el mode
+(use-package nov
+  ;; :ensure t
+  :config
+  ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+  (setq nov-variable-pitch nil)
+  (setq nov-text-width 80))
+
+;; define-word
+(use-package define-word
+  :ensure t)
+
+;; focus-mode
+(use-package focus
+  :ensure t)
 
 (use-package visual-fill-column :ensure t)
-;; 
-;; ;; prose mode for prose
-;; (defun prose! ()
-;;   "I don't want no distraction, m8."
-;;   (interactive)
-;;   (olivetti-mode 1)
-;;   (turn-on-auto-fill))
-;; 
-;; (add-hook 'text-mode-hook 'prose!)
-;; 
-;; ;; scrolling hax
-;; (use-package smooth-scrolling
-;;   :disabled t
-;;   :config
-;;   (smooth-scrolling-mode t))
-;; 
+
 ;; parentheses highlighting
 (use-package paren
   :init
@@ -387,7 +373,7 @@
   (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
   :config
   (set-face-attribute 'hl-paren-face nil :underline t))
-;; 
+ 
 ;; company mode code completion
 (use-package company
   :ensure t
@@ -405,14 +391,14 @@
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/yasnippet-snippets/snippets"))
   (yas-global-mode 1))
-;; 
+ 
 ;; projectile
 (use-package projectile
   :ensure t
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode))
-;; 
+ 
 ;; ;; == magit ==
 ;; (use-package magit
 ;;   :ensure t
@@ -477,42 +463,35 @@
 ;;  (setq-local web-mode-style-padding n)        ; some kinda paddings haha
 ;;  (setq-local web-mode-block-padding n))       ; 
 
-;; (defun web-indent ()
-;;   (setup-web-indent 2))
-  
+(defun web-indent ()
+  (setup-web-indent 2))
+
 
 ;; web-mode (wth lol)
-;; (use-package web-mode
-;;   :ensure t
-;;   :config
-;;   (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-;;   (setq-default coffee-tab-width 2)              ; coffeescript
-;;   (setq-default javascript-indent-level 2)       ; javascript-mode
-;;   (setq-default js-indent-level 2)               ; js-mode
-;;   (setq-default js2-basic-offset 2)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-;;   (setq-default web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-;;   (setq-default web-mode-css-indent-offset 2)    ; web-mode, css in html file
-;;   (setq-default web-mode-code-indent-offset 2)   ; web-mode, js code in html file
-;;   (setq-default css-indent-offset 2)             ; css-mode
-;;   (setq-default web-mode-script-padding 2)       ;
-;;   (setq-default web-mode-style-padding 2)        ; some kinda paddings haha
-;;   (setq-default web-mode-block-padding 2))       ; 
-;;(add-hook 'web-mode-hook 'web-indent))
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+  (setq-default coffee-tab-width 2)              ; coffeescript
+  (setq-default javascript-indent-level 2)       ; javascript-mode
+  (setq-default js-indent-level 2)               ; js-mode
+  (setq-default js2-basic-offset 2)              ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-default web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq-default web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq-default web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  (setq-default css-indent-offset 2)             ; css-mode
+  (setq-default web-mode-script-padding 2)       ;
+  (setq-default web-mode-style-padding 2)        ; some kinda paddings haha
+  (setq-default web-mode-block-padding 2))       ; 
+(add-hook 'web-mode-hook 'web-indent)
 
-;; ;;persistent-scratch buffer
-;; (use-package persistent-scratch
-;;   :disabled t
-;;   :ensure t
-;;   :config
-;;   (persistent-scratch-setup-default))
-;; 
 ;; open todo file
 (defun todo-at-startup ()
   "Opens the todo file which has things that need to be done but probably won't be."
   (find-file "~/orgy/todo.org"))
-;; 
+ 
 ;; open todo file at startup
 (add-hook 'emacs-startup-hook #'todo-at-startup)
-;; 
+ 
 (provide 'init)
 ;;; init.el ends here

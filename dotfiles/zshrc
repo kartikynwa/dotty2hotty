@@ -15,12 +15,13 @@ fpath=(~/.config/zsh.d $fpath)
 # bindkey -v
 
 # Variables
-export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
+PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kartik/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/kartik/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/kartik/perl5"; export PERL_MM_OPT;
+SCRCPY_SERVER_PATH=/usr/share/scrcpy/scrcpy-server-v1.9.jar
 
 export BROWSER="firefox"
 export EDITOR="vim"
@@ -196,6 +197,11 @@ mkcd () {
 # alias vod="mpv \"$(xsel -b)\""
 vod () {
   mpv "$(xsel)"
+}
+
+# countdown
+countdown () {
+  sleep "$@" && cmus-remote -u
 }
 
 # acempv function
