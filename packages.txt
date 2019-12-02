@@ -4,6 +4,7 @@ rxvt-unicode
 i3
 i3lock
 i3blocks
+light
 arandr
 lxappearance
 unclutter-xfixes

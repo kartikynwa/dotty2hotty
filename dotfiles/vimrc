@@ -15,16 +15,16 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
 Plug 'morhetz/gruvbox'
-
 Plug 'justinmk/vim-sneak'
-
 Plug 'tpope/vim-surround'
-
 Plug 'junegunn/goyo.vim'
-
 Plug 'junegunn/Limelight.vim'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+endif
 
 call plug#end()
 

@@ -17,7 +17,7 @@ VOL=$( cmus-remote -Q 2>/dev/null | grep "set vol_left " | cut -d " " -f 3- )
 
 if [ -n "$TITLE" ];
 then
-   notify-send "\"${TITLE}\"" "by <b>${ARTIST}</b>\nfrom <b>${ALBUM}</b>\nat a volume of <b>${VOL}%</b>"
+   notify-send "${TITLE}" "by <b>${ARTIST}</b>\nfrom <b>${ALBUM}</b>\nat a volume of <b>${VOL}%</b>"
 elif [ -n "$FILENAME" ];
 then
    notify-send "${FILENAME##*/}"

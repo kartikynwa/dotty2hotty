@@ -69,7 +69,7 @@ alias cp="cp -vi"
 alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
-alias v="vim"
+alias v="nvim"
 alias bulkrename="qmv -f do"
 alias td="transmission-daemon"
 alias tr="transmission-remote"
@@ -89,6 +89,7 @@ alias cdf="ssh singhk39@teach.cs.utoronto.ca"
 
 alias getsubtitle="subliminal download -l en"
 alias porn="mpv 'https://www.pornhub.com/random'"
+alias lofiradio="streamlink 'https://www.youtube.com/watch?v=hHW1oY26kxQ' 720p"
 
 # Modules
 autoload -Uz compinit
@@ -210,10 +211,11 @@ acempv () {
   if [ -z $1 ]
   then
     link="$(xsel)"
+    echo "link=${link}"
   else
     link="$1"
   fi
-  mpv --quiet --cache-secs=60 "http://127.0.0.1:8000/pid/${link}/stream.mp4"
+  mpv --profile=acestream "acestream://${link}"
 }
 
 iwantopus () {
@@ -320,7 +322,7 @@ musicsync () {
   echo "Source: ${SRC}"
   echo "Dest.:  ${DEST}"
   rsync --recursive --size-only --verbose --progress --ignore-existing\
-    -e 'ssh -p 8022' ${DELETE}\
+    -e 'ssh -p 2222' ${DELETE}\
     ${SRC} ${DEST}
 }
 
