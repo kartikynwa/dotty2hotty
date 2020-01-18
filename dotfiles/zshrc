@@ -60,6 +60,7 @@ setopt autocd \
        hist_ignore_all_dups
 
 # Aliases (or Alii)
+alias :q="exit"
 alias n="NNN_USE_EDITOR=1 NNN_OPENER=rifle nnn"
 alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
@@ -74,7 +75,7 @@ alias bulkrename="qmv -f do"
 alias td="transmission-daemon"
 alias tr="transmission-remote"
 alias za="zathura"
-alias rw="sudo sv restart wpa_supplicant" # my wifi chip is trash
+alias rw="wpa_cli -i wlp5s0 disconnect && wpa_cli -i wlp5s0 reconnect" # my wifi chip is trash
 
 alias rebuild="make clean all && sudo make install"
 
@@ -179,9 +180,9 @@ compdef cheat=whereis
 # shuffle music/media
 shuffle () {
   if [ -z $1 ]; then
-    mpv --shuffle --no-audio-display .
+    mpv --shuffle --no-audio-display --no-resume-playback .
   else
-    mpv --shuffle --no-audio-display "$@"
+    mpv --shuffle --no-audio-display --no-resume-playback "$@"
   fi
 }
 
@@ -322,7 +323,7 @@ musicsync () {
   echo "Source: ${SRC}"
   echo "Dest.:  ${DEST}"
   rsync --recursive --size-only --verbose --progress --ignore-existing\
-    -e 'ssh -p 2222' ${DELETE}\
+    -e 'ssh -p 8022' ${DELETE}\
     ${SRC} ${DEST}
 }
 

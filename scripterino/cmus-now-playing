@@ -30,7 +30,7 @@ fi
 # Splice output if it is too long
 if [ ${#OUTPUT} -ge ${MAXLEN} ]
 then
-  OUTPUT="$( echo $OUTPUT | colrm ${MAXLEN} )..."
+  OUTPUT="$( echo $OUTPUT | colrm ${MAXLEN} )…"
 fi
 
 # Echo the crap of out it
