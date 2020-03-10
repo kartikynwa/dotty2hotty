@@ -76,10 +76,12 @@ alias td="transmission-daemon"
 alias tr="transmission-remote"
 alias za="zathura"
 alias rw="wpa_cli -i wlp5s0 disconnect && wpa_cli -i wlp5s0 reconnect" # my wifi chip is trash
+alias wlp5s0="wpa_cli -i wlp5s0"
+alias open="xdg-open"
 
 alias rebuild="make clean all && sudo make install"
 
-alias xq="xbps-query -Rs"
+alias xs="xbps-query -Rs"
 alias xu="sudo xbps-install -Su"
 alias mkdoc="sudo makewhatis /usr/share/man"
 
@@ -275,7 +277,7 @@ musicsync () {
     echo "  --reverse   sync from phone to host"
   }
 
-  local PHONEIP=""
+  local PHONEIP="192.168.0.179"
   local DELETE=""
   local REVERSE=""
   for arg in "$@"
@@ -286,26 +288,16 @@ musicsync () {
         return 1
         ;;
       -d|--delete)
-        local DELETE="--delete"
+        DELETE="--delete"
         ;;
       --reverse)
-        local REVERSE="--reverse"
+        REVERSE="--reverse"
         ;;
       *)
-        if [ ! -z ${PHONEIP} ]
-        then
-          help
-          return 0
-        fi
         PHONEIP="${arg}"
         ;;
     esac
   done
-
-  if [ -z ${PHONEIP} ]
-  then
-    PHONEIP="192.168.0.127"
-  fi
 
   local HOSTMUSICDIR=~/Music/synced_music
   local PHONEMUSICDIR=/sdcard/Music/synced_music

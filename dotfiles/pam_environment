@@ -1,0 +1,4 @@
+# DOT_DEST=.pam_environment
+EDITOR DEFAULT=vi
+GPODDER_HOME DEFAULT=@{HOME}/.config/gPodder
+GPODDER_DOWNLOAD_DIR DEFAULT=@{HOME}/dumbshit/podcasts
