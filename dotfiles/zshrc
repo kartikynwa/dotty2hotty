@@ -268,14 +268,22 @@ twitch () {
 musicsync () {
 
   help () {
-    echo "USAGE: musicsync [-d] [--reverse] [<phone_ip>]"
+    echo "USAGE: musicsync [-d] [--reverse] [<target_ip>]"
     echo "  -d          delete files missing from host"
     echo "  --reverse   sync from phone to host"
   }
 
-  local PHONEIP="192.168.0.179"
-  local DELETE=""
-  local REVERSE=""
+  local delete=""
+  local reverse=""
+
+  local target_ip=192.168.0.179
+  local target_port=22
+
+  local target_hostname="ph1"
+  local ssh_G_output=$( ssh -G ${target_hostname} 2> /dev/null )
+  target_ip=$( echo "$ssh_G_output" | grep "^hostname " | awk '{ print $2 }' )
+  target_port=$( echo "$ssh_G_output" | grep "^port " | awk '{ print $2 }' )
+  
   for arg in "$@"
   do
     case $arg in
@@ -284,34 +292,40 @@ musicsync () {
         return 1
         ;;
       -d|--delete)
-        DELETE="--delete"
+        delete="--delete"
         ;;
       --reverse)
-        REVERSE="--reverse"
+        reverse="--reverse"
         ;;
       *)
-        PHONEIP="${arg}"
+        target_ip="${arg}"
         ;;
     esac
   done
 
-  local HOSTMUSICDIR=~/Music/synced_music
-  local PHONEMUSICDIR=/sdcard/Music/synced_music
-  
-  if [ -z ${REVERSE} ]
+  if [[ $target_hostname == $target_ip ]]
   then
-    local SRC=${HOSTMUSICDIR%/}/
-    local DEST=${PHONEIP}:${PHONEMUSICDIR%/}/
+    echo "ERROR: Invalid hostname. Chech ssh_config."
+    exit 1
+  fi
+
+  local host_music_dir=~/Music/synced_music
+  local target_music_dir=/sdcard/Music/synced_music
+  
+  if [ -z ${reverse} ]
+  then
+    local src=${host_music_dir%/}/
+    local dest=${target_ip}:${target_music_dir%/}/
   else
-    local SRC=${PHONEIP}:/sdcard/Music/synced_music/
-    local DEST=~/Music/synced_music/
+    local src=${target_ip}:/sdcard/Music/synced_music/
+    local dest=~/Music/synced_music/
   fi
 
   echo "Syncing files:"
-  echo "Source: ${SRC}"
-  echo "Dest.:  ${DEST}"
+  echo "Source: ${src}"
+  echo "Dest.:  ${dest} -p"
   rsync --recursive --size-only --verbose --progress --ignore-existing\
-    -e 'ssh -p 8022' ${DELETE}\
-    ${SRC} ${DEST}
+    -e "ssh -p ${target_port}" ${delete}\
+    ${src} ${dest}
 }
 
