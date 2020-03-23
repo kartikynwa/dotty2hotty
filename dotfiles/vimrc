@@ -99,3 +99,17 @@ if has("gui_running")
   set guioptions-=T  "toolbar
   set guioptions-=r  "scrollbar
 endif
+
+"====================
+"  Navigating softwrap
+"====================
+vmap <C-j> gj
+vmap <C-k> gk
+vmap <C-4> g$
+vmap <C-6> g^
+vmap <C-0> g^
+nmap <C-j> gj
+nmap <C-k> gk
+nmap <C-4> g$
+nmap <C-6> g^
+nmap <C-0> g^
