@@ -268,12 +268,13 @@ twitch () {
 musicsync () {
 
   help () {
-    echo "USAGE: musicsync [-d] [--reverse] [<target_ip>]"
-    echo "  -d          delete files missing from host"
-    echo "  --reverse   sync from phone to host"
+    echo "USAGE: musicsync [-p PORT] [-d] [-r] [<target_ip>]"
+    echo "  -p PORT   assign target port number"
+    echo "  -d        delete files missing from host"
+    echo "  -r        switch host and target (reverse)"
   }
 
-  local delete=""
+  local rsync_delete_flag=""
   local reverse=""
 
   local target_ip=192.168.0.179
@@ -283,26 +284,28 @@ musicsync () {
   local ssh_G_output=$( ssh -G ${target_hostname} 2> /dev/null )
   target_ip=$( echo "$ssh_G_output" | grep "^hostname " | awk '{ print $2 }' )
   target_port=$( echo "$ssh_G_output" | grep "^port " | awk '{ print $2 }' )
-  
-  for arg in "$@"
+
+  while getopts "drp:" opt
   do
-    case $arg in
-      -h|--help)
-        help
-        return 1
+    case ${opt} in
+      p)
+        target_port=${OPTARG}
         ;;
-      -d|--delete)
-        delete="--delete"
+      r)
+        reverse="-r"
         ;;
-      --reverse)
-        reverse="--reverse"
-        ;;
-      *)
-        target_ip="${arg}"
+      d)
+        rsync_delete_flag="--delete"
         ;;
     esac
   done
 
+  shift $(($OPTIND - 1))
+  if [ ! -z "$@" ]
+  then
+    target_ip="$@"
+  fi
+  
   if [[ $target_hostname == $target_ip ]]
   then
     echo "ERROR: Invalid hostname. Chech ssh_config."
@@ -312,20 +315,23 @@ musicsync () {
   local host_music_dir=~/Music/synced_music
   local target_music_dir=/sdcard/Music/synced_music
   
-  if [ -z ${reverse} ]
+  echo "Syncing files:"
+
+  if [ -z "${reverse}" ]
   then
     local src=${host_music_dir%/}/
     local dest=${target_ip}:${target_music_dir%/}/
+    echo "Source : ${src}"
+    echo "Dest.  : ${dest}, Port ${target_port}"
   else
     local src=${target_ip}:/sdcard/Music/synced_music/
     local dest=~/Music/synced_music/
+    echo "Source : ${src}, Port ${target_port}"
+    echo "Dest.  : ${dest}"
   fi
 
-  echo "Syncing files:"
-  echo "Source: ${src}"
-  echo "Dest.:  ${dest} -p"
   rsync --recursive --size-only --verbose --progress --ignore-existing\
-    -e "ssh -p ${target_port}" ${delete}\
+    -e "ssh -p ${target_port}" ${rsync_delete_flag}\
     ${src} ${dest}
 }
 
