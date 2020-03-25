@@ -9,7 +9,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # add to fpath
-fpath=(~/.config/zsh.d $fpath)
+fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
 
 # vim bindings
 # bindkey -v
@@ -88,7 +88,6 @@ alias gp="git push"
 
 alias getsubtitle="subliminal download -l en"
 alias porn="mpv 'https://www.pornhub.com/random'"
-alias lofiradio="streamlink 'https://www.youtube.com/watch?v=hHW1oY26kxQ' 720p"
 
 # Modules
 autoload -Uz compinit
