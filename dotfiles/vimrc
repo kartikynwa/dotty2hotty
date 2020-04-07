@@ -61,6 +61,7 @@ set expandtab              " tabs to spaces everywhere else
 set formatoptions-=t       " stop the wrapping
 
 let g:gruvbox_contrast_dark = 'hard'
+let g:limelight_conceal_ctermfg = 'Grey'
 colorscheme gruvbox
 
 
@@ -94,7 +95,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 if has("gui_running")
   set bg=light
-  set guifont=DejaVu\ Sans\ Mono\ 16
+  set guifont=DejaVu\ Sans\ Mono\ 14
   set guioptions-=m  "menu bar
   set guioptions-=T  "toolbar
   set guioptions-=r  "scrollbar

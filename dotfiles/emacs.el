@@ -64,15 +64,7 @@
 ;; 
 ;; 
 ;; solarized-theme
-(use-package solarized-theme
-  :ensure t)
-;;  :config
-;;  (setq solarized-use-variable-pitch nil)
-;;  (setq solarized-use-less-bold t)
-;;  (setq solarized-scale-org-headlines nil)
-;;  (setq x-underline-at-descent-line t)
-;;  (load-theme 'solarized-light)
-;;  (set-face-attribute 'show-paren-match nil :foreground "#fdf6e3" :background "#586e75"))
+(use-package solarized-theme :ensure t)
 
 ;; current line highlight
 (use-package hl-line
@@ -85,14 +77,6 @@
   :config
   (load-theme 'gruvbox-dark-hard)
   (set-face-background hl-line-face "#282828"))
-
-;; (use-package powerline :ensure t)
-
-;; (use-package spaceline
-;;   :after powerline
-;;   :ensure t
-;;   :config
-;;   (spaceline-emacs-theme))
 
 ;; breaking open parentheses
 (defun new-line-dwim ()
@@ -119,23 +103,13 @@
   (require 'smartparens-config)
   :bind ("RET" . new-line-dwim))
 
-;; indentation highlights
-;;(use-package highlight-indent-guides
-;;  :ensure t
-;;  :init
-;;  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-;;  :config
-;;  (setq highlight-indent-guides-method 'character))
-
-
 ;; show column number in mode line
 (setq column-number-mode t)
-;; 
+
 ;; change splash screen
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
-;; 
 ;; evil mode 
 (use-package evil
   :ensure t
@@ -187,26 +161,27 @@
   (defhydra hydra-text-scale ()
     "hydra-text-scale"
     ("=" (text-scale-adjust 0) "text-scale-adjust")
-    ("+" text-scale-decrease "text-scale-decrease")
-    ("-" text-scale-increase "text-scale-increase"))
+    ("-" text-scale-decrease "text-scale-decrease")
+    ("+" text-scale-increase "text-scale-increase"))
   (defun text-scale-hydra ()
     "text scale hydra"
     (interactive)
     (hydra-text-scale/body))
   (defhydra hydra-spell ()
     "hydra-spell"
-    ("c" flyspell-goto-next-error "flyspell-goto-next-error")
-    ("C" ispell-word "ispell-word"))
+    ("f" flyspell-buffer "flyspell-buffer")
+    ("n" flyspell-goto-next-error "flyspell-goto-next-error")
+    ("c" ispell-word "ispell-word"))
   (defun spell-check-hydra ()
     "goto next error and initiate hydra body"
     (interactive)
-    (flyspell-goto-next-error)
     (hydra-spell/body)))
  
 (use-package general
   :ensure t
   :config
   (general-define-key "M-SPC" nil)
+  (general-define-key "C-SPC" nil)
   (general-define-key :prefix "SPC"
                       :non-normal-prefix "M-SPC"
                       :states '(normal visual emacs)
@@ -248,8 +223,16 @@
 (setq-default auto-save-default nil) ; stop creating #autosave# files
 
 ;; spell check
-(setq ispell-dictionary "en_US")
-;; 
+(setq ispell-dictionary "en_GB")
+(setq ispell-personal-dictionary "~/.emacs.d/ispell_personal_dictionary")
+
+;; langtool mode (requires package LanguageTool)
+(use-package langtool
+  :ensure t
+  :config
+  (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
+  (setq langtool-default-language "en-GB"))
+
 ;; fuck tabs
 (setq-default c-basic-offset 2)
 (setq-default indent-tabs-mode nil)
@@ -342,7 +325,8 @@
 (use-package writeroom-mode
   :ensure t
   :config
-  (setq-default writeroom-fullscreen-effect "maximized"))
+  (setq-default writeroom-fullscreen-effect nil)
+  (add-hook 'text-mode-hook #'writeroom-mode))
 
 ;; nov.el mode
 (use-package nov

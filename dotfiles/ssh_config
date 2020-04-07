@@ -5,10 +5,10 @@ Host nokia5
   Port 8022
 
 Host ph1
-  HostName 192.168.0.180
+  HostName 192.168.0.101
   Port 8022
 
 Host koboh20
-  HostName 192.168.0.107
+  HostName 192.168.0.106
   Port 2222
   User root

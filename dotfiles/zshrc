@@ -8,11 +8,12 @@ HISTFILE=~/.config/zsh.d/history
 HISTSIZE=1000
 SAVEHIST=1000
 
+# title to something sane
+precmd () { print -Pn "\e]0;$TITLE\a" }
+title() { export TITLE="$*" }
+
 # add to fpath
 fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
-
-# vim bindings
-# bindkey -v
 
 # Variables
 PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
@@ -115,11 +116,10 @@ setprompt() {
   fi
 
   PS1=${(j::Q)${(Z:Cn:):-$'
-    %F{cyan}[%f
     %(!.%F{red}%n%f.%F{blue}%n%f)
     %F{cyan}@%f
     ${p_host}
-    %F{cyan}]%f
+    " "
     %(!.%F{red}%#%f.%F{magenta}%#%f)
     " "
   '}}
@@ -127,9 +127,9 @@ setprompt() {
   PS2=$'%_>'
 
   RPROMPT=${(j::Q)${(Z:Cn:):-$'
-    %F{cyan}[%f
-    %F{blue}%~%f
-    %F{cyan}]%f
+    %F{cyan}"("%f
+    %F{blue}%.%f
+    %F{cyan}")"%f
   '}}
 }
 setprompt
@@ -268,9 +268,10 @@ musicsync () {
 
   help () {
     echo "USAGE: musicsync [-p PORT] [-d] [-r] [<target_ip>]"
-    echo "  -p PORT   assign target port number"
-    echo "  -d        delete files missing from host"
-    echo "  -r        switch host and target (reverse)"
+    echo "  -p PORT      assign target port number"
+    echo "  -d           delete files missing from host"
+    echo "  -r           switch host and target (reverse)"
+    echo "  -h HOSTNAME  fetch host info from ssh_config"
   }
 
   local rsync_delete_flag=""
@@ -280,11 +281,8 @@ musicsync () {
   local target_port=22
 
   local target_hostname="ph1"
-  local ssh_G_output=$( ssh -G ${target_hostname} 2> /dev/null )
-  target_ip=$( echo "$ssh_G_output" | grep "^hostname " | awk '{ print $2 }' )
-  target_port=$( echo "$ssh_G_output" | grep "^port " | awk '{ print $2 }' )
 
-  while getopts "drp:" opt
+  while getopts "drp:h:" opt
   do
     case ${opt} in
       p)
@@ -296,8 +294,15 @@ musicsync () {
       d)
         rsync_delete_flag="--delete"
         ;;
+      h)
+        target_hostname=${OPTARG}
+        ;;
     esac
   done
+
+  local ssh_G_output=$( ssh -G ${target_hostname} 2> /dev/null )
+  target_ip=$( echo "$ssh_G_output" | grep "^hostname " | awk '{ print $2 }' )
+  target_port=$( echo "$ssh_G_output" | grep "^port " | awk '{ print $2 }' )
 
   shift $(($OPTIND - 1))
   if [ ! -z "$@" ]
@@ -305,12 +310,6 @@ musicsync () {
     target_ip="$@"
   fi
   
-  if [[ $target_hostname == $target_ip ]]
-  then
-    echo "ERROR: Invalid hostname. Chech ssh_config."
-    exit 1
-  fi
-
   local host_music_dir=~/Music/synced_music
   local target_music_dir=/sdcard/Music/synced_music
   

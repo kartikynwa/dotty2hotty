@@ -22,7 +22,7 @@
 #define base0E #d3869b
 #define base0F #d65d0e
 
-*foreground:   base05
+*foreground:   base06
 #ifdef background_opacity
 *background:   [background_opacity]base00
 #else
@@ -77,7 +77,7 @@ URxvt.matcher.button: 1
 
 Xft.dpi: 96
 Xft.antialias: 1
-Xft.hinting: 1
+Xft.hinting: true
 Xft.rgba: rgb
 Xft.autohint: 0
 Xft.hintstyle: hintslight

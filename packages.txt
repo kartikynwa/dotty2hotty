@@ -1,5 +1,16 @@
 # X and related
-xorg
+xorg-minimal
+mesa-dri
+xorg-apps
+xorg-fonts
+xorg-input-drivers
+
+# Vulkan
+mesa-vulkan-intel
+vulkan-loaders
+Vulkan-Headers
+
+# applications
 rxvt-unicode
 i3
 i3lock
@@ -11,8 +22,6 @@ unclutter-xfixes
 dejavu-fonts-ttf
 redshift
 util-linux
-
-# utilities
 firefox
 vim
 emacs-gtk2
@@ -24,8 +33,7 @@ rofi-pass
 transmission-daemon
 transmission-qt
 fd
-
-# multimedia
+maim
 mpv
 cmus
 zathura
