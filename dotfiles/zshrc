@@ -16,7 +16,7 @@ title() { export TITLE="$*" }
 fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
 
 # Variables
-PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:/opt/texlive/2018/bin/x86_64-linux:${PATH}:${GOPATH}/bin"
+PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kartik/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -65,6 +65,7 @@ alias :q="exit"
 alias n="NNN_USE_EDITOR=1 NNN_OPENER=rifle nnn"
 alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
+alias l=ls
 alias ll="ls --color -lh --group-directories-first"
 alias rm="rm -vI"
 alias cp="cp -vi"
@@ -73,8 +74,7 @@ alias mkdir="mkdir -pv"
 alias syslog="socklog"
 alias v="nvim"
 alias bulkrename="qmv -f do"
-alias td="transmission-daemon"
-alias tr="transmission-remote"
+alias tremote="transmission-remote"
 alias za="zathura"
 alias rw="wpa_cli -i wlp5s0 disconnect && wpa_cli -i wlp5s0 reconnect" # my wifi chip is trash
 alias wlp5s0="wpa_cli -i wlp5s0"
@@ -195,7 +195,9 @@ mkcd () {
 
 # alias vod="mpv \"$(xsel -b)\""
 vod () {
-  mpv "$(xsel)"
+  url=$(xsel)
+  echo "Attempting to play with mpv: ${url}"
+  mpv "$url"
 }
 
 # countdown

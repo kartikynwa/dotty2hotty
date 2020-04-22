@@ -12,13 +12,13 @@ fi
 hostsfile_url="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" 
 distractions="
 # [Distraction]
-0.0.0.0 reddit.com     
-0.0.0.0 i.reddit.com
-0.0.0.0 v.reddit.com  
-0.0.0.0 www.reddit.com
-0.0.0.0 m.reddit.com
-0.0.0.0 api.reddit.com
-0.0.0.0 old.reddit.com
+# 0.0.0.0 reddit.com     
+# 0.0.0.0 i.reddit.com
+# 0.0.0.0 v.reddit.com  
+# 0.0.0.0 www.reddit.com
+# 0.0.0.0 m.reddit.com
+# 0.0.0.0 api.reddit.com
+# 0.0.0.0 old.reddit.com
 # 0.0.0.0 imgur.com
 # 0.0.0.0 i.imgur.com
 "

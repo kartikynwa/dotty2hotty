@@ -247,25 +247,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Solarized Colors
-# set $base03           #002b36
-# set $base02           #073642
-# set $base01           #586e75
-# set $base00           #657b83
-# set $base0            #839496
-# set $base1            #93a1a1
-# set $base2            #eee8d5
-# set $base3            #fdf6e3
-# set $yellow           #b58900
-# set $orange           #cb4b16
-# set $red              #dc322f
-# set $magenta          #d33682
-# set $violet           #6c71c4
-# set $blue             #268bd2
-# set $cyan             #2aa198
-# set $green            #859900
-# set $custom           #1c5766
-
 # Gruvbox colors
 set $bg #1c1c1c
 set $fg #ebdbb2
@@ -279,26 +260,12 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 
-# green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $green $green $fg $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
-
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
 client.focused          $purple $purple $fg $purple $purple
 client.focused_inactive $darkgray $darkgray $lightblue $purple $darkgray
 client.unfocused        $darkgray $darkgray $lightblue $purple $darkgray
 client.urgent           $red $red $white $red $red
-
-# Solarized window colors
-#                       border    background text      indicator
-# client.focused          $base01   $base01    $base3    $base01
-# client.unfocused        $base02   $base02    $base3    $base02
-# client.focused_inactive $base02   $base02    $base2    $violet
-# client.urgent           $red      $red       $base3    $red
 
 bindsym $mod+r mode "resize"
 
@@ -314,15 +281,15 @@ for_window [class="Wine"] border normal, floating enable
 bar {
 
   position top
-  font pango:Terminus 14px
+  font pango:Terminus 16px
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
   colors {
     background           $bg
     separator            $blue
-    focused_workspace    $purple $purple $fg
-    inactive_workspace   $darkgray  $darkgray  $lightblue
-    active_workspace     $darkgray  $darkgray  $lightblue
+    focused_workspace    $bg  $blue $fg
+    inactive_workspace   $bg  $darkgray  $lightblue
+    active_workspace     $bg  $darkgray  $fg
     urgent_workspace     $red       $red       $fg
   }
 

@@ -75,8 +75,9 @@
 (use-package gruvbox-theme
   :ensure t
   :config
-  (load-theme 'gruvbox-dark-hard)
-  (set-face-background hl-line-face "#282828"))
+  ;; (load-theme 'gruvbox-dark-hard)
+  ;;(set-face-background hl-line-face "#282828"))
+  (load-theme 'gruvbox-light-soft))
 
 ;; breaking open parentheses
 (defun new-line-dwim ()
@@ -317,6 +318,9 @@
 
 ;; racket mode
 (use-package racket-mode :ensure t)
+
+;; go mode
+(use-package go-mode :ensure t)
 
 ;; rust mode
 (use-package rust-mode :ensure t)
