@@ -5,7 +5,7 @@
 ! Base16 Gruvbox dark, hard
 ! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-#define base00 #1c1c1c
+#define base00 #282828
 #define base01 #3c3836
 #define base02 #504945
 #define base03 #665c54

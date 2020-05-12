@@ -16,6 +16,7 @@ title() { export TITLE="$*" }
 fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
 
 # Variables
+export GOPATH="${HOME}/.go"
 PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
 PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -30,7 +31,6 @@ export SUDO_EDITOR="rvim"
 export PASSWORD_STORE_CLIP_TIME=5
 export WINEDEBUG=-all
 # export GOROOT="/usr/lib/go"
-# export GOPATH="${HOME}/go"
 # export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
 
 
@@ -188,6 +188,7 @@ mkcd () {
   if [ -n $1 ]; then
     mkdir -vp "$1"
     cd "$1"
+    echo "traversed to created directory"
   else 
     echo "mkcd: missing operand"
   fi

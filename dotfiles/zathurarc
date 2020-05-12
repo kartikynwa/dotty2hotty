@@ -12,6 +12,8 @@ set recolor-lightcolor "#282828"
 
 map i zoom in
 map u zoom out
+map K zoom in
+map J zoom out
 map <S-Up> zoom in
 map <S-Down> zoom out
 map I recolor

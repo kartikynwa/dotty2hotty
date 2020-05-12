@@ -22,7 +22,7 @@ workspace_layout tabbed
 font pango:Terminus 12px
 
 # Gaps global
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 hide_edge_borders smart
 # smart_gaps on
 # gaps inner 10
@@ -248,7 +248,7 @@ mode "resize" {
 }
 
 # Gruvbox colors
-set $bg #1c1c1c
+set $bg #282828
 set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
@@ -262,10 +262,18 @@ set $darkgray #1d2021
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $purple $purple $fg $purple $purple
-client.focused_inactive $darkgray $darkgray $lightblue $purple $darkgray
-client.unfocused        $darkgray $darkgray $lightblue $purple $darkgray
-client.urgent           $red $red $white $red $red
+# client.focused          $purple $purple $fg $purple $purple
+# client.focused_inactive $darkgray $darkgray $lightblue $purple $darkgray
+# client.unfocused        $darkgray $darkgray $lightblue $purple $darkgray
+# client.urgent           $red $red $white $red $red
+
+client.focused          #665c54 #665c54 #eddbb2 #2e9ef4   #665c54
+client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #3c3836 #3c3836 #a89984 #292d2e   #222222
+client.urgent           #cc241d #cc241d #ebdbb2 #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
 
 bindsym $mod+r mode "resize"
 
@@ -284,13 +292,23 @@ bar {
   font pango:Terminus 16px
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
+  # colors {
+  #   background           $bg
+  #   separator            $blue
+  #   focused_workspace    $bg  $blue $fg
+  #   inactive_workspace   $bg  $bg  $lightblue
+  #   active_workspace     $bg  $bg  $fg
+  #   urgent_workspace     $red       $red       $fg
+  # }
+
   colors {
-    background           $bg
-    separator            $blue
-    focused_workspace    $bg  $blue $fg
-    inactive_workspace   $bg  $darkgray  $lightblue
-    active_workspace     $bg  $darkgray  $fg
-    urgent_workspace     $red       $red       $fg
+    background #282828
+    statusline #ebdbb2
+    separator  #666666
+    focused_workspace  #458588 #458588 #ebdbb2
+    active_workspace   #83a598 #83a598 #ebdbb2
+    inactive_workspace #504945 #504945 #ebdbb2
+    urgent_workspace   #cc241d #cc241d #504945
   }
 
 }

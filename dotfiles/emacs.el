@@ -24,7 +24,7 @@
 ;; font:default
 (set-face-attribute 'default nil
                     :font "DejaVu Sans Mono"
-                    :height 140)
+                    :height 130)
 
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -73,11 +73,11 @@
 
 ;; Gruvbox theme
 (use-package gruvbox-theme
-  :ensure t
-  :config
+  :ensure t)
+  ;; :config
   ;; (load-theme 'gruvbox-dark-hard)
-  ;;(set-face-background hl-line-face "#282828"))
-  (load-theme 'gruvbox-light-soft))
+  ;; (set-face-background hl-line-face "#282828"))
+  ;; (load-theme 'gruvbox-light-soft))
 
 ;; breaking open parentheses
 (defun new-line-dwim ()
@@ -218,10 +218,14 @@
                       "RET" 'neotree-enter
                       "q" 'neotree-hide
                       [tab] 'neotree-quick-look))
-;; 
-;; disable backups
-(setq-default make-backup-files nil) ; stop creating backup~ files
-(setq-default auto-save-default nil) ; stop creating #autosave# files
+
+;; Backup and Autosave Directories
+(setq temporary-file-directory "~/.emacs.d/tmp/")
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 
 ;; spell check
 (setq ispell-dictionary "en_GB")
@@ -320,7 +324,13 @@
 (use-package racket-mode :ensure t)
 
 ;; go mode
-(use-package go-mode :ensure t)
+(use-package go-mode
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'gofmt-before-save)
+              (setq indent-tabs-mode 1))))
 
 ;; rust mode
 (use-package rust-mode :ensure t)
@@ -372,6 +382,11 @@
         company-tooltip-limit 10
         company-tooltip-align-annotations t)
   (add-hook 'prog-mode-hook 'company-mode))
+
+(use-package lsp-mode
+  :ensure t
+  ;;:hook (go-mode . lsp-deferred)
+  :commands (lsp lsp-deferred))
 
 ;; yasnippets
 (use-package yasnippet
