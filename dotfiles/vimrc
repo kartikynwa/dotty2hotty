@@ -20,10 +20,13 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/Limelight.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
+  let g:airline_powerline_fonts = 1
 endif
 
 call plug#end()
@@ -60,9 +63,10 @@ set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
 set formatoptions-=t       " stop the wrapping
 
-let g:gruvbox_contrast_dark = 'hard'
-let g:limelight_conceal_ctermfg = 'Grey'
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:limelight_conceal_ctermfg = 'Grey'
 colorscheme gruvbox
+set bg=dark
 
 
 "====================
@@ -94,7 +98,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "====================
 
 if has("gui_running")
-  set bg=dark
   set guifont=DejaVu\ Sans\ Mono\ 10
   set guioptions-=m  "menu bar
   set guioptions-=T  "toolbar

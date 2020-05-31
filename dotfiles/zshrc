@@ -62,7 +62,7 @@ setopt autocd \
 
 # Aliases (or Alii)
 alias :q="exit"
-alias n="NNN_USE_EDITOR=1 NNN_OPENER=rifle nnn"
+alias n="NNN_USE_EDITOR=1 nnn"
 alias ra="ranger"
 alias ls="ls --color -F --group-directories-first"
 alias l=ls

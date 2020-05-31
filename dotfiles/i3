@@ -33,13 +33,13 @@ floating_maximum_size 1280 x 720
 
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
-          --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
-          --output HDMI1 --off --output DP1 --off --output HDMI2 --off && \
+          --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
+          --output HDMI-1 --off --output DP1 --off --output HDMI-2 --off && \
           /home/kartik/dotty2hotty/scripterino/wall.sh && \
           pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 bindsym $mod+Shift+n exec --no-startup-id xrandr \
-          --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-          --output eDP1 --off --output DP1 --off --output HDMI2 --off && \
+          --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+          --output eDP-1 --off --output DP1 --off --output HDMI-2 --off && \
           /home/kartik/dotty2hotty/scripterino/wall.sh && \
           pactl set-card-profile 0 output:hdmi-stereo
 
@@ -150,10 +150,10 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+q focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+a focus child
 
 # battery notification
 bindsym $mod+b exec --no-startup-id notify-send "Battery: $( ~/dotty2hotty/scripterino/battery_2 )"
@@ -186,6 +186,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 # Screenshots
 bindsym $mod+Shift+s exec --no-startup-id maim ~/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
+bindsym $mod+Control+s exec --no-startup-id maim -s ~/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
 
 # skedaddle between workspaces with this COOL hack
 bindsym $mod+space workspace back_and_forth
@@ -284,6 +285,8 @@ for_window [class="Pinentry"] border normal, floating enable
 for_window [class="Vlc"] border normal, floating enable
 for_window [class="Wine"] border normal, floating enable
 
+exec --no-startup-id dunst
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -304,11 +307,11 @@ bar {
   colors {
     background #282828
     statusline #ebdbb2
-    separator  #666666
+    separator  #665c54
     focused_workspace  #458588 #458588 #ebdbb2
     active_workspace   #83a598 #83a598 #ebdbb2
     inactive_workspace #504945 #504945 #ebdbb2
-    urgent_workspace   #cc241d #cc241d #504945
+    urgent_workspace   #cc241d #cc241d #ebdbb2
   }
 
 }
