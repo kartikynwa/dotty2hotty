@@ -17,8 +17,9 @@ fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
 
 # Variables
 export GOPATH="${HOME}/.go"
-PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
-PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"; export PATH;
+export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
+export PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"
+export PATH=~/.local/share/npm-global/bin:$PATH
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kartik/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/kartik/perl5\""; export PERL_MB_OPT;
@@ -88,7 +89,7 @@ alias 'gcm '="git commit -m "
 alias gp="git push"
 
 alias getsubtitle="subliminal download -l en"
-alias porn="mpv 'https://www.pornhub.com/random'"
+alias mpdscribble="/usr/bin/mpdscribble --conf ~/.config/mpdscribble/mpdscribble.conf"
 
 # Modules
 autoload -Uz compinit

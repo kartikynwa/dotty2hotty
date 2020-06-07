@@ -35,12 +35,12 @@ floating_maximum_size 1280 x 720
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
           --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
           --output HDMI-1 --off --output DP1 --off --output HDMI-2 --off && \
-          /home/kartik/dotty2hotty/scripterino/wall.sh && \
+          /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
           pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 bindsym $mod+Shift+n exec --no-startup-id xrandr \
           --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
           --output eDP-1 --off --output DP1 --off --output HDMI-2 --off && \
-          /home/kartik/dotty2hotty/scripterino/wall.sh && \
+          /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
           pactl set-card-profile 0 output:hdmi-stereo
 
 # exec startup
@@ -81,7 +81,7 @@ bindsym $mod+o exec --no-startup-id pcmanfm
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id zsh ~/dotty2hotty/scripterino/rofi-i3
+bindsym $mod+d exec --no-startup-id zsh ~/dotty2hotty/scripterino/utils/rofi-i3
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym $mod+p exec --no-startup-id rofi-pass
 # bindsym $mod+Escape exec --no-startup-id ~/dotty2hotty/scripterino/rofi-power
@@ -156,19 +156,34 @@ bindsym $mod+q focus parent
 bindsym $mod+a focus child
 
 # battery notification
-bindsym $mod+b exec --no-startup-id notify-send "Battery: $( ~/dotty2hotty/scripterino/battery_2 )"
+bindsym $mod+b exec --no-startup-id notify-send "Battery: $( ~/dotty2hotty/scripterino/i3blocks/battery_2 )"
 
-# mpd player controls
-bindsym $mod+slash exec --no-startup-id cmus-remote --pause
-bindsym $mod+comma exec --no-startup-id cmus-remote --prev
-bindsym $mod+period exec --no-startup-id cmus-remote --next && ~/dotty2hotty/scripterino/cmus-notify
-bindsym $mod+equal exec --no-startup-id cmus-remote --volume +5%
-bindsym $mod+minus exec --no-startup-id cmus-remote --volume -5%
-bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/cmus-notify
-bindsym $mod+c exec --no-startup-id ~/dotty2hotty/scripterino/start-cmus-in-workspace-music
+### BEGIN: Music player controls ###
+# deadbeef
+# bindsym $mod+slash exec --no-startup-id deadbeef --toggle-pause
+# bindsym $mod+comma exec --no-startup-id deadbeef --prev
+# bindsym $mod+period exec --no-startup-id deadbeef --next
+
+# mpd (via mpc)
+bindsym $mod+slash exec --no-startup-id mpc toggle
+bindsym $mod+comma exec --no-startup-id mpc prev
+bindsym $mod+period exec --no-startup-id mpc next
+bindsym $mod+equal exec --no-startup-id mpc volume +5
+bindsym $mod+minus exec --no-startup-id mpc volume -5
+
+# cmus
+# bindsym $mod+slash exec --no-startup-id cmus-remote --pause
+# bindsym $mod+comma exec --no-startup-id cmus-remote --prev
+# bindsym $mod+period exec --no-startup-id cmus-remote --next && ~/dotty2hotty/scripterino/notify/cmus-notify
+# bindsym $mod+equal exec --no-startup-id cmus-remote --volume +5%
+# bindsym $mod+minus exec --no-startup-id cmus-remote --volume -5%
+# bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/notify/cmus-notify
+# bindsym $mod+c exec --no-startup-id ~/dotty2hotty/scripterino/utils/start-cmus-in-workspace-music
+### END: Music player controls ###
 
 # vod
-bindsym $mod+z exec --no-startup-id $TERMINAL -e zsh -ic vod
+# bindsym $mod+z exec --no-startup-id $TERMINAL -e zsh -ic vod
+bindsym $mod+z exec --no-startup-id ~/dotty2hotty/scripterino/utils/mpv-clipboard
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 1 # increase screen brightness

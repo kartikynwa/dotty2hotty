@@ -1,7 +1,7 @@
 #!/bin/bash
 # DOT_DEST=.xinitrc
 xrdb -load ~/.Xresources
-~/dotty2hotty/scripterino/wall.sh
+~/dotty2hotty/scripterino/utils/wall.sh
 unclutter &
 start-pulseaudio-x11 &
 redshift &

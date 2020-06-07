@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+url=$( xsel )
+dunstify "mpv-clipboard" "${url}"
+mpv "${url}"

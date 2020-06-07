@@ -1,6 +1,7 @@
 #
 # DOT_DEST=.zprofile
+#
 
-if [ -z $TMUX ] && [ -z $SSH_CLIENT ] && [ -z $SSH2_CLIENT ] && [ "$TTY" = "/dev/tty1" ]; then
+if [[ -z $TMUX ]] && [[ -z $SSH_CLIENT ]] && [[ -z $SSH2_CLIENT ]] && [[ "$TTY" = "/dev/tty1" ]]; then
   startx
 fi
