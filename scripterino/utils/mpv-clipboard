@@ -2,4 +2,4 @@
 
 url=$( xsel )
 dunstify "mpv-clipboard" "${url}"
-mpv "${url}"
+mpv --force-window=immediate "${url}"

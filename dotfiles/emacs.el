@@ -485,6 +485,7 @@
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.?css\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts?\\'" . web-mode))
   (setq-default coffee-tab-width 2)              ; coffeescript
   (setq-default javascript-indent-level 2)       ; javascript-mode
   (setq-default js-indent-level 2)               ; js-mode
@@ -496,7 +497,7 @@
   (setq-default web-mode-script-padding 2)       ;
   (setq-default web-mode-style-padding 2)        ; some kinda paddings haha
   (setq-default web-mode-block-padding 2))       ; 
-(add-hook 'web-mode-hook 'web-indent)
+;; (add-hook 'web-mode-hook 'web-indent)
 
 ;; open todo file
 (defun todo-at-startup ()
