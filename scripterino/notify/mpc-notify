@@ -1,0 +1,51 @@
+#!/bin/bash
+
+notification_id=13163
+duration=5000
+
+dunstify_command="dunstify -t ${duration} -r ${notification_id}"
+
+if [ ! -x /usr/bin/mpc ];
+then
+  ${dunstify_command} "mpc is not installed."
+  exit
+fi
+
+output=$( mpc -f "%track%\t%title%\t%artist%\t%album%\t%file%" )
+
+if [[ -z "$output" ]]
+then
+  ${dunstify_command} "mpd down"
+  exit
+fi
+
+if [[ $( echo "$output" | wc -l ) -eq 1 ]]
+then
+  ${dunstify_command} "mpd queue empty"
+  exit
+fi
+
+songinfo=$( echo "${output}" | head -1 )
+
+title=$( echo "${songinfo}" | awk -F"\t" '{ print $2 }' )
+echo $title
+if [[ -z "$title" ]]
+then
+  ${dunstify_command} $( echo "$output" | head -1 | awk -F"\t" '{ print $5 }' )
+  exit
+fi
+track=$( echo "${songinfo}" | awk -F"\t" '{ print $1 }' )
+if [[ -n "$track" ]]
+then
+  string1="${track}. ${title}"
+else
+  string1="${title}"
+fi
+artist=$( echo "${songinfo}" | awk -F"\t" '{ print $3 }' )
+album=$( echo "${songinfo}" | awk -F"\t" '{ print $4 }' )
+
+vol=$( echo "${output}" | sed -n "3p" | cut -c 8-11 | tr -d '[:space:]' )
+
+string2="by <b>${artist}</b>\nfrom <b>${album}</b>\nVolume <b>${vol}</b>"
+
+${dunstify_command} "${string1}" "${string2}"

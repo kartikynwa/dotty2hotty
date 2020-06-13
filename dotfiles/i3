@@ -167,9 +167,10 @@ bindsym $mod+b exec --no-startup-id notify-send "Battery: $( ~/dotty2hotty/scrip
 # mpd (via mpc)
 bindsym $mod+slash exec --no-startup-id mpc toggle
 bindsym $mod+comma exec --no-startup-id mpc prev
-bindsym $mod+period exec --no-startup-id mpc next
+bindsym $mod+period exec --no-startup-id mpc next && ~/dotty2hotty/scripterino/notify/mpc-notify
 bindsym $mod+equal exec --no-startup-id mpc volume +5
 bindsym $mod+minus exec --no-startup-id mpc volume -5
+bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/notify/mpc-notify
 
 # cmus
 # bindsym $mod+slash exec --no-startup-id cmus-remote --pause
