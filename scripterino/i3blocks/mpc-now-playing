@@ -10,16 +10,22 @@ fi
 
 output=$( mpc -f "\"%title%\" by %artist%\t%file%" )
 
-if [[ -z "$output" ]]
+if [ -z "$output" ]
 then
   echo "mpd down"
   exit
 fi
 
-if [[ $( echo "$output" | wc -l ) -eq 1 ]]
+if [ $( echo "$output" | wc -l ) -eq 1 ]
 then
   echo "mpd queue empty"
   exit
+fi
+
+ashuffle=""
+if [ "$(pgrep -x ashuffle)" ]
+then
+  ashuffle=" <ash>"
 fi
 
 song_info=$( echo "$output" | head -1 | awk -F"\t" '{ print $1 }' )
@@ -38,5 +44,5 @@ vol=$( echo "$output" | sed -n "3p" | cut -c 8-11 | tr -d '[:space:]' )
 
 # Echo the crap of out it
 if [ -n "$song_info" ]; then
-  echo "${song_info} <${vol}>"
+  echo "${song_info} <${vol}>${ashuffle}"
 fi

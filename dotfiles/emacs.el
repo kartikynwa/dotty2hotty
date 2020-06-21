@@ -25,6 +25,9 @@
 (set-face-attribute 'default nil
                     :font "DejaVu Sans Mono"
                     :height 130)
+(set-face-attribute 'variable-pitch nil
+                    :font "Gelasio"
+                    :height 140)
 
 ;; custom file location
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

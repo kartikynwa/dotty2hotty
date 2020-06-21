@@ -22,7 +22,7 @@ workspace_layout tabbed
 font pango:Terminus 12px
 
 # Gaps global
-default_border pixel 5
+default_border pixel 4
 hide_edge_borders smart
 # smart_gaps on
 # gaps inner 10
