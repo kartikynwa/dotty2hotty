@@ -77,7 +77,7 @@ bindsym $mod+Return exec --no-startup-id $TERMINAL
 bindsym $mod+Shift+q kill
 
 # file mamager shortcut
-bindsym $mod+o exec --no-startup-id pcmanfm
+bindsym $mod+o exec --no-startup-id pcmanfm-qt
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run

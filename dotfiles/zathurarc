@@ -7,8 +7,8 @@ set guioptions ""
 set zoom-step 5
 set scroll-step 20
 
-set recolor-darkcolor "#fbf1c7"
-set recolor-lightcolor "#282828"
+set recolor-darkcolor "#282828"
+set recolor-lightcolor "#fbf1c7"
 
 map i zoom in
 map u zoom out

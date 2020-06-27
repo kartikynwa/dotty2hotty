@@ -57,7 +57,7 @@
 *color20:      base04
 *color21:      base06
 
-Xcursor.theme: Paper
+Xcursor.theme: Breeze_Hacked
 
 URxvt.termName: rxvt-unicode-256color
 URxvt.font: xft:DejaVu Sans Mono:size=14, xft:Noto Sans Mono CJK TC:size=14

@@ -23,7 +23,7 @@ then
 fi
 
 ashuffle=""
-if [ "$(pgrep -x ashuffle)" ]
+if pgrep -x ashuffle >/dev/null 2>&1
 then
   ashuffle=" <ash>"
 fi

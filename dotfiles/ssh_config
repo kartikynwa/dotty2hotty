@@ -12,3 +12,8 @@ Host koboh20
   HostName 192.168.0.196
   Port 2222
   User root
+
+Host practease
+  HostName practease.in
+  Port 22
+  User practease
