@@ -63,11 +63,15 @@
 
 ;; rainbow
 ;; (use-package rainbow-mode :ensure t)
-(use-package diminish :ensure t)
+(use-package diminish
+  :ensure t
+  :defer t)
 ;; 
 ;; 
 ;; solarized-theme
-(use-package solarized-theme :ensure t)
+(use-package solarized-theme
+  :ensure t
+  :defer t)
 
 ;; current line highlight
 (use-package hl-line
@@ -237,6 +241,7 @@
 ;; langtool mode (requires package LanguageTool)
 (use-package langtool
   :ensure t
+  :defer t
   :config
   (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
   (setq langtool-default-language "en-GB"))
@@ -249,6 +254,7 @@
 ;; neotree
 (use-package neotree
   :ensure t
+  :defer t
   :config (setq neo-theme 'ascii))
 
 
@@ -260,6 +266,10 @@
 ;; org-mode tweaks
 (use-package wc-mode
   :ensure t)
+
+(use-package writegood-mode
+  :ensure t
+  :defer t)
 
 (setq org-agenda-files (quote ("~/orgy/todo.org")))
 
@@ -284,7 +294,10 @@
     :ensure t
     :defines org-bullets-bullet-list
     :init (add-hook 'org-mode-hook #'org-bullets-mode)
-    :config (setq org-bullets-bullet-list '("#"))))
+    :config (setq org-bullets-bullet-list '("#")))
+  (use-package ox-latex
+    :config
+    (setq org-latex-compiler "xelatex")))
 
 (defun my/org-mode-hook ()
   "Stop the org-level headers from increasing in height relative to the other text."
@@ -313,22 +326,30 @@
   (setq enable-recursive-minibuffers t))
 
 ;; markdown mode
-(use-package markdown-mode :ensure t)
+(use-package markdown-mode
+  :ensure t
+  :defer t)
 
 ;; haskell mode
-(use-package haskell-mode :ensure t)
+(use-package haskell-mode
+  :ensure t
+  :defer t)
 
 ;; emacs speaks statistics
 (use-package ess
   :ensure t
+  :defer t
   :init (require 'ess-site))
 
 ;; racket mode
-(use-package racket-mode :ensure t)
+(use-package racket-mode
+  :ensure t
+  :defer t)
 
 ;; go mode
 (use-package go-mode
   :ensure t
+  :defer t
   :config
   (add-hook 'go-mode-hook
             (lambda ()
@@ -336,18 +357,23 @@
               (setq indent-tabs-mode 1))))
 
 ;; rust mode
-(use-package rust-mode :ensure t)
+(use-package rust-mode
+  :ensure t
+  :defer t)
 
 ;; writeroom settings
 (use-package writeroom-mode
   :ensure t
   :config
-  (setq-default writeroom-fullscreen-effect nil))
-  ;; (add-hook 'text-mode-hook #'writeroom-mode))
+  (setq-default writeroom-fullscreen-effect nil)
+  (setq-default writeroom-width 90)
+  (add-hook 'org-mode-hook #'writeroom-mode)
+  (add-hook 'markdown-mode-hook #'writeroom-mode))
 
 ;; nov.el mode
 (use-package nov
   ;; :ensure t
+  :defer t
   :config
   ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
   (setq nov-variable-pitch nil)
@@ -476,6 +502,7 @@
 ;; web-mode (wth lol)
 (use-package web-mode
   :ensure t
+  :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -485,7 +512,7 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.?css\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ts?\\'" . web-mode))
