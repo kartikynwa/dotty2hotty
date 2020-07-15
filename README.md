@@ -42,15 +42,8 @@ Edit `/etc/sudoers` using the `visudo` command. Add the following line:
 
 ### Install PulseAudio
 
-Because it works(TM). Packages needed are included in `packages.txt`.
-
-```
-$ echo 'Start ALSA service'
-# ln -s /etc/sv/alsa /var/service/
-# ln -s /etc/sv/dbus /var/service/
-# ln -s /etc/sv/cgmanager /var/service/
-# ln -s /etc/sv/consolekit /var/service/
-```
+Because it works(TM). Packages needed are included in `packages.txt`. [Link to
+Void Docs.(https://docs.voidlinux.org/config/media/pulseaudio.html)
 
 ### Configure laptop lid behaviour
 
