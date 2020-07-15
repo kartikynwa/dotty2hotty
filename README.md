@@ -1,4 +1,4 @@
-# Salve, straggler.
+# Hello.
 
 ## Screenshots
 
@@ -8,9 +8,9 @@
 
 ## Instructions
 
-Initiate a fresh Void Linux installation with these awesome AI MACHINE LEARNING
-BLOCKCHAIN powered AGILE NINJA powered scripts which allow quick deployment of
-amazing FEATURES.
+Initiate a fresh Void Linux installation with these awesome ai machine learning
+blockchain powered agile ninja powered scripts which allow quick deployment of
+amazing features.
 
 ### Install Dependencies
 
@@ -43,11 +43,11 @@ Edit `/etc/sudoers` using the `visudo` command. Add the following line:
 ### Install PulseAudio
 
 Because it works(TM). Packages needed are included in `packages.txt`. [Link to
-Void Docs.(https://docs.voidlinux.org/config/media/pulseaudio.html)
+Void Docs.](https://docs.voidlinux.org/config/media/pulseaudio.html)
 
 ### Configure laptop lid behaviour
 
-In `/etc/acpi/handler.sh`. You know the rest (I hope haha).
+In `/etc/acpi/handler.sh`. You know the rest (I hope).
 
 ### Font Rendering (?)
 
@@ -61,7 +61,7 @@ using a teletype.
 
 ## Things That Do Not Matter
 
-![Scotty2Hotty](https://gitlab.com/kartikynwa/dotty2hotty/raw/master/scotty2hotty.png "Scotty2Hotty")  
+![Scotty2Hotty](scotty2hotty.png "Scotty2Hotty")  
 © All rights reserved by Scotty2Hotty. (I think.)
 
 Welcome to the humble abode of my _dotfiles_. They work in mysterious ways. They
