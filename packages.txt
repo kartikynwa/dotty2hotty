@@ -11,7 +11,7 @@ vulkan-loaders
 Vulkan-Headers
 
 # applications
-rxvt-unicode
+alacritty
 i3
 i3lock
 i3blocks

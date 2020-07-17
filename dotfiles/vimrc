@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
@@ -66,8 +67,6 @@ set formatoptions-=t       " stop the wrapping
 
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:limelight_conceal_ctermfg = 'Grey'
-colorscheme gruvbox
-set bg=dark
 
 
 "====================
@@ -94,16 +93,20 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-"====================
-"  gVim
-"====================
+"============================
+"  Colorscheme and interface
+"============================
 
 if has("gui_running")
-  set guifont=DejaVu\ Sans\ Mono\ 10
-  set guioptions-=m  "menu bar
-  set guioptions-=T  "toolbar
-  set guioptions-=r  "scrollbar
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+  "set guioptions-=m  "menu bar
+  "set guioptions-=T  "toolbar
+  "set guioptions-=r  "scrollbar
+  colorscheme hybrid
+else
+  colorscheme gruvbox
 endif
+  set bg=dark
 
 "====================
 "  Navigating softwrap
