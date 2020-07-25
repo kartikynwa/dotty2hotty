@@ -49,7 +49,7 @@ bindkey '^[[6~' down-line-or-history
 bindkey '^[[A' up-line-or-search
 bindkey '^[[D' backward-char
 bindkey '^[[B' down-line-or-search
-bindkey '^[[C' forward-char 
+bindkey '^[[C' forward-char
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
@@ -110,7 +110,7 @@ zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[green]}%}%s%{${fg[cyan]}
 setprompt() {
   setopt prompt_subst
 
-  if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
+  if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
     p_host='%F{yellow}%M%f'
   else
     p_host='%F{blue}%M%f'
@@ -137,20 +137,20 @@ setprompt
 
 # setprompt() {
 #   setopt prompt_subst
-# 
-#   if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
+#
+#   if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
 #     p_host='%F{yellow}%M%f'
 #   else
 #     p_host='%F{blue}%M%f'
 #   fi
-# 
+#
 #   PS1=${(j::Q)${(Z:Cn:):-$'
 #     %F{blue}%~%f
 #     " "
 #     %(!.%F{blue}%#%f.%F{blue}%#%f)
 #     " "
 #   '}}
-# 
+#
 #   PS2=$'%_>'
 #   RPROMPT=$'${vcs_info_msg_0_}'
 # }
@@ -175,7 +175,7 @@ cheat () {
 }
 compdef cheat=whereis
 
-# shuffle music/media
+# shuffle folder
 shuffle () {
   if [ -z $1 ]; then
     mpv --shuffle --no-audio-display --no-resume-playback .
@@ -190,16 +190,9 @@ mkcd () {
     mkdir -vp "$1"
     cd "$1"
     echo "traversed into created directory"
-  else 
+  else
     echo "mkcd: missing operand"
   fi
-}
-
-# alias vod="mpv \"$(xsel -b)\""
-vod () {
-  url=$(xsel)
-  echo "Attempting to play with mpv: ${url}"
-  mpv "$url"
 }
 
 # countdown
@@ -268,75 +261,6 @@ twitch () {
 }
 
 # Music sync function
-musicsync () {
-
-  help () {
-    echo "USAGE: musicsync [-p PORT] [-d] [-r] [<target_ip>]"
-    echo "  -p PORT      assign target port number"
-    echo "  -d           delete files missing from host"
-    echo "  -r           switch host and target (reverse)"
-    echo "  -h HOSTNAME  fetch host info from ssh_config"
-  }
-
-  local rsync_delete_flag=""
-  local reverse=""
-
-  local target_ip=192.168.0.179
-  local target_port=22
-
-  local target_hostname="ph1"
-
-  while getopts "drp:h:" opt
-  do
-    case ${opt} in
-      p)
-        target_port=${OPTARG}
-        ;;
-      r)
-        reverse="-r"
-        ;;
-      d)
-        rsync_delete_flag="--delete"
-        ;;
-      h)
-        target_hostname=${OPTARG}
-        ;;
-    esac
-  done
-
-  local ssh_G_output=$( ssh -G ${target_hostname} 2> /dev/null )
-  target_ip=$( echo "$ssh_G_output" | grep "^hostname " | awk '{ print $2 }' )
-  target_port=$( echo "$ssh_G_output" | grep "^port " | awk '{ print $2 }' )
-
-  shift $(($OPTIND - 1))
-  if [ ! -z "$@" ]
-  then
-    target_ip="$@"
-  fi
-  
-  local host_music_dir=~/Music/synced_music
-  local target_music_dir=/sdcard/Music/synced_music
-  
-  echo "Syncing files:"
-
-  if [ -z "${reverse}" ]
-  then
-    local src=${host_music_dir%/}/
-    local dest=${target_ip}:${target_music_dir%/}/
-    echo "Source : ${src}"
-    echo "Dest.  : ${dest}, Port ${target_port}"
-  else
-    local src=${target_ip}:/sdcard/Music/synced_music/
-    local dest=~/Music/synced_music/
-    echo "Source : ${src}, Port ${target_port}"
-    echo "Dest.  : ${dest}"
-  fi
-
-  rsync --recursive --size-only --verbose --progress --ignore-existing\
-    -e "ssh -p ${target_port}" ${rsync_delete_flag}\
-    ${src} ${dest}
-}
-
 # NVM: Node Version Manager
 export NVM_DIR="$HOME/.local/share/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

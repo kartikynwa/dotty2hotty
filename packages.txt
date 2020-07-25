@@ -1,14 +1,14 @@
 # X and related
 xorg-minimal
-mesa-dri
 xorg-apps
 xorg-fonts
 xorg-input-drivers
 
-# Vulkan
+# graphic drivers
+mesa-dri
 mesa-vulkan-intel
 vulkan-loaders
-Vulkan-Headers
+intel-media-driver
 
 # applications
 alacritty
