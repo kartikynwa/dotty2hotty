@@ -2,32 +2,38 @@
 
 maxlen=41
 
+# Check if mpc/mpd is installed
 if [ ! -x /usr/bin/mpc ];
 then
   echo "mpc is not installed."
   exit
 fi
 
+# store mpc output
 output=$( mpc -f "\"%title%\" by %artist%\t%file%" )
 
+# Exit if mpd is not running
 if [ -z "$output" ]
 then
   echo "mpd down"
   exit
 fi
 
-if [ $( echo "$output" | wc -l ) -eq 1 ]
+# Exit if queue is empty
+if [ "$( echo "$output" | wc -l )" -eq 1 ]
 then
   echo "mpd queue empty"
   exit
 fi
 
+# Check if ashuffle is running
 ashuffle=""
 if pgrep -x ashuffle >/dev/null 2>&1
 then
   ashuffle=" <ash>"
 fi
 
+# Check if tags are available, otherwise show only filename
 song_info=$( echo "$output" | head -1 | awk -F"\t" '{ print $1 }' )
 if [ -z "$song_info" ]
 then
@@ -37,12 +43,21 @@ fi
 # Splice output if it is too long
 if [ ${#song_info} -ge ${maxlen} ]
 then
-  song_info="$( echo $song_info | colrm ${maxlen} )…"
+  song_info="$( echo "$song_info" | colrm ${maxlen} )…"
 fi
 
+# Show `|` if paused, `>` if playing
+symbol="|"
+status="$( echo "$output" | sed -n '2s/\].*/]/p' )"
+if [ "$status" = "[playing]" ]
+then
+  symbol=">"
+fi
+
+# Get mpd's volume
 vol=$( echo "$output" | sed -n "3p" | cut -c 8-11 | tr -d '[:space:]' )
 
 # Echo the crap of out it
 if [ -n "$song_info" ]; then
-  echo "${song_info} <${vol}>${ashuffle}"
+  echo "${symbol} ${song_info} <${vol}>${ashuffle}"
 fi
