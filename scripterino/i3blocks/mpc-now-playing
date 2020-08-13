@@ -1,63 +1,36 @@
-#!/bin/bash
+#!/bin/env zsh
 
 maxlen=41
 
 # Check if mpc/mpd is installed
-if [ ! -x /usr/bin/mpc ];
-then
-  echo "mpc is not installed."
-  exit
-fi
+! command -v mpc 1> /dev/null && echo "mpc is not installed." && exit
 
-# store mpc output
-output=$( mpc -f "\"%title%\" by %artist%\t%file%" )
+format_string='[["%title%"][ by %artist%]]|[%file%]'
+
+# Store mpc output
+output=("${(@f)$(mpc -f "${format_string}")}")
 
 # Exit if mpd is not running
-if [ -z "$output" ]
-then
-  echo "mpd down"
-  exit
-fi
+[[ -z "$output" ]] && echo "mpd down" && exit
 
 # Exit if queue is empty
-if [ "$( echo "$output" | wc -l )" -eq 1 ]
-then
-  echo "mpd queue empty"
-  exit
-fi
+[[ "${#output[@]}" -eq 1 ]] && echo "mpd queue empty" && exit
 
 # Check if ashuffle is running
-ashuffle=""
-if pgrep -x ashuffle >/dev/null 2>&1
-then
-  ashuffle=" <ash>"
-fi
+pgrep -x ashuffle > /dev/null 2>&1 && ashuffle=" <ash>"
 
 # Check if tags are available, otherwise show only filename
-song_info=$( echo "$output" | head -1 | awk -F"\t" '{ print $1 }' )
-if [ -z "$song_info" ]
-then
-  song_info=$( echo "$output" | head -1 | awk -F"\t" '{ print $2 }' )
-fi
+song_info="${output[1]}"
 
 # Splice output if it is too long
-if [ ${#song_info} -ge ${maxlen} ]
-then
-  song_info="$( echo "$song_info" | colrm ${maxlen} )…"
-fi
+[[ ${#song_info} -ge ${maxlen} ]] && song_info="${song_info:0:$maxlen - 3}…"
 
 # Show `|` if paused, `>` if playing
-symbol="|"
-status="$( echo "$output" | sed -n '2s/\].*/]/p' )"
-if [ "$status" = "[playing]" ]
-then
-  symbol=">"
-fi
+status_line="${output[2]}"
+[[ "${status_line%]*}" = "[playing" ]] && symbol=">" || symbol="|"
 
 # Get mpd's volume
-vol=$( echo "$output" | sed -n "3p" | cut -c 8-11 | tr -d '[:space:]' )
+vol="${output[3]}" && vol="${${${vol#*:}%\%*}// /}"
 
 # Echo the crap of out it
-if [ -n "$song_info" ]; then
-  echo "${symbol} ${song_info} <${vol}>${ashuffle}"
-fi
+[[ -n "$song_info" ]] && echo "${symbol} ${song_info} <${vol}%>${ashuffle}"
