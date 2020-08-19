@@ -42,13 +42,19 @@ fi
 
 if [ -z "$tag" ]
 then
-  while IFS='' read -r line
+  set -f
+  IFS=$(printf "\n")
+  set -- "$queuelist"
+  for arg
   do
-    mpc add "$line"
-  done <<< "$queuelist"
+    mpc add "$arg"
+  done
 else
-  while IFS='' read -r line
+  set -f
+  IFS=$(printf "\n")
+  set -- "$queuelist"
+  for arg
   do
-    mpc findadd "$tag" "$line"
-  done <<< "$queuelist"
+    mpc findadd "$tag" "$arg"
+  done
 fi
