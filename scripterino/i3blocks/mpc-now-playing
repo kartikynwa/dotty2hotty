@@ -5,7 +5,7 @@ maxlen=40
 # Check if mpc/mpd is installed
 ! command -v mpc 1> /dev/null && echo "mpc is not installed." && exit
 
-format_string='[["%title%"][ by %artist%]]|[%file%]'
+format_string='[["%title%"][ by [[%albumartist%]|[%artist%]]]]|[%file%]'
 
 # Store mpc output
 set -f
@@ -50,13 +50,25 @@ else
   symbol="|"
 fi
 
+time=$( echo "$2" | awk '{print $3;}' )
+
+case "$3" in
+  Updating*)
+    updating=" <updating>"
+    status_line="$4"
+    ;;
+  *)
+    status_line="$3"
+    ;;
+esac
+
 # Get mpd's volume
-vol="${3#*:}"
+vol="${status_line#*:}"
 vol="${vol%\%*}"
 vol="${vol# }"
 
 # Echo the crap of out it
 if [ -n "$song_info" ]
 then
-  echo "${symbol} ${song_info} <${vol}%>${ashuffle}"
+  echo "${symbol} [${time}] ${song_info} <${vol}%>${ashuffle}${updating}"
 fi

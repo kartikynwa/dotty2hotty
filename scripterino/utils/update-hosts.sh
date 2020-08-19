@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-set -eou pipefail
+set -eu
 
 TIMEFILE=/var/run/update-hosts.timefile
 
@@ -24,7 +24,7 @@ distractions="
 "
 
 temp_hostsfile=$( mktemp )
-trap 'rm -f \"$temp_hostsfile\"' ERR INT
+trap 'rm -f \"$temp_hostsfile\"' INT
 
 curl --retry 5 --retry-delay 1800 -sf "$hostsfile_url" | grep "^#\|^0.0.0.0 \|^$" > "$temp_hostsfile"
 echo "$distractions" >> "$temp_hostsfile"

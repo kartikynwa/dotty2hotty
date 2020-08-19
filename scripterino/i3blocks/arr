@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-export torrent_client="transmission-da"
+torrent_client="transmission-da"
 # export torrent_client="qbittorrent-nox"
 
 if pgrep -x "${torrent_client}" > /dev/null

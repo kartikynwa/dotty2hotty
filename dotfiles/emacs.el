@@ -80,10 +80,10 @@
 
 ;; Gruvbox theme
 (use-package gruvbox-theme
-  :ensure t)
-  ;; :config
-  ;; (load-theme 'gruvbox-dark-hard)
-  ;; (set-face-background hl-line-face "#282828"))
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-hard)
+  (set-face-background hl-line-face "#282828"))
   ;; (load-theme 'gruvbox-light-soft))
 
 ;; breaking open parentheses

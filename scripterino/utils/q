@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 tag=
 format_string="[[[\\e\\[35m%artist%\\e\\[0m > ][\\e\\[36m[(%date%) ]%album%\\e\\[0m > ][\\e\\[1m[%track% - ][%title%]\\e\\[0m]]|%file%]"

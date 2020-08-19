@@ -80,6 +80,7 @@ alias za="zathura"
 alias rw="wpa_cli -i wlp5s0 disconnect && wpa_cli -i wlp5s0 reconnect" # my wifi chip is trash
 alias wlp5s0="wpa_cli -i wlp5s0"
 alias open="xdg-open"
+alias protocol="sudo xbps-install -Suy && sudo poweroff"
 
 alias xs="xbps-query -Rs"
 alias xu="sudo xbps-install -Su"
