@@ -94,6 +94,9 @@ alias mpdscribble="/usr/bin/mpdscribble --conf ~/.config/mpdscribble/mpdscribble
 
 alias tb="nc termbin.com 9999"
 
+alias bton="bluetoothctl -- power on"
+alias btoff="bluetoothctl -- power off"
+
 # Modules
 autoload -Uz compinit
 compinit
