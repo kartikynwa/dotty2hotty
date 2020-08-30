@@ -9,7 +9,7 @@ Host ph1
   Port 8022
 
 Host koboh20
-  HostName 192.168.0.196
+  HostName 192.168.0.197
   Port 2222
   User root
 

@@ -33,13 +33,13 @@ floating_maximum_size 1280 x 720
 
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
-          --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
-          --output HDMI-1 --off --output DP1 --off --output HDMI-2 --off && \
+          --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
+          --output HDMI1 --off --output DP1 --off --output HDMI2 --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
           pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 bindsym $mod+Shift+n exec --no-startup-id xrandr \
-          --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-          --output eDP-1 --off --output DP1 --off --output HDMI-2 --off && \
+          --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+          --output eDP1 --off --output DP1 --off --output HDMI2 --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
           pactl set-card-profile 0 output:hdmi-stereo
 
@@ -171,6 +171,9 @@ bindsym $mod+period exec --no-startup-id mpc next && ~/dotty2hotty/scripterino/n
 bindsym $mod+equal exec --no-startup-id mpc volume +5
 bindsym $mod+minus exec --no-startup-id mpc volume -5
 bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/notify/mpc-notify
+# for bluetooth speaker JBL GO
+bindsym XF86AudioPlay exec --no-startup-id mpc next
+bindsym XF86AudioPause exec --no-startup-id mpc next
 
 # cmus
 # bindsym $mod+slash exec --no-startup-id cmus-remote --pause

@@ -78,13 +78,17 @@
   :config
   (add-hook 'prog-mode-hook #'hl-line-mode))
 
-;; Gruvbox theme
-(use-package gruvbox-theme
-  :ensure t
-  :config
-  (load-theme 'gruvbox-dark-hard)
-  (set-face-background hl-line-face "#282828"))
-  ;; (load-theme 'gruvbox-light-soft))
+    ;; Gruvbox theme
+    (use-package gruvbox-theme
+      :custom-face
+      (line-number ((t (:foreground "#665c54" :background "#1d2021"))))
+      (line-number-current-line ((t (:foreground "#d6560e" :background "#282828"))))
+      (linum ((t (:foreground "#665c54" :background "#1d2021"))))
+      (linum-highlight-face ((t (:foreground "#d6560e" :background "#282828"))))
+      (linum-relative-current-face ((t (:foreground "#d6560e" :background "#1d2021"))))
+      (hl-line ((t (:background "#282828"))))
+      :config
+      (load-theme 'gruvbox-dark-hard))
 
 ;; breaking open parentheses
 (defun new-line-dwim ()

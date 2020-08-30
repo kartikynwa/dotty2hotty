@@ -5,7 +5,13 @@ maxlen=40
 # Check if mpc/mpd is installed
 ! command -v mpc 1> /dev/null && echo "mpc is not installed." && exit
 
-format_string='[["%title%"][ by [[%albumartist%]|[%artist%]]]]|[%file%]'
+# Check if ashuffle is running
+# if pgrep -x mpdscribble > /dev/null 2>&1
+# then
+#   mpdscribble=" <↑>"
+# fi
+
+format_string='[["%title%"][ by [%artist%]]]|[%file%]'
 
 # Store mpc output
 set -f
@@ -17,16 +23,24 @@ set +f
 # Exit if mpd is not running
 if [ -z "$1" ]
 then
-  echo "mpd down"
+  echo "mpd down${mpdscribble}"
   exit
 fi
 
 # Exit if queue is empty
 if [ -z "$2" ]
 then
-  echo "mpd queue empty"
+  echo "mpd queue empty${mpdscribble}"
   exit
 fi
+
+# Check if mpd is updating while the queue is empty
+case "$1" in
+  Updating*)
+    echo "<updating db>${mpdscribble}"
+    exit 0
+    ;;
+esac
 
 # Check if ashuffle is running
 if pgrep -x ashuffle > /dev/null 2>&1
@@ -70,5 +84,5 @@ vol="${vol# }"
 # Echo the crap of out it
 if [ -n "$song_info" ]
 then
-  echo "${symbol} [${time}] ${song_info} <${vol}%>${ashuffle}${updating}"
+  echo "${symbol} [${time}] ${song_info} <${vol}%>${ashuffle}${mpdscribble}${updating}"
 fi
