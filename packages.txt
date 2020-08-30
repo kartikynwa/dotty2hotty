@@ -10,12 +10,15 @@ mesa-vulkan-intel
 vulkan-loaders
 intel-media-driver
 
+# system
+pam_rundir
+
 # applications
 alacritty
 i3
 i3lock
 i3blocks
-light
+brillo
 arandr
 lxappearance
 unclutter-xfixes
@@ -25,7 +28,8 @@ redshift
 util-linux
 firefox
 vim
-emacs-gtk2
+neovim
+emacs-gtk3
 zsh
 pcmanfm
 engrampa
@@ -36,16 +40,12 @@ transmission-qt
 fd
 maim
 mpv
-cmus
 zathura
 zathura-cb
 zathura-pdf-mupdf
 alsa-utils
 pulseaudio
 alsa-plugins-pulseaudio
-ConsoleKit2
 pavucontrol
-cmus
-cmus-ffmpeg
-cmus-flac
-cmus-opus
+mpd
+mpdscribble
