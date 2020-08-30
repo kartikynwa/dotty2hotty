@@ -7,7 +7,7 @@ xorg-input-drivers
 # graphic drivers
 mesa-dri
 mesa-vulkan-intel
-vulkan-loaders
+vulkan-loader
 intel-media-driver
 
 # system
