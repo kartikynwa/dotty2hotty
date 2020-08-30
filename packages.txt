@@ -12,6 +12,7 @@ intel-media-driver
 
 # system
 pam_rundir
+acpi
 
 # applications
 alacritty
@@ -35,7 +36,7 @@ pcmanfm
 engrampa
 rofi
 rofi-pass
-transmission-daemon
+transmission
 transmission-qt
 fd
 maim
