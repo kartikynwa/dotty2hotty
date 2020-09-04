@@ -190,8 +190,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc next
 bindsym $mod+z exec --no-startup-id ~/dotty2hotty/scripterino/utils/mpv-clipboard
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brillo -U 1 # decrease screen brightness
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%

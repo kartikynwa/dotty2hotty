@@ -7,5 +7,4 @@ start-pulseaudio-x11 &
 redshift &
 xset -b # turn off beeping
 [ -f ~/dotty2hotty/config_files/xmodmaprc ] && xmodmap ~/dotty2hotty/config_files/xmodmaprc
-export QT_QPA_PLATFORMTHEME=gtk2
 exec dbus-run-session i3

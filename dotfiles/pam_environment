@@ -4,3 +4,5 @@ SVDIR DEFAULT=@{HOME}/.local/var/service
 GPODDER_HOME DEFAULT=@{HOME}/.config/gPodder
 GPODDER_DOWNLOAD_DIR DEFAULT=@{HOME}/dumbshit/podcasts
 _JAVA_OPTIONS DEFAULT='-Dawt.useSystemAAFontSettings=lcd'
+QT_QPA_PLATFORMTHEME DEFAULT=qt5ct
+# QT_STYLE_OVERRIDE DEFAULT=kvantum

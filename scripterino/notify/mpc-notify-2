@@ -2,8 +2,16 @@
 
 maxlen=40
 
+notification_id=13163
+duration=5000
+
+notify() {
+  dunstify -t "${duration}" -r "${notification_id}" "$1" "$2"
+}
+
 # Check if mpc/mpd is installed
-! command -v mpc 1> /dev/null && echo "mpc is not installed." && exit
+! command -v mpc 1> /dev/null && notify "mpc is not installed." \
+  && exit
 
 format_string='[["%title%"][ by [%artist%]]]|[%file%]'
 
@@ -17,14 +25,14 @@ set +f
 # Exit if mpd is not running
 if [ -z "$1" ]
 then
-  echo "mpd down"
+  notify "mpd down"
   exit
 fi
 
 # Exit if queue is empty
 if [ -z "$2" ]
 then
-  echo "mpd queue empty"
+  notify "mpd queue empty"
   exit
 fi
 
@@ -51,14 +59,12 @@ else
 fi
 
 # Show `|` if paused, `>` if playing
-case "$2" in
-  \[pl*)
-    symbol=">"
-    ;;
-  *)
-    symbol="|"
-    ;;
-esac
+if [ "${2%]*}" = "[playing" ]
+then
+  symbol=">"
+else
+  symbol="|"
+fi
 
 time=$( echo "$2" | awk '{print $3;}' )
 
@@ -80,5 +86,5 @@ vol="${vol# }"
 # Echo the crap of out it
 if [ -n "$song_info" ]
 then
-  echo "${symbol} [${time}] ${song_info} <${vol}>${ashuffle}${updating}"
+  notify "${symbol} [${time}] ${song_info} <${vol}>${ashuffle}${updating}"
 fi
