@@ -6,10 +6,12 @@ _help () {
     -p PORT      assign target port number
     -d           delete files missing from host
     -r           switch host and target (reverse)
+    -n           dry run mode
     -h HOSTNAME  fetch host info from ssh_config"
 }
 
 rsync_delete_flag=""
+rsync_dry_run_flag=""
 reverse=""
 
 target_ip=192.168.0.179
@@ -17,7 +19,7 @@ target_port=22
 
 target_hostname="ph1"
 
-while getopts "drp:h:" opt
+while getopts "drnp:h:" opt
 do
   case ${opt} in
     p)
@@ -28,6 +30,9 @@ do
       ;;
     d)
       rsync_delete_flag="--delete"
+      ;;
+    n)
+      rsync_delete_flag="--dry-run"
       ;;
     h)
       target_hostname=${OPTARG}
@@ -48,7 +53,7 @@ then
   target_ip="$*"
 fi
 
-host_music_dir=~/Music/synced_music
+host_music_dir=~/music/synced_music
 target_music_dir=/sdcard/Music/synced_music
 
 echo "Syncing files:"
@@ -67,5 +72,5 @@ else
 fi
 
 rsync --recursive --size-only --verbose --progress --ignore-existing\
-  -e "ssh -p ${target_port}" ${rsync_delete_flag}\
+  -e "ssh -p ${target_port}" ${rsync_delete_flag} ${rsync_dry_run_flag} \
   "${src}" "${dest}"
