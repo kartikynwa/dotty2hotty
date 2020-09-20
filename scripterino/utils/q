@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 tag=
-format_string="[[[\\e\\[35m%artist%\\e\\[0m > ][\\e\\[36m[(%date%) ]%album%\\e\\[0m > ][\\e\\[1m[%track% - ][%title%]\\e\\[0m]]|%file%]"
+format_string="[[[\\e\\[35m[[%albumartist%]|[%artist%]]\\e\\[0m > ][\\e\\[36m[(%date%) ]%album%\\e\\[0m > ][\\e\\[1m[%track% - ][%title%]\\e\\[0m]]|%file%]"
 mpc_list_command=
 fzf_arg=
 

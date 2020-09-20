@@ -16,10 +16,11 @@ title() { export TITLE="$*" }
 fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
 
 # Variables
-export GOPATH="${HOME}/.go"
-export PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
-export PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"
-export PATH=~/.local/share/npm-global/bin:$PATH
+GOPATH="${HOME}/.go"
+PATH="${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}:${GOPATH}/bin"
+PATH="/home/kartik/perl5/bin${PATH:+:${PATH}}"
+PATH=~/.local/share/npm-global/bin:$PATH
+PATH=~/.emacs.d/bin:$PATH
 
 PERL5LIB="/home/kartik/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kartik/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -27,11 +28,11 @@ PERL_MB_OPT="--install_base \"/home/kartik/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/kartik/perl5"; export PERL_MM_OPT;
 SCRCPY_SERVER_PATH=/usr/share/scrcpy/scrcpy-server-v1.9.jar
 
-export BROWSER="firefox"
-export EDITOR="vim"
-export SUDO_EDITOR="rvim"
-export PASSWORD_STORE_CLIP_TIME=5
-export WINEDEBUG=-all
+BROWSER="firefox"
+EDITOR="vim"
+SUDO_EDITOR="rvim"
+PASSWORD_STORE_CLIP_TIME=5
+WINEDEBUG=-all
 # export GOROOT="/usr/lib/go"
 # export RUST_SRC_PATH="$( rustc --print sysroot )/lib/rustlib/src/rust/src"
 
@@ -75,6 +76,7 @@ alias mv="mv -vi"
 alias mkdir="mkdir -pv"
 alias syslog="socklog"
 alias v="nvim"
+alias e="TERM=alacritty-direct emacs -nw"
 alias bulkrename="qmv -f do"
 alias tremote="transmission-remote"
 alias za="zathura"

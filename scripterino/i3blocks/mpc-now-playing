@@ -5,7 +5,7 @@ maxlen=40
 # Check if mpc/mpd is installed
 ! command -v mpc 1> /dev/null && echo "mpc is not installed." && exit
 
-format_string='[["%title%"][ by [%artist%]]]|[%file%]'
+format_string='[["%title%"][ by [[%artist%]|[%albumartist%]]]]|[%file%]'
 
 # Store mpc output
 set -f
@@ -45,7 +45,7 @@ fi
 # Splice output if it is too long
 if [ ${#1} -ge ${maxlen} ]
 then
-  song_info="$( printf "%.${maxlen}s…" "$1" )"
+  song_info="$( printf "%.${maxlen}s..." "$1" )"
 else
   song_info="$1"
 fi
