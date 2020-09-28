@@ -38,9 +38,9 @@ call plug#end()
 "====================
 
 if has("nvim")
-  set guifont=DejaVu\ Sans\ Mono:h13
+  set guifont=DejaVu\ Sans\ Mono:h12
 else
-  set guifont=DejaVu\ Sans\ Mono\ 13
+  set guifont=DejaVu\ Sans\ Mono\ 12
 endif
 
 if has("gui_running")

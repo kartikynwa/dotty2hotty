@@ -316,6 +316,7 @@ bar {
   # font pango:DejaVu Sans Mono 10
   font -*-terminus-medium-*-normal-*-14-*-*-*-*-*-*-*
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  # status_command /bin/i3status-rs ~/.config/i3/i3status-rs.toml
 
   # colors {
   #   background           $bg
