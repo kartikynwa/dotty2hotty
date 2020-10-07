@@ -33,15 +33,16 @@ floating_maximum_size 1280 x 720
 
 # Monitor controls
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
-          --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
-          --output HDMI1 --off --output DP1 --off --output HDMI2 --off && \
+          --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
+          --output HDMI-1 --off --output DP-1 --off --output HDMI-2 --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
           pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 bindsym $mod+Shift+n exec --no-startup-id xrandr \
-          --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-          --output eDP1 --off --output DP1 --off --output HDMI2 --off && \
-          /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
-          pactl set-card-profile 0 output:hdmi-stereo
+          --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+          --output eDP-1 --off --output DP1 --off --output HDMI-2 --off && \
+          /home/kartik/dotty2hotty/scripterino/utils/wall.sh
+#         /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
+#         pactl set-card-profile 0 output:hdmi-stereo
 
 # exec startup
 # exec --no-startup-id unclutter --timeout 3
@@ -307,6 +308,7 @@ for_window [class="Vlc"] border normal, floating enable
 for_window [class="Wine"] border normal, floating enable
 
 exec --no-startup-id dunst
+exec --no-startup-id pulseaudio --start
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

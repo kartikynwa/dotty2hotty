@@ -3,7 +3,6 @@
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/utils/wall.sh
 unclutter &
-start-pulseaudio-x11 &
 redshift &
 xset -b # turn off beeping
 [ -f ~/dotty2hotty/config_files/xmodmaprc ] && xmodmap ~/dotty2hotty/config_files/xmodmaprc
