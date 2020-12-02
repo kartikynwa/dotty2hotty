@@ -5,5 +5,6 @@ xrdb -load ~/.Xresources
 unclutter &
 redshift &
 xset -b # turn off beeping
+setxkbmap -option ctrl:nocaps
 [ -f ~/dotty2hotty/config_files/xmodmaprc_logitech ] && xmodmap ~/dotty2hotty/config_files/xmodmaprc_logitech
 exec dbus-run-session i3

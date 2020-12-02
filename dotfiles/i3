@@ -224,8 +224,8 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace comms
-bindsym $mod+0 workspace music
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -236,8 +236,8 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace comms
-bindsym $mod+Shift+0 move container to workspace music
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -248,26 +248,28 @@ bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+  bindsym Shift+h resize shrink width 5 px or 5 ppt
+  bindsym Shift+j resize grow height 5 px or 5 ppt
+  bindsym Shift+k resize shrink height 5 px or 5 ppt
+  bindsym Shift+l resize grow width 5 px or 5 ppt
+  
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Shift+Left resize shrink width 5 px or 5 ppt
+  bindsym Shift+Down resize grow height 5 px or 5 ppt
+  bindsym Shift+Up resize shrink height 5 px or 5 ppt
+  bindsym Shift+Right resize grow width 5 px or 5 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 # Gruvbox colors
@@ -309,34 +311,35 @@ for_window [class="Wine"] border normal, floating enable
 
 exec --no-startup-id dunst
 exec --no-startup-id pulseaudio --start
+exec --no-startup-id yambar
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-
-  position top
-  # font pango:DejaVu Sans Mono 10
-  font -*-terminus-medium-*-normal-*-14-*-*-*-*-*-*-*
-  status_command i3blocks -c ~/.config/i3/i3blocks.conf
-  # status_command /bin/i3status-rs ~/.config/i3/i3status-rs.toml
-
-  # colors {
-  #   background           $bg
-  #   separator            $blue
-  #   focused_workspace    $bg  $blue $fg
-  #   inactive_workspace   $bg  $bg  $lightblue
-  #   active_workspace     $bg  $bg  $fg
-  #   urgent_workspace     $red       $red       $fg
-  # }
-
-  colors {
-    background #282828
-    statusline #ebdbb2
-    separator  #665c54
-    focused_workspace  #458588 #458588 #ebdbb2
-    active_workspace   #83a598 #83a598 #ebdbb2
-    inactive_workspace #3c3836 #3c3836 #ebdbb2
-    urgent_workspace   #cc241d #cc241d #ebdbb2
-  }
-
-}
+# bar {
+# 
+#   position top
+#   # font pango:DejaVu Sans Mono 10
+#   font -*-terminus-medium-*-normal-*-14-*-*-*-*-*-*-*
+#   status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#   # status_command /bin/i3status-rs ~/.config/i3/i3status-rs.toml
+# 
+#   # colors {
+#   #   background           $bg
+#   #   separator            $blue
+#   #   focused_workspace    $bg  $blue $fg
+#   #   inactive_workspace   $bg  $bg  $lightblue
+#   #   active_workspace     $bg  $bg  $fg
+#   #   urgent_workspace     $red       $red       $fg
+#   # }
+# 
+#   colors {
+#     background #282828
+#     statusline #ebdbb2
+#     separator  #665c54
+#     focused_workspace  #458588 #458588 #ebdbb2
+#     active_workspace   #83a598 #83a598 #ebdbb2
+#     inactive_workspace #3c3836 #3c3836 #ebdbb2
+#     urgent_workspace   #cc241d #cc241d #ebdbb2
+#   }
+# 
+# }

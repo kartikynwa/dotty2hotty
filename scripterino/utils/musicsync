@@ -71,6 +71,6 @@ else
   echo "Dest.  : ${dest}"
 fi
 
-rsync --recursive --size-only --verbose --progress --ignore-existing\
+rsync --recursive --verbose --progress --ignore-existing \
   -e "ssh -p ${target_port}" ${rsync_delete_flag} ${rsync_dry_run_flag} \
   "${src}" "${dest}"

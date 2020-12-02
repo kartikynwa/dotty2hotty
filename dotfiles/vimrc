@@ -37,6 +37,10 @@ call plug#end()
 "  Vim UI
 "====================
 
+autocmd vimenter * ++nested colorscheme gruvbox
+set termguicolors
+set background=light
+
 if has("nvim")
   set guifont=DejaVu\ Sans\ Mono:h12
 else
@@ -44,15 +48,13 @@ else
 endif
 
 if has("gui_running")
-  set guioptions-=m  "menu bar
-  set guioptions-=T  "toolbar
-  set guioptions-=r  "scrollbar
+  set guioptions-=m  " menu bar
+  set guioptions-=T  " toolbar
+  set guioptions-=r  " scrollbar
   colorscheme hybrid
 else
   colorscheme gruvbox
 endif
-
-set bg=dark
 
 filetype plugin indent on  " filetype detection plugin and indent
 syntax on                  " syntax highlighting
@@ -82,9 +84,14 @@ set smarttab               " tabs at the beginning of linees
 set expandtab              " tabs to spaces everywhere else
 set formatoptions-=t       " stop the wrapping
 
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:limelight_conceal_ctermfg = 'Grey'
+let g:gruvbox_contrast_light='soft'
+" let g:limelight_conceal_ctermfg='Grey'
 
+"====================
+"  Filetype settings
+"====================
+
+au BufEnter,BufRead template setf sh
 
 "====================
 "  Goyo settings

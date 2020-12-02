@@ -95,6 +95,7 @@ alias gp="git push"
 
 alias getsubtitle="subliminal download -l en"
 alias mpdscribble="/usr/bin/mpdscribble --conf ~/.config/mpdscribble/mpdscribble.conf"
+alias shuffle_library="mpc listall synced_music/ | ashuffle -f - & disown"
 
 alias tb="nc termbin.com 9999"
 
