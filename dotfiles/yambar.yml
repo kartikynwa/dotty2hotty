@@ -4,7 +4,7 @@
 
 # fonts we'll be re-using here and there
 
-std_underline: &std_underline {underline: { size: 2, color: d65d0eff}}
+std_underline: &std_underline {underline: { size: 2, color: d79921ff}}
 separator: &separator {string: {text: " | ", foreground: 928374ff}}
 
 # This is THE bar configuration
@@ -20,7 +20,8 @@ bar:
 
   left:
     - i3:
-        anchors: # Not used (directly) by f00bar; used here to avoid duplication
+        sort: ascending
+        anchors:
           - string: &i3_common {margin: 5, on-click: "i3-msg --quiet workspace {name}"}
           - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused
@@ -36,6 +37,13 @@ bar:
                 unfocused: {string: {<<: *default}}
                 invisible: {string: {<<: [*default]}}
                 urgent:    {string: {<<: [*default, *urgent]}}
+          current:
+            map:
+              tag: mode
+              default: {string: {<<: *urgent, margin: 5, text: "{mode}"}}
+              values:
+                default:
+                  empty: {}
 
   right:
     - mpd:
@@ -49,7 +57,7 @@ bar:
                     playing: {string: {text: "> "}}
                     paused: {string: {text: "| "}}
               - string: {text: "\"{title}\" by {artist}", max: 40}
-              - string: {text: "[{volume}%]"}
+              - string: {text: " [{volume}%]"}
         content:
           map:
             tag: state
@@ -58,6 +66,18 @@ bar:
               stopped: {string: {text: stopped}}
               paused: {list: *artist_album_title}
               playing: {list: *artist_album_title}
+    - label:
+        content: *separator
+    - script:
+        path: /home/kartik/dotty2hotty/scripterino/yambar_scripts/wg0.sh
+        args: []
+        content: {string: {text: "{status}"}}
+    - label:
+        content: *separator
+    - script:
+        path: /home/kartik/dotty2hotty/scripterino/yambar_scripts/arr.sh
+        args: []
+        content: {string: {text: "{status}"}}
     - label:
         content: *separator
     - alsa:

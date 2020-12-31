@@ -104,6 +104,7 @@ alias bton="bluetoothctl -- power on"
 alias btoff="bluetoothctl -- power off"
 
 alias mpd-study="mpd ~/.config/mpd-study_music/mpd.conf"
+alias yambar-restart="pkill yambar; yambar & disown"
 
 # Modules
 autoload -Uz compinit

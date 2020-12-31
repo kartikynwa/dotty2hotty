@@ -1,0 +1,6 @@
+# This file should go to /etc/libinput
+# It fixes the auto spam mic mute button on the Thinkpad.
+
+[MicMuteOverride]
+MatchUdevType=keyboard
+AttrEventCodeDisable=KEY_F20
