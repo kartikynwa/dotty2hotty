@@ -27,7 +27,7 @@ bar:
           - focused: &focused
               deco: {stack: [background: {color: 076678ff}, <<: *std_underline]}
           - urgent: &urgent
-              deco: {stack: [background: {color: cc421dff}, <<: *std_underline]}
+              deco: {background: {color: cc421dff}}
         content:
           "":
             map:

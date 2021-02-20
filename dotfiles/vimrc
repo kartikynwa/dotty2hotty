@@ -26,10 +26,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 
 if has('nvim')
+  echom "Hello"
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
 endif
-
 
 call plug#end()
 
@@ -38,8 +38,7 @@ call plug#end()
 "====================
 
 autocmd vimenter * ++nested colorscheme gruvbox
-set termguicolors
-set background=light
+set background=dark
 
 if has("nvim")
   set guifont=DejaVu\ Sans\ Mono:h12

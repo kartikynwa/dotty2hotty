@@ -104,7 +104,7 @@ alias bton="bluetoothctl -- power on"
 alias btoff="bluetoothctl -- power off"
 
 alias mpd-study="mpd ~/.config/mpd-study_music/mpd.conf"
-alias yambar-restart="pkill yambar; yambar & disown"
+alias yr="pkill yambar; yambar & disown"
 
 # Modules
 autoload -Uz compinit
@@ -115,12 +115,12 @@ zstyle ':completion:*' rehash yes
 zstyle ':completion:*' list-colors
 
 # Prompt
-autoload -U colors zsh/terminfo
-colors
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git hg
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[green]}%}%s%{${fg[cyan]}%}][%{${fg[blue]}%}%r/%S%%{${fg[cyan]}%}][%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}"
+# autoload -U colors zsh/terminfo
+# colors
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git hg
+# zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[green]}%}%s%{${fg[cyan]}%}][%{${fg[blue]}%}%r/%S%%{${fg[cyan]}%}][%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}"
 
 setprompt() {
   setopt prompt_subst
@@ -148,31 +148,6 @@ setprompt() {
     %F{cyan}")"%f
   '}}
 }
-# setprompt
-
-# setprompt() {
-#   setopt prompt_subst
-#
-#   if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-#     p_host='%F{yellow}%M%f'
-#   else
-#     p_host='%F{blue}%M%f'
-#   fi
-#
-#   PS1=${(j::Q)${(Z:Cn:):-$'
-#     %F{blue}%~%f
-#     " "
-#     %(!.%F{blue}%#%f.%F{blue}%#%f)
-#     " "
-#   '}}
-#
-#   PS2=$'%_>'
-#   RPROMPT=$'${vcs_info_msg_0_}'
-# }
-
-# setprompt
-
-# PS1=$'%{\e[0;31m♥%} %{\e[0;91m%}%c %{\e[0;35m%}❯%{\e[0m%} '
 
 checksha256 () {
   FILE=$(mktemp)
@@ -183,7 +158,7 @@ checksha256 () {
 
 cheat () {
   if [ -n $1 ]; then
-    curl cheat.sh/$1
+    curl "cheat.sh/${1}"
   else
     echo "USAGE: cheat <command>"
   fi
@@ -210,11 +185,6 @@ mkcd () {
   fi
 }
 
-# countdown
-countdown () {
-  sleep "$@" && cmus-remote -u
-}
-
 # acempv function
 acempv () {
   link=""
@@ -228,8 +198,8 @@ acempv () {
   mpv --profile=acestream "acestream://${link}"
 }
 
+# convert lossless to opus
 iwantopus () {
-
   if [ -z "$1" ]
   then
     input_format="flac"
@@ -244,20 +214,6 @@ iwantopus () {
 
   # Using opusenc
   # fd -e "${input_format}" -d 1 -x opusenc "{}" --bitrate 320 "./opus/{.}.opus"
-
-}
-
-# smloadr function
-smloadr () {
-  if [ -x /home/kartik/Music/smloadr ]
-  then
-    DIR=${PWD}
-    cd /home/kartik/Music/smloadr
-    ./SMLoadr-linux-x64 $1
-    cd ${DIR}
-  else
-    echo "File doesn't exist: ~/Music/smloadr/SMLoadr-linux-x64"
-  fi
 }
 
 # twitch wrapper with streamlink, mpv function
@@ -266,7 +222,7 @@ twitch () {
   then
     if [ -n "$2" ]
     then
-      streamlink -p mpv "https://twitch.tv/${1}" ${2}
+      streamlink -p mpv "https://twitch.tv/${1}" "${2}"
     else
       streamlink -p mpv "https://twitch.tv/${1}" best
     fi
@@ -275,7 +231,6 @@ twitch () {
   fi
 }
 
-# Music sync function
 # NVM: Node Version Manager
 export NVM_DIR="$HOME/.local/share/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
