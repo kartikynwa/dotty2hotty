@@ -1,4 +1,4 @@
-# DOT_DEST=.config/yambar/config.yaml
+# DOT_DEST=.config/yambar/config.yml
 # Typical laptop setup, with wifi, brightness, battery etc, for
 # i3/Sway.
 
@@ -13,7 +13,7 @@ bar:
   location: top
 
   # Default font
-  font: Terminus:pixelsize=14
+  font: DejaVuSansMono Nerd Font Mono:pixelsize=14
 
   foreground: ebdbb2ff
   background: 282828ff
@@ -92,7 +92,7 @@ bar:
     - label:
         content: *separator
     - network:
-        name: wlp5s0
+        name: wlp0s20f3
         content:
           - string: {text: "wifi {state}"}
     - label:

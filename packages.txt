@@ -6,7 +6,6 @@ xorg-input-drivers
 
 # graphic drivers
 mesa-dri
-mesa-vulkan-intel
 vulkan-loader
 intel-media-driver
 
@@ -45,8 +44,8 @@ zathura
 zathura-cb
 zathura-pdf-mupdf
 alsa-utils
-pulseaudio
-alsa-plugins-pulseaudio
-pavucontrol
 mpd
 mpdscribble
+
+pavucontrol
+pipewire

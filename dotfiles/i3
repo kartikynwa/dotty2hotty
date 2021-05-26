@@ -191,8 +191,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc next
 bindsym $mod+z exec --no-startup-id ~/dotty2hotty/scripterino/utils/mpv-clipboard
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A 1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id brillo -U 1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brillo -U 5 # decrease screen brightness
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -310,8 +310,9 @@ for_window [class="Vlc"] border normal, floating enable
 for_window [class="Wine"] border normal, floating enable
 
 exec --no-startup-id dunst
-exec --no-startup-id pulseaudio --start
 exec --no-startup-id yambar
+
+exec --no-startup-id runsvdir ~/dotty2hotty/i3_services
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

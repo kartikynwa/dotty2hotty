@@ -8,7 +8,7 @@
 --     |__|___|  /__||__|   /\ |____/____/(______/
 --             \/           \/
 --
---                    A config file.
+--                    A config file
 --
 --            Starring: neovim 0.5.0-nightly
 
@@ -32,22 +32,54 @@ execute 'packadd packer.nvim'
 -- install plugins
 require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
-  -- use 'tjdevries/colorbuddy.vim'
-  -- use {'tjdevries/gruvbuddy.nvim', require = 'tjdevries/colorbuddy.vim'}
-  use 'morhetz/gruvbox'
+  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   use '9mm/vim-closer'
   use 'tpope/vim-surround'
   use 'justinmk/vim-sneak'
   use 'neovim/nvim-lspconfig'
+  use 'nvim-lua/completion-nvim'
+  use 'junegunn/fzf'
   use 'junegunn/fzf.vim'
   use 'mileszs/ack.vim'
+  use 'ziglang/zig.vim'
+  use 'psf/black'
+  use 'famiu/feline.nvim'
+  use 'jparise/vim-graphql'
 end)
 
 
----------
--- lsp --
----------
-require'lspconfig'.rust_analyzer.setup{}
+----------------
+-- completion --
+----------------
+--
+
+-- Use <Tab> and <S-Tab> to navigate through popup menu
+cmd 'inoremap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"'
+cmd 'inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"'
+
+-- Set completeopt to have a better completion experience
+cmd 'set completeopt=menuone,noinsert,noselect'
+
+-- Avoid showing message extra message when using completion
+cmd 'set shortmess+=c'
+
+----------
+-- rust --
+----------
+require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
+
+
+----------------
+-- typescript --
+----------------
+require'lspconfig'.tsserver.setup{}
+
+
+------------
+-- python --
+------------
+require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
+cmd 'autocmd BufWritePre *.py Black'
 
 
 ------------------
@@ -97,9 +129,51 @@ local function map(mode, lhs, rhs, opts)
 end
 
 g.mapleader = " "
+map('n', '<esc>', ':noh<CR><esc>', {silent = true})
 map('n', '<Leader>.', ':Files<CR>')
 map('n', '<Leader>>', ':GFiles<CR>')
 map('n', '<Leader>,', ':Buffers<CR>')
 map('n', '<Leader>/', ':Rg<CR>')
 map('n', '<Leader>n', ':Explore<CR>')
 map('n', '<Leader>q', ':close<CR>')
+
+
+----------------
+-- Statusline --
+----------------
+require'feline'.setup(
+  {
+    preset = 'noicon',
+    colors = {
+      fg = "#ebdbb2",
+      bg = "#3c3836",
+      black = "#282828",
+      oceanblue = "#458588",
+      white = "#fbf1c7",
+      cyan = "#89b482",
+      green = "#b8bb26",
+      skyblue = "#b16286",
+      magenta = "#c14a4a",
+      orange = "#d65d0e",
+      red = "#ea6962",
+      violet = "#d3869b",
+      yellow = "#fabd2f"
+    },
+    vi_mode_colors = {
+      NORMAL = 'fg',
+      OP = 'green',
+      INSERT = 'yellow',
+      VISUAL = 'oceanblue',
+      BLOCK = 'oceanblue',
+      REPLACE = 'violet',
+      ['V-REPLACE'] = 'violet',
+      ENTER = 'cyan',
+      MORE = 'cyan',
+      SELECT = 'orange',
+      COMMAND = 'green',
+      SHELL = 'green',
+      TERM = 'green',
+      NONE = 'yellow'
+    }
+  }
+)
