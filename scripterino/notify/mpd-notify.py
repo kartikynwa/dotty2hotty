@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+Requires python3-mpd2 and notify-send.sh
+"""
+
 import subprocess
 from mpd import MPDClient
 
