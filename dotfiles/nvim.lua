@@ -36,6 +36,7 @@ require('packer').startup(function()
   use '9mm/vim-closer'
   use 'tpope/vim-surround'
   use 'justinmk/vim-sneak'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'junegunn/fzf'
@@ -79,6 +80,7 @@ require'lspconfig'.tsserver.setup{}
 -- python --
 ------------
 require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
+-- require'lspconfig'.jedi_language_server.setup{}
 cmd 'autocmd BufWritePre *.py Black'
 
 
