@@ -32,16 +32,17 @@ hide_edge_borders smart
 floating_maximum_size 1280 x 720
 
 # Monitor controls
+set $LAPTOP_MONITOR DP-2
+set $HDMI HDMI-0
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
-          --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
-          --output HDMI-1 --off --output DP-1 --off --output HDMI-2 --off && \
-          /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
-          pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
-bindsym $mod+Shift+n exec --no-startup-id xrandr \
-          --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-          --output eDP-1 --off --output DP1 --off --output HDMI-2 --off && \
+          --output $LAPTOP_MONITOR --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+          --output $HDMI --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh
-#         /home/kartik/dotty2hotty/scripterino/utils/wall.sh && \
+          # pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
+bindsym $mod+Shift+n exec --no-startup-id xrandr \
+          --output $HDMI --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 144 \
+          --output $LAPTOP_MONITOR --off && \
+          /home/kartik/dotty2hotty/scripterino/utils/wall.sh
 #         pactl set-card-profile 0 output:hdmi-stereo
 
 # exec startup
@@ -313,6 +314,8 @@ exec --no-startup-id dunst
 exec --no-startup-id yambar
 
 exec --no-startup-id runsvdir ~/dotty2hotty/i3_services
+
+exec --no-startup-id brillo -S 50
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

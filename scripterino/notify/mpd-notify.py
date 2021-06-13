@@ -24,9 +24,9 @@ else:
             if "track" in song:
                 n_title = song["track"] + ". " + n_title
             if "artist" in song:
-                n_body.append(f'by <b>{song["artist"]}</b>')
+                n_body.append(f"by <b>{song['artist']}</b>")
             if "album" in song:
-                n_body.append(f'from <b>{song["album"]}</b>')
+                n_body.append(f"from <b>{song['album']}</b>")
             n_body.append(f"at {vol}% volume")
         else:
             n_title = song["file"]

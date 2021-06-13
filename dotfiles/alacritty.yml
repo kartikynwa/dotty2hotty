@@ -47,7 +47,7 @@ colors:
     white:   '#928374'
 
 font:
-  size: 12
+  size: 11.5
   normal:
     family: DejaVuSansMono Nerd Font Mono
   italics:
