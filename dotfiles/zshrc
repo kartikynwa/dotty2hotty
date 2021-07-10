@@ -238,8 +238,18 @@ twitch () {
 #   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # }
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#
 
-source /usr/share/doc/fzf/key-bindings.zsh
+sauce() {
+  if [ -f "$1" ]; then
+    source "$1"
+  fi
+}
+for file (
+    /usr/share/doc/fzf/key-bindings.zsh
+    "$CARGO_HOME/env"
+  )
+do
+  sauce "$file"
+done
 
 eval "$(starship init zsh)"

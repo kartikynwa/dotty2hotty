@@ -46,6 +46,7 @@ require('packer').startup(function()
   use 'psf/black'
   use 'famiu/feline.nvim'
   use 'jparise/vim-graphql'
+  use 'rust-lang/rust.vim'
 end)
 
 
