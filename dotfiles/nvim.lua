@@ -38,7 +38,7 @@ require('packer').startup(function()
   use 'justinmk/vim-sneak'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/nvim-compe'
   use 'junegunn/fzf'
   use 'junegunn/fzf.vim'
   use 'mileszs/ack.vim'
@@ -50,25 +50,64 @@ require('packer').startup(function()
 end)
 
 
+---------
+-- lsp --
+---------
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+  signs = true,
+  update_in_insert = true,
+})
+
+
 ----------------
 -- completion --
 ----------------
---
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = {
+    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
 
--- Use <Tab> and <S-Tab> to navigate through popup menu
-cmd 'inoremap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"'
-cmd 'inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"'
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+    luasnip = true;
+  };
+}
 
--- Set completeopt to have a better completion experience
-cmd 'set completeopt=menuone,noinsert,noselect'
-
--- Avoid showing message extra message when using completion
-cmd 'set shortmess+=c'
+cmd "inoremap <silent><expr> <C-Space> compe#complete()"
+cmd "inoremap <silent><expr> <CR>      compe#confirm('<CR>')"
+cmd "inoremap <silent><expr> <C-e>     compe#close('<C-e>')"
+cmd "inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })"
+cmd "inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })"
+cmd "highlight link CompeDocumentation NormalFloat"
 
 ----------
 -- rust --
 ----------
-require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
+require'lspconfig'.rust_analyzer.setup{}
 
 
 ----------------
@@ -80,7 +119,7 @@ require'lspconfig'.tsserver.setup{}
 ------------
 -- python --
 ------------
-require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
+require'lspconfig'.jedi_language_server.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
 cmd 'autocmd BufWritePre *.py Black'
 
