@@ -23,6 +23,7 @@ vim.api.nvim_exec(
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
+
   use 'tpope/vim-fugitive'     -- Git commands in nvim
   use 'tpope/vim-rhubarb'      -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary'   -- "gc" to comment visual regions/lines
@@ -40,27 +41,19 @@ require('packer').startup(function()
 
   use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}} -- THE colorscheme :)
   use 'itchyny/lightline.vim'                                 -- Fancier statusline
+
   use 'lukas-reineke/indent-blankline.nvim'                   -- indent blank lines
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+
   use 'nvim-treesitter/nvim-treesitter'             -- For syntax highlighting I think
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- For tree-sitter I think
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-compe'    -- Autocompletion plugin
-  use 'L3MON4D3/LuaSnip'      -- Snippets plugin
-end)
 
--- Use fzf with telescope
-require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = false, -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    }
-  }
-}
-require('telescope').load_extension('fzf')
+  use 'neovim/nvim-lspconfig'     -- Collection of configurations for built-in LSP client
+  use 'kabouzeid/nvim-lspinstall' -- Automatically install language servers
+  use 'hrsh7th/nvim-compe'        -- Autocompletion plugin
+
+  use 'L3MON4D3/LuaSnip'  -- Snippets plugin
+end)
 
 
 --------------------
@@ -165,7 +158,18 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = false, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    },
+  },
 }
+
+require('telescope').load_extension('fzf')
+
 --Add leader shortcuts
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>.', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
@@ -181,7 +185,6 @@ vim.api.nvim_set_keymap('n', '<leader>/', [[<cmd>lua require('telescope.builtin'
 ------------------
 -- LSP settings --
 ------------------
-local nvim_lsp = require 'lspconfig'
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -210,51 +213,16 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Enable the following language servers
-local servers = { 'rust_analyzer', 'pyright' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+-- Enable installed language servers
+require'lspinstall'.setup()
+
+local servers = require'lspinstall'.installed_servers()
+for _, server in pairs(servers) do
+  require'lspconfig'[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
-
--- Example custom server
-local sumneko_root_path = vim.fn.getenv("HOME").."/.local/bin/sumneko_lua" -- Change to your sumneko root installation
-local sumneko_binary = sumneko_root_path .. '/bin/linux/lua-language-server'
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-require('lspconfig').sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
 
 
 ------------------------------
