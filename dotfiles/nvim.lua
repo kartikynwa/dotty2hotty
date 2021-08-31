@@ -84,6 +84,11 @@ vim.cmd [[colorscheme gruvbox]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert'
 
+-- tabs
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
