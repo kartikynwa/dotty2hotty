@@ -68,7 +68,8 @@ floating_modifier $mod
 
 # start a terminal
 set $TERMINAL alacritty
-bindsym $mod+Return exec --no-startup-id $TERMINAL
+bindsym $mod+Shift+Return exec --no-startup-id $TERMINAL
+bindsym $mod+Return exec --no-startup-id $TERMINAL -e tmux new-session -A -s default
 
 # Scratchpad terminal.
 # https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
@@ -208,8 +209,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # bindsym XF86AudioMute exec amixer -q set Master toggleControls
 
 # Screenshots
-bindsym $mod+Shift+s exec --no-startup-id maim ~/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
-bindsym $mod+Control+s exec --no-startup-id maim -u -s ~/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
+bindsym $mod+Shift+s exec --no-startup-id maim ~/pics/screenshots/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
+bindsym $mod+Control+s exec --no-startup-id maim -u -s ~/pics/screenshots/screenshot-$( date -u +"%Y%m%d%H%M%S" ).png
 
 # skedaddle between workspaces with this COOL hack
 bindsym $mod+space workspace back_and_forth
