@@ -13,8 +13,7 @@ precmd () { print -Pn "\e]0;$TITLE\a" }
 title() { export TITLE="$*" }
 
 # add to fpath
-fpath=(~/.config/zsh.d ~/.local/etc/bash_completion.d $fpath)
-fpath=(~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/zsh/site-functions $fpath)
+fpath=("${HOME}/.config/zsh.d" "${HOME}/.local/etc/bash_completion.d" $fpath)
 
 # Variables
 GOPATH="${HOME}/go"

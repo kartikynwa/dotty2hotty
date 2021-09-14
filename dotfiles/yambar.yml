@@ -94,7 +94,7 @@ bar:
     - network:
         name: wlp0s20f3
         content:
-          - string: {text: "wifi {state}"}
+          - string: {text: "{ssid}"}
     - label:
         content: *separator
     - clock:

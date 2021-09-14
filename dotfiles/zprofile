@@ -4,11 +4,10 @@
 
 # Environment variables
 export EDITOR=vim
-# export SVDIR=${HOME}/.local/var/service
 export GPODDER_HOME=${HOME}/.config/gPodder
 export GPODDER_DOWNLOAD_DIR=${HOME}/dumbshit/podcasts
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
-export QT_STYLE_OVERRIDE=kvantum
+# export QT_STYLE_OVERRIDE=qt5ct
 export DOOMDIR=${HOME}/.config/doom.d
 
 # rustup

@@ -1,5 +1,7 @@
 #!/bin/bash
 # DOT_DEST=.xinitrc
+xrandr --setprovideroutputsource NVIDIA-0 modesetting
+xrandr --auto
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/utils/wall.sh
 unclutter &
