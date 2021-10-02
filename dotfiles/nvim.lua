@@ -223,13 +223,16 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require'lspinstall'.setup()
 
 local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
+local function setup_server(server)
   require'lspconfig'[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
-
+for _, server in pairs(servers) do
+  setup_server(server)
+end
+setup_server('rust_analyzer')
 
 ------------------------------
 -- Treesitter configuration --
