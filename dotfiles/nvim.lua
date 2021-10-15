@@ -188,16 +188,17 @@ vim.api.nvim_set_keymap('n', '<leader>/', [[<cmd>lua require('telescope.builtin'
 -- vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true, silent = true })
 
 
-------------------
--- LSP settings --
-------------------
+------------------------
+-- lspconfig settings --
+------------------------
+local nvim_lsp = require 'lspconfig'
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -216,23 +217,28 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
+-- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Enable installed language servers
+-- Enable the following language servers
+local function setup_servers(servers)
+  for _, lsp in pairs(servers) do
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+end
+
+local servers = { 'rust_analyzer' }
+setup_servers(servers)
+
+-- Set up nvim-lspinstall servers
 require'lspinstall'.setup()
-
 local servers = require'lspinstall'.installed_servers()
-local function setup_server(server)
-  require'lspconfig'[server].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
-for _, server in pairs(servers) do
-  setup_server(server)
-end
-setup_server('rust_analyzer')
+setup_servers(servers)
+
 
 ------------------------------
 -- Treesitter configuration --
@@ -291,13 +297,15 @@ require('nvim-treesitter.configs').setup {
 
 
 -----------------
--- Compe setup --
+-- nvim-cmp setup --
 -----------------
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
+-- luasnip setup
 local luasnip = require 'luasnip'
 
+-- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
   snippet = {
@@ -317,19 +325,19 @@ cmp.setup {
       select = true,
     },
     ['<Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      if cmp.visible() then
+        cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+        luasnip.expand_or_jump()
       else
         fallback()
       end
     end,
     ['<S-Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      if cmp.visible() then
+        cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+        luasnip.jump(-1)
       else
         fallback()
       end
