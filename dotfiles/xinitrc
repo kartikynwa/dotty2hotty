@@ -1,12 +1,10 @@
 #!/bin/bash
 # DOT_DEST=.xinitrc
-xrandr --setprovideroutputsource NVIDIA-0 modesetting
-xrandr --auto
+# xrandr --setprovideroutputsource NVIDIA-0 modesetting
+# xrandr --auto
 xrdb -load ~/.Xresources
 ~/dotty2hotty/scripterino/utils/wall.sh
-unclutter &
-redshift &
+# unclutter & # moved to i3_services
 xset -b # turn off beeping
 setxkbmap -option ctrl:nocaps
-[ -f ~/dotty2hotty/config_files/xmodmaprc_logitech ] && xmodmap ~/dotty2hotty/config_files/xmodmaprc_logitech
 exec dbus-run-session i3
