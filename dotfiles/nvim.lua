@@ -1,3 +1,14 @@
+--  _       _ _     _
+-- (_)_ __ (_) |_  | |_   _  __ _
+-- | | '_ \| | __| | | | | |/ _` |
+-- | | | | | | |_ _| | |_| | (_| |
+-- |_|_| |_|_|\__(_|_|\__,_|\__,_|
+--
+--         a config file
+
+-- Based on https://github.com/mjlbach/defaults.nvim/blob/master/init.lua
+-- Last updated against: cddcfb7821f4799df8767f362fc3d024be4fd7d1
+
 ------------
 -- packer --
 ------------
