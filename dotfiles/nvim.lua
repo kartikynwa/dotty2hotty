@@ -130,15 +130,6 @@ vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true,
 -- Y yank until the end of line
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
 
-------------------------
--- lightline settings --
-------------------------
-vim.g.lightline = {
-	colorscheme = "gruvbox_material",
-	active = { left = { { "mode", "paste" }, { "gitbranch", "readonly", "filename", "modified" } } },
-	component_function = { gitbranch = "fugitive#head" },
-}
-
 -------------------------------
 -- indent-blankline settings --
 -------------------------------
