@@ -61,8 +61,8 @@ require('packer').startup(function()
   use 'nvim-treesitter/nvim-treesitter'             -- For syntax highlighting I think
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- For tree-sitter I think
 
-  use 'neovim/nvim-lspconfig'     -- Collection of configurations for built-in LSP client
-  use 'kabouzeid/nvim-lspinstall' -- Automatically install language servers
+  use 'neovim/nvim-lspconfig'           -- Collection of configurations for built-in LSP client
+  use 'williamboman/nvim-lsp-installer' -- Automatically install language servers
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
@@ -236,23 +236,24 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Enable the following language servers
-local function setup_servers(servers)
-  for _, lsp in pairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
-  end
+-- Enable manually installed LSP servers
+local servers = { 'rust_analyzer' }
+for _, lsp in pairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 end
 
-local servers = { 'rust_analyzer' }
-setup_servers(servers)
-
--- Set up nvim-lspinstall servers
-require'lspinstall'.setup()
-local servers = require'lspinstall'.installed_servers()
-setup_servers(servers)
+-- Enable nvim-lsp-installer installed LSP servers
+local lsp_installer = require'nvim-lsp-installer'
+local servers = lsp_installer.get_installed_servers()
+for _, server in pairs(servers) do
+  server:setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
 
 
 ------------------------------
