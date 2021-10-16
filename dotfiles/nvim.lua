@@ -49,7 +49,10 @@ require('packer').startup(function()
     } 
   }
 
-  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}} -- THE colorscheme :)
+  -- Was using this gruvbox skin before but it caused some issues with tree-sitter
+  -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+
+  use 'sainnhe/gruvbox-material' -- THE colorscheme :)
   use 'itchyny/lightline.vim'                                 -- Fancier statusline
 
   use 'lukas-reineke/indent-blankline.nvim'                   -- indent blank lines
@@ -91,7 +94,8 @@ vim.wo.signcolumn = 'yes'
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
-vim.cmd [[colorscheme gruvbox]]
+vim.g.gruvbox_material_palette = 'original'
+vim.cmd [[colorscheme gruvbox-material]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert'
@@ -133,7 +137,7 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 -- lightline settings --
 ------------------------
 vim.g.lightline = {
-  colorscheme = 'gruvbox',
+  colorscheme = 'gruvbox_material',
   active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
   component_function = { gitbranch = 'fugitive#head' },
 }
