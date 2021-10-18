@@ -409,3 +409,16 @@ require("feline").setup({
 	preset = "noicon",
 	colors = colors,
 })
+
+------------------
+-- work related --
+------------------
+vim.api.nvim_exec(
+  [[
+  augroup deepql_ft
+    autocmd!
+    autocmd BufNewFile,BufRead *.deepql set filetype=graphql
+  augroup end
+]],
+  false
+)
