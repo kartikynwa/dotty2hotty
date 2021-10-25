@@ -6,8 +6,8 @@
 --
 --         a config file
 
--- Based on https://github.com/mjlbach/defaults.nvim/blob/master/init.lua
--- Last updated against: cddcfb7821f4799df8767f362fc3d024be4fd7d1
+-- Based on: https://github.com/nvim-lua/kickstart.nvim
+-- Last updated against: 1a77d318794193ffe65ad7d3b955575dc6e62ef9
 
 ------------
 -- packer --
@@ -39,6 +39,7 @@ require("packer").startup(function()
 	use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
 	use("tpope/vim-commentary") -- "gc" to comment visual regions/lines
 	use("tpope/vim-surround") -- You have been surrounded
+	use("tpope/vim-repeat") -- . works better with this
 	use("justinmk/vim-sneak") -- `f` on 'roids
 
 	use({ -- As of now I am not sure what telescope does exactly but it looks cool
