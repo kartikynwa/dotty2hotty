@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 1a77d318794193ffe65ad7d3b955575dc6e62ef9
+-- Last updated against: 9bd907b7f5aacd6363fcf206b9240ffb7b9db3e7
 
 ------------
 -- packer --
@@ -347,7 +347,7 @@ local cmp = require("cmp")
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
