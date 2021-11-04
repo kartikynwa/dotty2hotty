@@ -259,24 +259,22 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+local lsp_opts = {
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
+
 -- Enable manually installed LSP servers
 local servers = { "rust_analyzer" }
 for _, lsp in pairs(servers) do
-	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
+	nvim_lsp[lsp].setup(lsp_opts)
 end
 
 -- Enable nvim-lsp-installer installed LSP servers
 local lsp_installer = require("nvim-lsp-installer")
-local servers = lsp_installer.get_installed_servers()
-for _, server in pairs(servers) do
-	server:setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+lsp_installer.on_server_ready(function(server)
+	server:setup(lsp_opts)
+end)
 
 ------------------------------
 -- Treesitter configuration --
@@ -297,6 +295,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
+		disable = { "python" },
 	},
 	textobjects = {
 		select = {
@@ -415,11 +414,11 @@ require("feline").setup({
 -- work related --
 ------------------
 vim.api.nvim_exec(
-  [[
+	[[
   augroup deepql_ft
     autocmd!
     autocmd BufNewFile,BufRead *.deepql set filetype=graphql
   augroup end
 ]],
-  false
+	false
 )
