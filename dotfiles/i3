@@ -315,6 +315,7 @@ exec --no-startup-id dunst
 exec --no-startup-id yambar
 
 exec --no-startup-id runsvdir ~/dotty2hotty/i3_services
+exec --no-startup-id ~/dotty2hotty/scripterino/utils/picom_for_intel.sh
 
 exec --no-startup-id brillo -S 50
 
