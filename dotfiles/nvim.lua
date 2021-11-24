@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 9bd907b7f5aacd6363fcf206b9240ffb7b9db3e7
+-- Last updated against: 61bd292f2a3ac15ee641b6524586a5ec1aa25df4
 
 ------------
 -- packer --
@@ -20,15 +20,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.api.nvim_exec(
-	[[
+vim.cmd [[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
   augroup end
-]],
-	false
-)
+]]
 
 -- Install plugins
 local use = require("packer").use
@@ -50,10 +47,9 @@ require("packer").startup(function()
 		},
 	})
 
-	-- Was using this gruvbox skin before but it caused some issues with tree-sitter
-	-- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-
 	use("sainnhe/gruvbox-material") -- THE colorscheme :)
+  -- use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+
 	use("famiu/feline.nvim") -- Status line
 
 	use("lukas-reineke/indent-blankline.nvim") -- indent blank lines
@@ -106,15 +102,13 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 -- Highlight on yank
-vim.api.nvim_exec(
-	[[
+vim.cmd [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]],
-	false
-)
+]]
+
 
 ------------------------
 -- Neovim keybindings --
@@ -413,12 +407,9 @@ require("feline").setup({
 ------------------
 -- work related --
 ------------------
-vim.api.nvim_exec(
-	[[
+vim.cmd	[[
   augroup deepql_ft
     autocmd!
     autocmd BufNewFile,BufRead *.deepql set filetype=graphql
   augroup end
-]],
-	false
-)
+]]
