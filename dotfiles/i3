@@ -33,14 +33,14 @@ floating_maximum_size 1280 x 720
 
 # Monitor controls
 set $LAPTOP_MONITOR DP-2
-set $HDMI HDMI-0
+set $EXTERNAL_MONITOR DP-0
 bindsym $mod+Shift+m exec --no-startup-id xrandr \
           --output $LAPTOP_MONITOR --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-          --output $HDMI --off && \
+          --output $EXTERNAL_MONITOR --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh
           # pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
 bindsym $mod+Shift+n exec --no-startup-id xrandr \
-          --output $HDMI --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 144 \
+          --output $EXTERNAL_MONITOR --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 144 \
           --output $LAPTOP_MONITOR --off && \
           /home/kartik/dotty2hotty/scripterino/utils/wall.sh
 #         pactl set-card-profile 0 output:hdmi-stereo
