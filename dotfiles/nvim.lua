@@ -259,7 +259,8 @@ local lsp_opts = {
 }
 
 -- Enable manually installed LSP servers
-local servers = { "rust_analyzer" }
+-- local servers = { "rust_analyzer" }
+local servers = {}
 for _, lsp in pairs(servers) do
 	nvim_lsp[lsp].setup(lsp_opts)
 end
@@ -288,8 +289,9 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	indent = {
-		enable = true,
-		disable = { "python" },
+    -- for now, disable indentation since most modules don't support
+		enable = false,
+		-- disable = { "python" },
 	},
 	textobjects = {
 		select = {
