@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 61bd292f2a3ac15ee641b6524586a5ec1aa25df4
+-- Last updated against: fe5bd1a14d18a59cacf0b685273537df491d8c3c
 
 ------------
 -- packer --
@@ -20,12 +20,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.cmd [[
+vim.cmd([[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
   augroup end
-]]
+]])
 
 -- Install plugins
 local use = require("packer").use
@@ -48,7 +48,7 @@ require("packer").startup(function()
 	})
 
 	use("sainnhe/gruvbox-material") -- THE colorscheme :)
-  -- use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+	-- use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
 	use("famiu/feline.nvim") -- Status line
 
@@ -70,9 +70,7 @@ end)
 --------------------
 -- Neovim settings --
 --------------------
-vim.o.inccommand = "nosplit" --Incremental live completion
 vim.o.hlsearch = false --Set highlight on search
-vim.o.hidden = true --Do not save when switching buffers
 vim.o.mouse = "a" --Enable mouse mode
 vim.o.breakindent = true --Enable break indent
 
@@ -102,13 +100,12 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 -- Highlight on yank
-vim.cmd [[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]]
-
+]])
 
 ------------------------
 -- Neovim keybindings --
@@ -122,16 +119,12 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
--- Y yank until the end of line
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
-
 -------------------------------
 -- indent-blankline settings --
 -------------------------------
 vim.g.indent_blankline_char = "┊"
 vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
 vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
-vim.g.indent_blankline_char_highlight = "LineNr"
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 
 --------------
@@ -229,16 +222,10 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(
-		bufnr,
-		"n",
-		"<leader>e",
-		"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
-		opts
-	)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(
 		bufnr,
 		"n",
@@ -289,7 +276,7 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	indent = {
-    -- for now, disable indentation since most modules don't support
+		-- for now, disable indentation since most modules don't support
 		enable = false,
 		-- disable = { "python" },
 	},
@@ -409,9 +396,9 @@ require("feline").setup({
 ------------------
 -- work related --
 ------------------
-vim.cmd	[[
+vim.cmd([[
   augroup deepql_ft
     autocmd!
     autocmd BufNewFile,BufRead *.deepql set filetype=graphql
   augroup end
-]]
+]])
