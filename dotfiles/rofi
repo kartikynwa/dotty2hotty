@@ -1,7 +1,9 @@
 /* DOT_DEST=.config/rofi/config.rasi */
+
 configuration {
 	lines: 10;
 	font: "DejaVu Sans Mono 14";
 	matching: "regex";
-	theme: "~/dotty2hotty/config_files/rofi-gruvbox-dark.rasi";
 }
+
+@theme "~/dotty2hotty/config_files/rofi-gruvbox-dark.rasi"
