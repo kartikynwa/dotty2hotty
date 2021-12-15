@@ -174,9 +174,11 @@ bindsym $mod+period exec --no-startup-id mpc next && ~/dotty2hotty/scripterino/n
 bindsym $mod+equal exec --no-startup-id mpc volume +5
 bindsym $mod+minus exec --no-startup-id mpc volume -5
 bindsym $mod+m exec --no-startup-id ~/dotty2hotty/scripterino/notify/mpd-notify.py
-# for bluetooth speaker JBL GO
-bindsym XF86AudioPlay exec --no-startup-id mpc next
-bindsym XF86AudioPause exec --no-startup-id mpc next
+# Same but with media buttons
+bindsym XF86AudioPlay exec --no-startup-id mpc play
+bindsym XF86AudioPause exec --no-startup-id mpc pause
+bindsym XF86AudioNext exec --no-startup-id mpc next && ~/dotty2hotty/scripterino/notify/mpd-notify.py
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
 # cmus
 # bindsym $mod+slash exec --no-startup-id cmus-remote --pause
@@ -315,6 +317,7 @@ exec --no-startup-id dunst
 exec --no-startup-id yambar
 
 exec --no-startup-id runsvdir ~/dotty2hotty/i3_services
+exec_always --no-startup-id sv restart ~/dotty2hotty/i3_services/yambar
 exec --no-startup-id ~/dotty2hotty/scripterino/utils/picom_for_intel.sh
 
 exec --no-startup-id brillo -S 50
