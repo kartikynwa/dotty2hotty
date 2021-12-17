@@ -50,7 +50,7 @@ require("packer").startup(function()
 	use("sainnhe/gruvbox-material") -- THE colorscheme :)
 	-- use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
-	use("famiu/feline.nvim") -- Status line
+	use({"zbirenbaum/feline.nvim", branch = "vim_diagnostic"}) -- Status line
 
 	use("lukas-reineke/indent-blankline.nvim") -- indent blank lines
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
