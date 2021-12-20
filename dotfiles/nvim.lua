@@ -50,7 +50,7 @@ require("packer").startup(function()
 	use("sainnhe/gruvbox-material") -- THE colorscheme :)
 	-- use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
-	use({"zbirenbaum/feline.nvim", branch = "vim_diagnostic"}) -- Status line
+	use({"feline-nvim/feline.nvim", branch = "develop"}) -- Status line
 
 	use("lukas-reineke/indent-blankline.nvim") -- indent blank lines
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
@@ -372,7 +372,7 @@ cmp.setup({
 -- feline.nvim --
 -----------------
 
-colors = {
+local feline_gruvbox = {
 	fg = "#ebdbb2",
 	bg = "#32302f",
 	black = "#32302f",
@@ -388,9 +388,10 @@ colors = {
 	yellow = "#d79921",
 }
 
-require("feline").setup({
+local feline = require("feline")
+feline.setup({
 	preset = "noicon",
-	colors = colors,
+  theme = feline_gruvbox,
 })
 
 ------------------
