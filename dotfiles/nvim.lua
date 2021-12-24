@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: fe5bd1a14d18a59cacf0b685273537df491d8c3c
+-- Last updated against: 454dbc108690bfcd1a28c0d75aa565bb2cacd31e
 
 ------------
 -- packer --
@@ -62,6 +62,7 @@ require("packer").startup(function()
 	use("williamboman/nvim-lsp-installer") -- Automatically install language servers
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-path")
 	use("saadparwaiz1/cmp_luasnip")
 
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
@@ -198,7 +199,7 @@ vim.api.nvim_set_keymap(
 ------------------------
 -- lspconfig settings --
 ------------------------
-local nvim_lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -249,7 +250,7 @@ local lsp_opts = {
 -- local servers = { "rust_analyzer" }
 local servers = {}
 for _, lsp in pairs(servers) do
-	nvim_lsp[lsp].setup(lsp_opts)
+	lspconfig[lsp].setup(lsp_opts)
 end
 
 -- Enable nvim-lsp-installer installed LSP servers
@@ -365,6 +366,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "path" },
 	},
 })
 
