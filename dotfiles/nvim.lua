@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 454dbc108690bfcd1a28c0d75aa565bb2cacd31e
+-- Last updated against: 253a2fc5689ce39b47d12275af16aee424358f15
 
 ------------
 -- packer --
@@ -201,8 +201,6 @@ vim.api.nvim_set_keymap(
 ------------------------
 local lspconfig = require("lspconfig")
 local on_attach = function(_, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
 	local opts = { noremap = true, silent = true }
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
