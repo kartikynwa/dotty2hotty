@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 9288f4adcb25ebc70dab2ba0cd6b910b1fde57bf
+-- Last updated against: af239a5b8182f8aca36a62f3c88279e031edef56
 
 ------------
 -- packer --
@@ -29,7 +29,7 @@ vim.cmd([[
 
 -- Install plugins
 local use = require("packer").use
-require("packer").startup(function()
+require("packer").startup(function(use)
 	use("wbthomason/packer.nvim") -- Package manager
 
 	use("tpope/vim-fugitive") -- Git commands in nvim
@@ -58,14 +58,14 @@ require("packer").startup(function()
 	use("nvim-treesitter/nvim-treesitter") -- For syntax highlighting I think
 	use("nvim-treesitter/nvim-treesitter-textobjects") -- For tree-sitter I think
 
+	use("L3MON4D3/LuaSnip") -- Snippets plugin
+
 	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("williamboman/nvim-lsp-installer") -- Automatically install language servers
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-path")
 	use("saadparwaiz1/cmp_luasnip")
-
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
 end)
 
 --------------------
