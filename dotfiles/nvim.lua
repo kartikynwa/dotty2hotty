@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: af239a5b8182f8aca36a62f3c88279e031edef56
+-- Last updated against: 88a679d5624ebbc0d95ff9743066ae43331a219b
 
 ------------
 -- packer --
