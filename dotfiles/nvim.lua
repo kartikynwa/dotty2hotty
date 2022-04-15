@@ -7,7 +7,7 @@
 --         a config file
 
 -- Based on: https://github.com/nvim-lua/kickstart.nvim
--- Last updated against: 88a679d5624ebbc0d95ff9743066ae43331a219b
+-- Last updated against: a2af49c8fce9d05b815842b7a375412812bd1aba
 
 ------------
 -- packer --
@@ -20,12 +20,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
-vim.cmd [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]]
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
 -- Install plugins
 local use = require('packer').use
@@ -105,12 +101,14 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 -- Highlight on yank
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- lightspeed.nvim configuration
 require('lightspeed').setup {
@@ -122,13 +120,13 @@ require('lightspeed').setup {
 -- Neovim keybindings --
 ------------------------
 -- Remap space as leader key
--- vim.keymap.del('', '<Space>')
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -------------------------------
 -- indent-blankline settings --
@@ -176,32 +174,32 @@ require('telescope').setup {
 require('telescope').load_extension 'fzf'
 
 -- Add leader shortcuts
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sf', function()
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<leader>.', function()
   require('telescope.builtin').find_files { previewer = false }
-end, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { noremap = true, silent = true })
+end)
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
+vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
 
 -- Tags related plugin is not in use
--- vim.keymap.set('n', '<leader>so', function () require('telescope.builtin').tags{ only_current_buffer = true } end, { noremap = true, silent = true })
--- vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags, { noremap = true, silent = true })
--- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>so', function () require('telescope.builtin').tags{ only_current_buffer = true } end)
+-- vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
+-- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, silent = true })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 ------------------------
 -- lspconfig settings --
 ------------------------
 local lspconfig = require 'lspconfig'
 local on_attach = function(_, bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
+  local opts = { buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
@@ -210,14 +208,14 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    vim.inspect(vim.lsp.buf.list_workspace_folders())
   end, opts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -316,13 +314,10 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+  mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
