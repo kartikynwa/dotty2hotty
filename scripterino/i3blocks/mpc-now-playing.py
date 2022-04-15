@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     # Get song name
     if "title" in song:
-        song_string = "\"" + song["title"] + "\""
+        song_string = '"' + song["title"] + '"'
         if "artist" in song:
             song_string += " by " + song["artist"]
         if len(song_string) > 40:
