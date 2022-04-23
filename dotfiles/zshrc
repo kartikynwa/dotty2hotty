@@ -114,6 +114,9 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' rehash yes
 zstyle ':completion:*' list-colors
 
+autoload -U select-word-style
+select-word-style bash
+
 setprompt() {
   setopt prompt_subst
 
