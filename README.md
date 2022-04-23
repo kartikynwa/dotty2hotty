@@ -4,8 +4,6 @@
 
 ![screenshot_1](screenshots/screenshot_1.png "Naked")
 
-![screenshot_2](screenshots/screenshot_2.png "Solid")
-
 ## Instructions
 
 Initiate a fresh Void Linux installation with these awesome ai machine learning
