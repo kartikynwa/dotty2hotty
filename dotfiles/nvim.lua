@@ -95,6 +95,13 @@ vim.cmd [[colorscheme gruvbox-material]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert'
 
+-- Use global status line
+vim.o.laststatus = 3
+
+-- Lua filetype detection
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
+
 -- tabs
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
