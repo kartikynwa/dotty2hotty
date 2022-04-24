@@ -47,7 +47,7 @@ bar:
 
   right:
     - mpd:
-        host: /var/run/user/1000/mpd/socket
+        host: /var/run/user/1000/mpd.socket
         anchors:
           list: &artist_album_title
             items:
