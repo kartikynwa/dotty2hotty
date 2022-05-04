@@ -31,12 +31,12 @@ require('packer').startup(function(use)
 
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use {
+  use { -- "gc" to comment visual regions/lines
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end,
-  } -- "gc" to comment visual regions/lines
+  }
   use 'tpope/vim-surround' -- You have been surrounded
   use 'tpope/vim-repeat' -- . works better with this
   use 'ggandor/lightspeed.nvim' -- `f` on 'roids
@@ -59,14 +59,14 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter' -- For syntax highlighting I think
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- For tree-sitter I think
 
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'williamboman/nvim-lsp-installer' -- Automatically install language servers
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
-  use 'saadparwaiz1/cmp_luasnip'
+
+  -- use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  -- use 'saadparwaiz1/cmp_luasnip'
 end)
 
 --------------------
@@ -311,17 +311,14 @@ require('nvim-treesitter.configs').setup {
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- luasnip setup
-local luasnip = require 'luasnip'
-
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end,
+  -- },
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -333,8 +330,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+        -- elseif luasnip.expand_or_jumpable() then
+        --   luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -342,8 +339,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+        -- elseif luasnip.jumpable(-1) then
+        --   luasnip.jump(-1)
       else
         fallback()
       end
@@ -351,7 +348,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
     { name = 'path' },
   },
 }
