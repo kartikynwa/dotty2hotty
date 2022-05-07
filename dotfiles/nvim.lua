@@ -51,7 +51,7 @@ require('packer').startup(function(use)
 
   use 'sainnhe/gruvbox-material' -- THE colorscheme :)
 
-  use { 'feline-nvim/feline.nvim', branch = 'develop' } -- Status line
+  use { 'feline-nvim/feline.nvim', branch = 'master' } -- Status line
 
   use 'lukas-reineke/indent-blankline.nvim' -- indent blank lines
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -107,6 +107,9 @@ vim.g.did_load_filetypes = 0
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+
+-- relative line number
+vim.o.relativenumber = true
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
