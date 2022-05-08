@@ -67,6 +67,8 @@ require('packer').startup(function(use)
 
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'saadparwaiz1/cmp_luasnip'
+
+  use 'akinsho/toggleterm.nvim'
 end)
 
 --------------------
@@ -381,6 +383,25 @@ feline.setup {
   preset = 'noicon',
   theme = feline_gruvbox,
 }
+
+-----------------------------------
+-- toggleterm.nvim configuration --
+-----------------------------------
+
+require('toggleterm').setup {}
+local term = require('toggleterm.terminal').Terminal:new {
+  dir = 'git_dir',
+  direction = 'float',
+  float_opts = {
+    border = 'double',
+  },
+}
+
+function _term_toggle()
+  term:toggle()
+end
+
+vim.keymap.set({ 'n', 't' }, '<C-t>', _term_toggle)
 
 ------------------
 -- work related --
