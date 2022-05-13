@@ -187,7 +187,9 @@ require('telescope').setup {
 require('telescope').load_extension 'fzf'
 
 -- Add leader shortcuts
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<leader><space>', function()
+  require('telescope.builtin').buffers(require('telescope.themes').get_dropdown { sort_lastused = true, ignore_current_buffer = true })
+end)
 vim.keymap.set('n', '<leader>.', function()
   require('telescope.builtin').find_files { previewer = false }
 end)
@@ -195,11 +197,6 @@ vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fu
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
-
--- Tags related plugin is not in use
--- vim.keymap.set('n', '<leader>so', function () require('telescope.builtin').tags{ only_current_buffer = true } end)
--- vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
--- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
