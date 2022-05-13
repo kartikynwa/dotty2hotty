@@ -41,7 +41,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat' -- . works better with this
   use 'ggandor/lightspeed.nvim' -- `f` on 'roids
 
-  use { -- As of now I am not sure what telescope does exactly but it looks cool
+  use {
     'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
@@ -171,6 +171,16 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ['<C-j>'] = require('telescope.actions').move_selection_next,
+          ['<C-k>'] = require('telescope.actions').move_selection_previous,
+        },
       },
     },
   },
@@ -314,6 +324,7 @@ require('nvim-treesitter.configs').setup {
 vim.o.completeopt = 'menuone,noselect'
 
 -- nvim-cmp setup
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 cmp.setup {
   snippet = {
