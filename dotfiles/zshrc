@@ -84,8 +84,6 @@ alias za="zathura"
 alias open="xdg-open"
 alias protocol="sudo xbps-install -Suy && sudo poweroff"
 
-alias wififix="iwctl station wlp0s20f3 connect @MAr_B@r!"
-
 alias xs="xbps-query -Rs"
 alias xu="sudo xbps-install -Su"
 alias mkdoc="sudo makewhatis /usr/share/man"
